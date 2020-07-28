@@ -1,0 +1,30 @@
+@font-face {
+  font-family: Misirlou;
+  src: url(misirlou.day.ttf);
+}
+
+/* Variables  */
+:root {
+  /* Palette  */
+  --pink: #f88dad;
+}
+
+body {
+  margin: 0;
+}
+
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#home {
+  height: 100vh;
+  /* background-color: var(--pink); */
+}
+
+#home h1 {
+  font-family: Misirlou;
+  font-size: 7rem;
+}
