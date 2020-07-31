@@ -1,3 +1,6 @@
+/* Alef Font  */
+@import url("https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap");
+
 @font-face {
   font-family: Misirlou;
   src: url(misirlou.day.ttf);
@@ -7,6 +10,7 @@
 :root {
   /* Palette  */
   --pink: #f88dad;
+  --dark: #383d3b;
 }
 
 body {
@@ -14,17 +18,61 @@ body {
 }
 
 section {
+  padding: 5rem 0.5rem;
+}
+
+#home {
+  height: 100vh;
+  background-color: var(--pink);
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr 1fr 3fr auto auto;
+  grid-template-areas:
+    "logo"
+    "play"
+    "time"
+    "soun"
+    "entr"
+    "foot";
+}
+
+#home * {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-#home {
-  height: 100vh;
-  /* background-color: var(--pink); */
-}
-
-#home h1 {
+#logo {
   font-family: Misirlou;
   font-size: 7rem;
+  grid-area: logo;
+}
+
+#play img {
+  color: black;
+  --size: 120px;
+  width: var(--size);
+  height: var(--size);
+  grid-area: play;
+}
+
+#times {
+  display: flex;
+  grid-area: time;
+}
+
+#sound {
+  grid-area: soun;
+}
+
+#entries {
+  grid-area: entr;
+}
+
+footer {
+  line-height: 0;
+  font-family: "Alef", sans-serif;
+  grid-area: foot;
+  opacity: 0;
 }
