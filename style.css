@@ -1,5 +1,7 @@
 /* Alef Font  */
 @import url("https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap");
+/* Ubuntu Font  */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap");
 
 @font-face {
   font-family: Misirlou;
@@ -10,24 +12,34 @@
 :root {
   /* Palette  */
   --pink: #f88dad;
+  --white: #f9e9ec;
+  --yellow: #fac748;
+  --purple: #8390fa;
   --dark: #383d3b;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
   margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 section {
   padding: 5rem 0.5rem;
+  height: inherit;
 }
 
 #home {
-  height: 100vh;
   background-color: var(--pink);
 
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 2fr 1fr 3fr auto auto;
+  grid-template-rows: repeat(6, auto);
   grid-template-areas:
     "logo"
     "play"
@@ -37,7 +49,7 @@ section {
     "foot";
 }
 
-#home * {
+#home > * {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,8 +83,10 @@ section {
 }
 
 footer {
-  line-height: 0;
-  font-family: "Alef", sans-serif;
+  font-family: "Ubuntu", sans-serif;
   grid-area: foot;
-  opacity: 0;
+}
+
+a {
+  color: var(--dark);
 }
