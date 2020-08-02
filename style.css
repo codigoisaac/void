@@ -38,15 +38,13 @@ section {
   background-color: var(--pink);
 
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(6, auto);
+  grid-template-columns: 1fr 2fr 3fr;
+  grid-template-rows: repeat(4, auto);
   grid-template-areas:
-    "logo"
-    "play"
-    "time"
-    "soun"
-    "entr"
-    "foot";
+    "foot entr logo"
+    "foot entr play"
+    "foot entr time"
+    "foot entr soun";
 }
 
 #home > * {
@@ -76,17 +74,22 @@ section {
 
 #sound {
   grid-area: soun;
+  background-color: var(--yellow);
 }
 
 #entries {
   grid-area: entr;
+  background-color: var(--purple);
 }
 
 footer {
   font-family: "Ubuntu", sans-serif;
   grid-area: foot;
 }
-
+footer p {
+  transform: rotate(-90deg);
+}
 a {
   color: var(--dark);
+  text-decoration: none;
 }
