@@ -29,6 +29,12 @@ body {
   height: 100%;
 }
 
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 section {
   padding: 5rem 0.5rem;
   height: inherit;
@@ -75,6 +81,20 @@ section {
 #sound {
   grid-area: soun;
   background-color: var(--yellow);
+}
+#sound-container {
+  align-items: flex-start;
+}
+.sound-circle,
+.sound-header {
+  border: 1px solid black;
+  border-radius: 50%;
+  --circle-size: 2.2rem;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #entries {
