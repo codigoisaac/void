@@ -1,5 +1,3 @@
-/* Alef Font  */
-@import url("https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap");
 /* Ubuntu Font  */
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap");
 
@@ -27,9 +25,11 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .centered {
+  /* class almost not used */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,6 +77,20 @@ section {
   display: flex;
   grid-area: time;
 }
+.time {
+  border: 1px solid black;
+  --border: 8px;
+  /* border-radius: var(--border) var(--border) 0 0; */
+  border-radius: 50%;
+  padding: 0.5rem;
+  margin: 0.1rem;
+  --circle-size: 3.5rem;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 #sound {
   grid-area: soun;
@@ -103,8 +117,8 @@ section {
 }
 
 footer {
-  font-family: "Ubuntu", sans-serif;
   grid-area: foot;
+  background-color: var(--white);
 }
 footer p {
   transform: rotate(-90deg);
