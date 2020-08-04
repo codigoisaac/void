@@ -14,6 +14,7 @@
   --yellow: #fac748;
   --purple: #8390fa;
   --dark: #383d3b;
+  --secondary: var(--yellow);
 }
 
 * {
@@ -44,7 +45,7 @@ section {
   background-color: var(--pink);
 
   display: grid;
-  grid-template-columns: 1fr 2fr 3fr;
+  grid-template-columns: auto 2fr 4fr;
   grid-template-rows: repeat(4, auto);
   grid-template-areas:
     "foot entr logo"
@@ -65,12 +66,15 @@ section {
   grid-area: logo;
 }
 
-#play img {
+#play {
   color: black;
-  --size: 120px;
-  width: var(--size);
-  height: var(--size);
   grid-area: play;
+  font-size: 6rem;
+}
+
+#logo:hover,
+#play i:hover {
+  color: var(--secondary);
 }
 
 #times {
@@ -94,7 +98,7 @@ section {
 
 #sound {
   grid-area: soun;
-  background-color: var(--yellow);
+  /* background-color: var(--yellow); */
 }
 #sound-container {
   align-items: flex-start;
@@ -110,20 +114,29 @@ section {
   align-items: center;
   justify-content: center;
 }
+.sound-circle:hover,
+.sound-header:hover,
+.time:hover {
+  background-color: var(--secondary);
+}
 
 #entries {
   grid-area: entr;
-  background-color: var(--purple);
+  border: 1px solid black;
 }
 
 footer {
   grid-area: foot;
-  background-color: var(--white);
 }
 footer p {
-  transform: rotate(-90deg);
+  writing-mode: tb-rl;
+  transform: rotate(-180deg);
 }
 a {
   color: var(--dark);
   text-decoration: none;
+}
+a:hover {
+  color: var(--white);
+  font-weight: bold;
 }
