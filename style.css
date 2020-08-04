@@ -135,8 +135,8 @@ footer p {
 a {
   color: var(--dark);
   text-decoration: none;
+  font-weight: bold;
 }
 a:hover {
-  color: var(--white);
-  font-weight: bold;
+  font-weight: normal;
 }
