@@ -123,6 +123,15 @@ section {
 #entries {
   grid-area: entr;
   border: 1px solid black;
+  padding: 0 1.3rem;
+  flex-direction: column;
+  overflow-y: scroll;
+  justify-content: start;
+}
+.day {
+  padding: 1.5rem;
+  margin: 1.1rem 0;
+  border: 1px solid black;
 }
 
 footer {
@@ -133,7 +142,7 @@ footer p {
   transform: rotate(-180deg);
 }
 a {
-  color: var(--dark);
+  color: black;
   text-decoration: none;
   font-weight: bold;
 }
