@@ -1,5 +1,8 @@
-/* Ubuntu Font  */
+/* Fonts */
+/* Ubuntu  */
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap");
+/* Questrial */
+@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
 
 @font-face {
   font-family: Misirlou;
@@ -14,7 +17,7 @@
   --yellow: #fac748;
   --purple: #8390fa;
   --dark: #383d3b;
-  --secondary: var(--yellow);
+  --secondary: var(--white);
 }
 
 * {
@@ -95,6 +98,7 @@ section {
   justify-content: center;
 }
 
+/* Sound  */
 #sound {
   grid-area: soun;
 }
@@ -118,6 +122,7 @@ section {
   background-color: var(--secondary);
 }
 
+/* Entries  */
 #entries {
   grid-area: entr;
   border: 1px solid black;
@@ -151,6 +156,7 @@ section {
 .entry-title {
   font-weight: bold;
   margin: 0.5rem 0;
+  font-family: "Questrial", sans-serif;
 }
 .entry-infos {
   display: flex;
@@ -159,6 +165,7 @@ section {
   font-weight: 300;
 }
 
+/* Footer  */
 footer {
   grid-area: foot;
 }
