@@ -44,6 +44,14 @@ section {
   height: inherit;
 }
 
+#cursor {
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--purple);
+  border-radius: 50%;
+  position: absolute;
+}
+
 #home {
   background-color: var(--pink);
 
@@ -68,6 +76,9 @@ section {
   font-size: 7rem;
   grid-area: logo;
 }
+#the-logo {
+  /* cursor: url("img/play-icon.svg"), auto; */
+}
 
 #play {
   color: black;
@@ -80,6 +91,7 @@ section {
   color: var(--secondary);
 }
 
+/* Time  */
 #times {
   display: flex;
   grid-area: time;
