@@ -30,6 +30,7 @@ body {
   padding: 0;
   height: 100%;
   font-family: "Ubuntu", sans-serif;
+  /* cursor: none; */
 }
 
 .centered {
@@ -42,14 +43,6 @@ body {
 section {
   padding: 5rem 0.5rem;
   height: inherit;
-}
-
-#cursor {
-  width: 20px;
-  height: 20px;
-  border: 3px solid var(--purple);
-  border-radius: 50%;
-  position: absolute;
 }
 
 #home {
@@ -75,9 +68,6 @@ section {
   font-family: Misirlou;
   font-size: 7rem;
   grid-area: logo;
-}
-#the-logo {
-  /* cursor: url("img/play-icon.svg"), auto; */
 }
 
 #play {
@@ -108,6 +98,9 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.time.selected {
+  background-color: var(--secondary);
 }
 
 /* Sound  */
@@ -153,6 +146,7 @@ section {
 .year {
   font-size: 0.8rem;
 }
+
 .info-day {
   display: flex;
   justify-content: space-between;
