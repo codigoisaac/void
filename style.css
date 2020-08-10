@@ -75,6 +75,13 @@ section {
   grid-area: play;
   font-size: 6rem;
 }
+#play-circle {
+  border: 9px solid black;
+  border-radius: 50%;
+  --size: 8rem;
+  width: var(--size);
+  height: var(--size);
+}
 
 #logo:hover,
 #play i:hover {
