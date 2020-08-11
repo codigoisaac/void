@@ -98,7 +98,7 @@ section {
   display: flex;
   grid-area: opts;
 }
-.time {
+.time-option {
   border: 1px solid black;
   --border: 8px;
   border-radius: 50%;
@@ -110,6 +110,9 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+input {
+  background-color: transparent;
 }
 .time.selected {
   background-color: var(--secondary);

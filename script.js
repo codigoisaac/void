@@ -52,3 +52,12 @@ function displayTimeLeft(seconds) {
     minutes + ":" + (remainderSeconds < 10 ? "0" : "") + remainderSeconds;
   timerDisplay.textContent = display;
 }
+
+// accept custom time input
+document.timeForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const mins = this.minutesInput.value;
+  timer(mins);
+  this.reset();
+  this.minutesInput.blur(); // unfocus from input
+});
