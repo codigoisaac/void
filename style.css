@@ -55,6 +55,7 @@ section {
     "foot entr logo"
     "foot entr play"
     "foot entr time"
+    "foot entr opts"
     "foot entr soun";
 }
 
@@ -83,15 +84,19 @@ section {
   height: var(--size);
 }
 
+#timer-display {
+  grid-area: time;
+}
+
 #logo:hover,
 #play i:hover {
   color: var(--secondary);
 }
 
 /* Time  */
-#times {
+#time-options {
   display: flex;
-  grid-area: time;
+  grid-area: opts;
 }
 .time {
   border: 1px solid black;
