@@ -3,13 +3,10 @@ const timerDisplay = document.querySelector("#timer-display");
 const timeOptions = [...document.querySelectorAll(".time")];
 
 const play = document.querySelector("#play-button");
-play.addEventListener("click", startTimer);
+play.addEventListener("click", startTimerRandom);
 
-function startTimer() {
-  // unselect any previously selected time option
-  timeOptions.forEach((option) => {
-    option.classList.remove("selected");
-  });
+function startTimerRandom() {
+  unselectTime();
 
   // select a random time from time options
   const selectedTime =
@@ -60,4 +57,28 @@ document.timeForm.addEventListener("submit", function (e) {
   timer(mins);
   this.reset();
   this.minutesInput.blur(); // unfocus from input
+
+  unselectTime();
 });
+
+// play by clicking on time options
+timeOptions.forEach((option) => {
+  option.addEventListener("click", startTimerSelected);
+});
+
+function startTimerSelected(e) {
+  unselectTime();
+
+  // initialize timer
+  timer(e.target.dataset.time);
+
+  // change background of selected time option
+  e.target.classList.add("selected");
+}
+
+function unselectTime() {
+  // unselect any previously selected time option
+  timeOptions.forEach((option) => {
+    option.classList.remove("selected");
+  });
+}

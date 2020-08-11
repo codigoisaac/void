@@ -117,6 +117,9 @@ input {
 .time.selected {
   background-color: var(--secondary);
 }
+.time {
+  cursor: alias;
+}
 
 /* Sound  */
 #sound {
