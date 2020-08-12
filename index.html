@@ -23,16 +23,13 @@
         <span id="the-logo">Void</span>
       </div>
 
-      <!-- Play  -->
-      <div id="play">
-        <div id="play-button"><i class="ri-play-mini-line"></i></div>
-      </div>
-
       <!-- Timer Display  -->
       <div id="timer-display">0:00</div>
 
       <!-- Times  -->
       <div id="time-options">
+        <div data-time="0.1" class="time time-option">06s</div>
+
         <div data-time="5" class="time time-option">05m</div>
 
         <div data-time="10" class="time time-option">10m</div>
@@ -87,165 +84,171 @@
 
       <!-- Entries  -->
       <div id="entries">
-        <!-- Day 1 -->
-        <div class="day">
-          <div class="info-day">
-            <div class="date">01/08<span class="year">/2020</span></div>
-          </div>
-          <!-- Entry 1 -->
-          <div class="entry">
-            <div class="entry-title">Leveza</div>
-
-            <div class="entry-text">
-              Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-              na minha mente, no meu corpo. Minha energia está bem melhor, e eu
-              me sinto bem de novo.
-            </div>
-
-            <div class="entry-infos">
-              <div class="hour">13:01</div>
-
-              <div class="number-in-the-day">1</div>
-            </div>
-          </div>
+        <div id="entry-controls" class="centered">
+          <button id="add-entry-btn">+</button>
         </div>
 
-        <!-- Day 2 -->
-        <div class="day">
-          <div class="info-day">
-            <div class="date">02/08<span class="year">/2020</span></div>
-            <div class="om"><i class="fas fa-om"></i></div>
-          </div>
-          <!-- Entry 1 -->
-          <div class="entry">
-            <div class="entry-title">Leveza</div>
-
-            <div class="entry-text">
-              Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-              na minha mente, no meu corpo. Minha energia está bem melhor, e eu
-              me sinto bem de novo.
+        <div id="the-entries">
+          <!-- Day 1 -->
+          <div class="day">
+            <div class="info-day">
+              <div class="date">01/08<span class="year">/2020</span></div>
             </div>
+            <!-- Entry 1 -->
+            <div class="entry">
+              <div class="entry-title">Leveza</div>
 
-            <div class="entry-infos">
-              <div class="hour">13:01</div>
+              <div class="entry-text">
+                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
+                na minha mente, no meu corpo. Minha energia está bem melhor, e
+                eu me sinto bem de novo.
+              </div>
 
-              <div class="number-in-the-day">1</div>
-            </div>
-          </div>
+              <div class="entry-infos">
+                <div class="hour">13:01</div>
 
-          <!-- Entry 2 -->
-          <div class="entry">
-            <div class="entry-title">Leveza</div>
-
-            <div class="entry-text">
-              Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-              na minha mente, no meu corpo. Minha energia está bem melhor, e eu
-              me sinto bem de novo.
-            </div>
-
-            <div class="entry-infos">
-              <div class="hour">13:01</div>
-
-              <div class="number-in-the-day">2</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Day 3 -->
-        <div class="day">
-          <div class="info-day">
-            <div class="date">03/08<span class="year">/2020</span></div>
-            <div class="om"><i class="fas fa-om"></i></div>
-          </div>
-          <!-- Entry 1 -->
-          <div class="entry">
-            <div class="entry-title">Leveza</div>
-
-            <div class="entry-text">
-              Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-              na minha mente, no meu corpo. Minha energia está bem melhor, e eu
-              me sinto bem de novo.
-            </div>
-
-            <div class="entry-infos">
-              <div class="hour">13:01</div>
-
-              <div class="number-in-the-day">1</div>
+                <div class="number-in-the-day">1</div>
+              </div>
             </div>
           </div>
 
-          <!-- Entry 2 -->
-          <div class="entry">
-            <div class="entry-title">Leveza</div>
+          <!-- Day 2 -->
+          <div class="day">
+            <div class="info-day">
+              <div class="date">02/08<span class="year">/2020</span></div>
+              <div class="om"><i class="fas fa-om"></i></div>
+            </div>
+            <!-- Entry 1 -->
+            <div class="entry">
+              <div class="entry-title">Leveza</div>
 
-            <div class="entry-text">
-              Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-              na minha mente, no meu corpo. Minha energia está bem melhor, e eu
-              me sinto bem de novo.
+              <div class="entry-text">
+                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
+                na minha mente, no meu corpo. Minha energia está bem melhor, e
+                eu me sinto bem de novo.
+              </div>
+
+              <div class="entry-infos">
+                <div class="hour">13:01</div>
+
+                <div class="number-in-the-day">1</div>
+              </div>
             </div>
 
-            <div class="entry-infos">
-              <div class="hour">13:01</div>
+            <!-- Entry 2 -->
+            <div class="entry">
+              <div class="entry-title">Leveza</div>
 
-              <div class="number-in-the-day">2</div>
-            </div>
-          </div>
-        </div>
+              <div class="entry-text">
+                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
+                na minha mente, no meu corpo. Minha energia está bem melhor, e
+                eu me sinto bem de novo.
+              </div>
 
-        <!-- Day 4 -->
-        <div class="day">
-          <div class="info-day">
-            <div class="date">04/08<span class="year">/2020</span></div>
-            <div class="om"><i class="fas fa-om"></i></div>
-          </div>
-          <!-- Entry 1 -->
-          <div class="entry">
-            <div class="entry-title">Leveza</div>
+              <div class="entry-infos">
+                <div class="hour">13:01</div>
 
-            <div class="entry-text">
-              Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-              na minha mente, no meu corpo. Minha energia está bem melhor, e eu
-              me sinto bem de novo.
-            </div>
-
-            <div class="entry-infos">
-              <div class="hour">13:01</div>
-
-              <div class="number-in-the-day">1</div>
-            </div>
-          </div>
-
-          <!-- Entry 2 -->
-          <div class="entry">
-            <div class="entry-title">Leveza</div>
-
-            <div class="entry-text">
-              Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-              na minha mente, no meu corpo. Minha energia está bem melhor, e eu
-              me sinto bem de novo.
-            </div>
-
-            <div class="entry-infos">
-              <div class="hour">13:01</div>
-
-              <div class="number-in-the-day">2</div>
+                <div class="number-in-the-day">2</div>
+              </div>
             </div>
           </div>
 
-          <!-- Entry 3 -->
-          <div class="entry">
-            <div class="entry-title">Leveza</div>
+          <!-- Day 3 -->
+          <div class="day">
+            <div class="info-day">
+              <div class="date">03/08<span class="year">/2020</span></div>
+              <div class="om"><i class="fas fa-om"></i></div>
+            </div>
+            <!-- Entry 1 -->
+            <div class="entry">
+              <div class="entry-title">Leveza</div>
 
-            <div class="entry-text">
-              Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-              na minha mente, no meu corpo. Minha energia está bem melhor, e eu
-              me sinto bem de novo.
+              <div class="entry-text">
+                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
+                na minha mente, no meu corpo. Minha energia está bem melhor, e
+                eu me sinto bem de novo.
+              </div>
+
+              <div class="entry-infos">
+                <div class="hour">13:01</div>
+
+                <div class="number-in-the-day">1</div>
+              </div>
             </div>
 
-            <div class="entry-infos">
-              <div class="hour">13:01</div>
+            <!-- Entry 2 -->
+            <div class="entry">
+              <div class="entry-title">Leveza</div>
 
-              <div class="number-in-the-day">3</div>
+              <div class="entry-text">
+                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
+                na minha mente, no meu corpo. Minha energia está bem melhor, e
+                eu me sinto bem de novo.
+              </div>
+
+              <div class="entry-infos">
+                <div class="hour">13:01</div>
+
+                <div class="number-in-the-day">2</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 4 -->
+          <div class="day">
+            <div class="info-day">
+              <div class="date">04/08<span class="year">/2020</span></div>
+              <div class="om"><i class="fas fa-om"></i></div>
+            </div>
+            <!-- Entry 1 -->
+            <div class="entry">
+              <div class="entry-title">Leveza</div>
+
+              <div class="entry-text">
+                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
+                na minha mente, no meu corpo. Minha energia está bem melhor, e
+                eu me sinto bem de novo.
+              </div>
+
+              <div class="entry-infos">
+                <div class="hour">13:01</div>
+
+                <div class="number-in-the-day">1</div>
+              </div>
+            </div>
+
+            <!-- Entry 2 -->
+            <div class="entry">
+              <div class="entry-title">Leveza</div>
+
+              <div class="entry-text">
+                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
+                na minha mente, no meu corpo. Minha energia está bem melhor, e
+                eu me sinto bem de novo.
+              </div>
+
+              <div class="entry-infos">
+                <div class="hour">13:01</div>
+
+                <div class="number-in-the-day">2</div>
+              </div>
+            </div>
+
+            <!-- Entry 3 -->
+            <div class="entry">
+              <div class="entry-title">Leveza</div>
+
+              <div class="entry-text">
+                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
+                na minha mente, no meu corpo. Minha energia está bem melhor, e
+                eu me sinto bem de novo.
+              </div>
+
+              <div class="entry-infos">
+                <div class="hour">13:01</div>
+
+                <div class="number-in-the-day">3</div>
+              </div>
             </div>
           </div>
         </div>

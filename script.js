@@ -2,21 +2,19 @@ let countdown;
 const timerDisplay = document.querySelector("#timer-display");
 const timeOptions = [...document.querySelectorAll(".time")];
 
-const play = document.querySelector("#play-button");
-play.addEventListener("click", startTimerRandom);
+// play by clicking on time options
+timeOptions.forEach((option) => {
+  option.addEventListener("click", startTimer);
+});
 
-function startTimerRandom() {
+function startTimer(e) {
   unselectTime();
 
-  // select a random time from time options
-  const selectedTime =
-    timeOptions[Math.floor(Math.random() * timeOptions.length)];
   // initialize timer
-  const minutesSelected = parseInt(selectedTime.dataset.time);
-  timer(minutesSelected);
+  timer(e.target.dataset.time);
 
   // change background of selected time option
-  selectedTime.classList.add("selected");
+  e.target.classList.add("selected");
 }
 
 function timer(minutes) {
@@ -45,9 +43,8 @@ function timer(minutes) {
 function displayTimeLeft(seconds) {
   const minutes = Math.floor(seconds / 60);
   const remainderSeconds = seconds % 60;
-  const display =
+  timerDisplay.textContent =
     minutes + ":" + (remainderSeconds < 10 ? "0" : "") + remainderSeconds;
-  timerDisplay.textContent = display;
 }
 
 // accept custom time input
@@ -60,21 +57,6 @@ document.timeForm.addEventListener("submit", function (e) {
 
   unselectTime();
 });
-
-// play by clicking on time options
-timeOptions.forEach((option) => {
-  option.addEventListener("click", startTimerSelected);
-});
-
-function startTimerSelected(e) {
-  unselectTime();
-
-  // initialize timer
-  timer(e.target.dataset.time);
-
-  // change background of selected time option
-  e.target.classList.add("selected");
-}
 
 function unselectTime() {
   // unselect any previously selected time option
