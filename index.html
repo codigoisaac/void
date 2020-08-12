@@ -84,8 +84,22 @@
 
       <!-- Entries  -->
       <div id="entries">
-        <div id="entry-controls" class="centered">
+        <div id="entry-controls">
           <button id="add-entry-btn">+</button>
+        </div>
+
+        <div id="add-entry-form">
+          <form>
+            <!-- Title  -->
+            <input type="text" id="entry-title" placeholder="título" />
+            <!-- Text  -->
+            <textarea
+              id="entry-text"
+              placeholder="texto"
+              cols="30"
+              rows="10"
+            ></textarea>
+          </form>
         </div>
 
         <div id="the-entries">
@@ -267,7 +281,8 @@
       </footer>
     </section>
 
-    <!-- Script -->
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script src="timer.js"></script>
+    <script src="entries.js"></script>
   </body>
 </html>
