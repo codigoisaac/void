@@ -16,7 +16,7 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body onload="fetchEntries()">
     <section id="home">
       <!-- Logo  -->
       <div id="logo" class="hover">
@@ -88,8 +88,8 @@
           <button id="add-entry-btn">+</button>
         </div>
 
-        <div id="add-entry-form">
-          <form>
+        <div id="add-entry">
+          <form id="add-entry-form">
             <!-- Title  -->
             <input type="text" id="add-entry-title" placeholder="título" />
             <!-- Text  -->
@@ -104,170 +104,7 @@
           </form>
         </div>
 
-        <div id="the-entries">
-          <!-- Day 1 -->
-          <div class="day">
-            <div class="info-day">
-              <div class="date">01/08<span class="year">/2020</span></div>
-            </div>
-            <!-- Entry 1 -->
-            <div class="entry">
-              <div class="entry-title">Leveza</div>
-
-              <div class="entry-text">
-                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-                na minha mente, no meu corpo. Minha energia está bem melhor, e
-                eu me sinto bem de novo.
-              </div>
-
-              <div class="entry-infos">
-                <div class="hour">13:01</div>
-
-                <div class="number-in-the-day">1</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Day 2 -->
-          <div class="day">
-            <div class="info-day">
-              <div class="date">02/08<span class="year">/2020</span></div>
-              <div class="om"><i class="fas fa-om"></i></div>
-            </div>
-            <!-- Entry 1 -->
-            <div class="entry">
-              <div class="entry-title">Leveza</div>
-
-              <div class="entry-text">
-                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-                na minha mente, no meu corpo. Minha energia está bem melhor, e
-                eu me sinto bem de novo.
-              </div>
-
-              <div class="entry-infos">
-                <div class="hour">13:01</div>
-
-                <div class="number-in-the-day">1</div>
-              </div>
-            </div>
-
-            <!-- Entry 2 -->
-            <div class="entry">
-              <div class="entry-title">Leveza</div>
-
-              <div class="entry-text">
-                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-                na minha mente, no meu corpo. Minha energia está bem melhor, e
-                eu me sinto bem de novo.
-              </div>
-
-              <div class="entry-infos">
-                <div class="hour">13:01</div>
-
-                <div class="number-in-the-day">2</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Day 3 -->
-          <div class="day">
-            <div class="info-day">
-              <div class="date">03/08<span class="year">/2020</span></div>
-              <div class="om"><i class="fas fa-om"></i></div>
-            </div>
-            <!-- Entry 1 -->
-            <div class="entry">
-              <div class="entry-title">Leveza</div>
-
-              <div class="entry-text">
-                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-                na minha mente, no meu corpo. Minha energia está bem melhor, e
-                eu me sinto bem de novo.
-              </div>
-
-              <div class="entry-infos">
-                <div class="hour">13:01</div>
-
-                <div class="number-in-the-day">1</div>
-              </div>
-            </div>
-
-            <!-- Entry 2 -->
-            <div class="entry">
-              <div class="entry-title">Leveza</div>
-
-              <div class="entry-text">
-                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-                na minha mente, no meu corpo. Minha energia está bem melhor, e
-                eu me sinto bem de novo.
-              </div>
-
-              <div class="entry-infos">
-                <div class="hour">13:01</div>
-
-                <div class="number-in-the-day">2</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Day 4 -->
-          <div class="day">
-            <div class="info-day">
-              <div class="date">04/08<span class="year">/2020</span></div>
-              <div class="om"><i class="fas fa-om"></i></div>
-            </div>
-            <!-- Entry 1 -->
-            <div class="entry">
-              <div class="entry-title">Leveza</div>
-
-              <div class="entry-text">
-                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-                na minha mente, no meu corpo. Minha energia está bem melhor, e
-                eu me sinto bem de novo.
-              </div>
-
-              <div class="entry-infos">
-                <div class="hour">13:01</div>
-
-                <div class="number-in-the-day">1</div>
-              </div>
-            </div>
-
-            <!-- Entry 2 -->
-            <div class="entry">
-              <div class="entry-title">Leveza</div>
-
-              <div class="entry-text">
-                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-                na minha mente, no meu corpo. Minha energia está bem melhor, e
-                eu me sinto bem de novo.
-              </div>
-
-              <div class="entry-infos">
-                <div class="hour">13:01</div>
-
-                <div class="number-in-the-day">2</div>
-              </div>
-            </div>
-
-            <!-- Entry 3 -->
-            <div class="entry">
-              <div class="entry-title">Leveza</div>
-
-              <div class="entry-text">
-                Hoje minha meditação foi profunda, e vazia. Eu consegui relaxar,
-                na minha mente, no meu corpo. Minha energia está bem melhor, e
-                eu me sinto bem de novo.
-              </div>
-
-              <div class="entry-infos">
-                <div class="hour">13:01</div>
-
-                <div class="number-in-the-day">3</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="the-entries"></div>
       </div>
 
       <!-- Footer  -->

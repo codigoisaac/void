@@ -1,5 +1,6 @@
 const addBtn = document.querySelector("#add-entry-btn");
 addBtn.addEventListener("click", openForm);
+const formDiv = document.querySelector("#add-entry");
 const form = document.querySelector("#add-entry-form");
 form.addEventListener("submit", addEntry);
 
@@ -9,27 +10,36 @@ function openForm() {
   isFormOpen = !isFormOpen;
 
   // display form
-  form.style.display = isFormOpen ? "block" : "none";
+  formDiv.style.display = isFormOpen ? "block" : "none";
   addBtn.textContent = isFormOpen ? "X" : "+";
-
-  // if (isFormOpen) {
-  //   form.style.display = "block";
-  //   addBtn.textContent = "X";
-  // } else {
-  //   form.style.display = "none";
-  //   addBtn.textContent = "+";
-  // }
 }
 
 function addEntry(e) {
   // get values from form
   const entryTitle = document.querySelector("#add-entry-title").value,
     entryText = document.querySelector("#add-entry-text").value;
+  // get date info
+  const date = new Date(),
+    entryDay = date.getDate(),
+    entryMonth = // add '0' in front of month
+      date.getMonth() + 1 < 10
+        ? "0" + (date.getMonth() + 1)
+        : date.getMonth() + 1,
+    entryDate = entryDay + "/" + entryMonth,
+    entryYear = date.getFullYear(),
+    // get time info // add '0's
+    entryHour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours(),
+    entryMinute =
+      date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes(),
+    entryTime = entryHour + ":" + entryMinute;
 
   // create entry obj
   let entry = {
     title: entryTitle,
     text: entryText,
+    date: entryDate,
+    year: entryYear,
+    time: entryTime,
   };
 
   // save
@@ -69,9 +79,32 @@ function fetchEntries() {
   entries.forEach((entry) => {
     // save values from storage
     let title = entry.title,
-      text = entry.text;
+      text = entry.text,
+      date = entry.date,
+      year = entry.year,
+      time = entry.time;
 
-    entryList.innerHTML += "";
+    entryList.innerHTML += `
+    <div class="day">
+      <div class="info-day">
+        <div class="date">${date}<span class="year">/${year}</span></div>
+      </div>
+      <!-- Entry 1 -->
+      <div class="entry">
+        <div class="entry-title">${title}</div>
+
+        <div class="entry-text">
+          ${text}
+        </div>
+
+        <div class="entry-infos">
+          <div class="hour">${time}</div>
+
+          <div class="number-in-the-day">1</div>
+        </div>
+      </div>
+    </div> 
+    `;
   });
 }
 
