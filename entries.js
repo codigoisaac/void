@@ -89,13 +89,10 @@ function fetchEntries() {
       <div class="info-day">
         <div class="date">${date}<span class="year">/${year}</span></div>
       </div>
-      <!-- Entry 1 -->
       <div class="entry">
         <div class="entry-title">${title}</div>
 
-        <div class="entry-text">
-          ${text}
-        </div>
+        <div class="entry-text">${text}</div>
 
         <div class="entry-infos">
           <div class="hour">${time}</div>
