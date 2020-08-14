@@ -96,12 +96,17 @@ function fetchEntries() {
       year = entry.year,
       time = entry.time,
       count = entry.count;
+    // add day info only before first entry in the day
+    if (count == 1) {
+      entryList.innerHTML += `
+        <div class="day">
+          <div class="info-day">
+            <div class="date">${date}<span class="year">/${year}</span></div>
+          </div>
+        </div>`;
+    }
 
     entryList.innerHTML += `
-    <div class="day">
-      <div class="info-day">
-        <div class="date">${date}<span class="year">/${year}</span></div>
-      </div>
       <div class="entry">
         <div class="entry-title">${title}</div>
 
@@ -112,12 +117,12 @@ function fetchEntries() {
 
           <div class="number-in-the-day">${count}</div>
         </div>
-      </div>
-    </div> 
-    `;
+      </div>`;
   });
 }
 
 function getData() {
   return JSON.parse(localStorage.getItem("entries"));
 }
+
+// ``

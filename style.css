@@ -141,9 +141,6 @@ input {
   justify-content: start;
   align-items: flex-start;
 }
-.day {
-  padding: 1.3rem;
-}
 .date {
   font-size: 1.3rem;
   font-weight: lighter;
@@ -152,7 +149,7 @@ input {
   font-size: 0.8rem;
 }
 
-.info-day {
+.day {
   display: flex;
   justify-content: space-between;
 }
