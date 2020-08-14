@@ -185,6 +185,10 @@ input {
   display: flex;
   flex-direction: column;
 }
+#the-entries {
+  width: 100%;
+  padding: 0 1rem;
+}
 
 /* Footer  */
 footer {
@@ -201,4 +205,5 @@ a {
 }
 a:hover {
   font-weight: normal;
+  color: var(--secondary);
 }

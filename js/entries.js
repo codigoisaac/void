@@ -108,7 +108,7 @@ function fetchEntries() {
     // add date only before first entry in the day
     if (count == 1) {
       entryList.innerHTML += '<div class="day-info"></div>';
-      const dayInfo = entryList.querySelector(".day-info");
+      const dayInfo = entryList.querySelector(".day-info"); // possible bug
 
       dayInfo.innerHTML += `
         <div class="date">${date}<span class="year">/${year}</span></div>`;
