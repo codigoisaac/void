@@ -96,6 +96,7 @@ function fetchEntries() {
       year = entry.year,
       time = entry.time,
       count = entry.count;
+
     // add day info only before first entry in the day
     if (count == 1) {
       entryList.innerHTML += `
