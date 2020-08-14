@@ -35,7 +35,6 @@ function addEntry(e) {
   // count in the day
   let entryDayCount = 1;
   if (localStorage.getItem("entries") != null) {
-    console.log("entries found");
     const entries = getData();
     entries.forEach((entry) => {
       if (entry.date == entryDate) {
@@ -97,14 +96,27 @@ function fetchEntries() {
       time = entry.time,
       count = entry.count;
 
-    // add day info only before first entry in the day
+    let entriesInDay = 1;
+    // test if there is other entries with same date
+    entries.forEach((otherEntries) => {
+      if (otherEntries.date == entry.date) {
+        entriesInDay++;
+      }
+    });
+    const isOm = entriesInDay >= 2;
+
+    // add date only before first entry in the day
     if (count == 1) {
-      entryList.innerHTML += `
-        <div class="day">
-          <div class="info-day">
-            <div class="date">${date}<span class="year">/${year}</span></div>
-          </div>
-        </div>`;
+      entryList.innerHTML += '<div class="day-info"></div>';
+      const dayInfo = entryList.querySelector(".day-info");
+
+      dayInfo.innerHTML += `
+        <div class="date">${date}<span class="year">/${year}</span></div>`;
+
+      // add om symbol when more than one entry in this day
+      if (isOm) {
+        dayInfo.innerHTML += '<div class="om"><i class="fas fa-om"></i></div>';
+      }
     }
 
     entryList.innerHTML += `

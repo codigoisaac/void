@@ -148,8 +148,9 @@ input {
   font-size: 0.8rem;
 }
 
-.day {
+.day-info {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 .om {
