@@ -1,6 +1,5 @@
 const addBtn = document.querySelector("#add-entry-btn");
 addBtn.addEventListener("click", openForm);
-const formDiv = document.querySelector("#add-entry");
 const form = document.querySelector("#add-entry-form");
 form.addEventListener("submit", addEntry);
 
@@ -10,7 +9,7 @@ function openForm() {
   isFormOpen = !isFormOpen;
 
   // display form
-  formDiv.style.display = isFormOpen ? "block" : "none";
+  form.style.display = isFormOpen ? "flex" : "none";
   addBtn.textContent = isFormOpen ? "X" : "+";
 }
 
