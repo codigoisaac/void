@@ -32,6 +32,17 @@ function addEntry(e) {
     entryMinute =
       date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes(),
     entryTime = entryHour + ":" + entryMinute;
+  // count in the day
+  let entryDayCount = 1;
+  if (localStorage.getItem("entries") != null) {
+    console.log("entries found");
+    const entries = getData();
+    entries.forEach((entry) => {
+      if (entry.date == entryDate) {
+        entryDayCount++;
+      }
+    });
+  }
 
   // create entry obj
   let entry = {
@@ -40,6 +51,7 @@ function addEntry(e) {
     date: entryDate,
     year: entryYear,
     time: entryTime,
+    count: entryDayCount,
   };
 
   // save
@@ -82,7 +94,8 @@ function fetchEntries() {
       text = entry.text,
       date = entry.date,
       year = entry.year,
-      time = entry.time;
+      time = entry.time,
+      count = entry.count;
 
     entryList.innerHTML += `
     <div class="day">
@@ -97,7 +110,7 @@ function fetchEntries() {
         <div class="entry-infos">
           <div class="hour">${time}</div>
 
-          <div class="number-in-the-day">1</div>
+          <div class="number-in-the-day">${count}</div>
         </div>
       </div>
     </div> 
