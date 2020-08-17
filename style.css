@@ -68,6 +68,7 @@ section {
   font-family: Misirlou;
   font-size: 7rem;
   grid-area: logo;
+  color: var(--secondary);
 }
 
 #timer-display {
