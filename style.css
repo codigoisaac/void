@@ -154,6 +154,7 @@ input {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 2rem;
 }
 .om {
   color: var(--white);
@@ -177,7 +178,6 @@ input {
 }
 #the-entries {
   width: 100%;
-  margin-top: 2rem;
 }
 
 #entry-controls {

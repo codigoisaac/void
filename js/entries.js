@@ -85,6 +85,8 @@ function fetchEntries() {
   // clean html before
   entryList.innerHTML = "";
 
+  let days = 0;
+
   // insert html
   entries.forEach((entry) => {
     // save values from storage
@@ -95,19 +97,18 @@ function fetchEntries() {
       time = entry.time,
       count = entry.count;
 
-    let entriesInDay = 1;
     // test if there is other entries with same date
-    entries.forEach((otherEntries) => {
-      if (otherEntries.date == entry.date) {
-        entriesInDay++;
-      }
-    });
-    const isOm = entriesInDay >= 2;
+    let entriesInDay = entries.filter(
+      (otherEntry) => otherEntry.date == entry.date
+    );
+
+    const isOm = entriesInDay.length >= 2;
 
     // add date only before first entry in the day
     if (count == 1) {
       entryList.innerHTML += '<div class="day-info"></div>';
-      const dayInfo = entryList.querySelector(".day-info"); // possible bug
+      const dayInfo = entryList.querySelectorAll(".day-info")[days];
+      days++;
 
       dayInfo.innerHTML += `
         <div class="date">${date}<span class="year">/${year}</span></div>`;
