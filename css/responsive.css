@@ -1,0 +1,21 @@
+/* Responsiveness goes here */
+
+@media only screen and (min-width: 1024px) {
+  section {
+    padding: 5rem 0.5rem;
+  }
+
+  #home {
+    grid-template-columns: auto 2fr 3fr;
+    grid-template-areas:
+      "foot entr logo"
+      "foot entr time"
+      "foot entr opts"
+      "foot entr soun";
+  }
+
+  footer p {
+    writing-mode: tb-rl;
+    transform: rotate(-180deg);
+  }
+}

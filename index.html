@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Void</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
     <!-- Font Awesome  -->
     <script
       src="https://kit.fontawesome.com/0e6dcfaf2a.js"
@@ -24,28 +25,25 @@
       </div>
 
       <!-- Timer Display  -->
-      <div id="timer-display">0:00</div>
+      <div id="timer">0:00</div>
 
       <!-- Times  -->
       <div id="time-options">
-        <div data-time="0.1" class="time time-option">06s</div>
+        <div data-time="5" class="time-click time-circle">05m</div>
 
-        <div data-time="5" class="time time-option">05m</div>
+        <div data-time="10" class="time-click time-circle">10m</div>
 
-        <div data-time="10" class="time time-option">10m</div>
+        <div data-time="30" class="time-click time-circle">30m</div>
 
-        <div data-time="15" class="time time-option">15m</div>
-
-        <div data-time="20" class="time time-option">20m</div>
-
-        <div data-time="30" class="time time-option">30m</div>
-
-        <div data-time="45" class="time time-option">45m</div>
-
-        <div data-time="60" class="time time-option">01h</div>
+        <div data-time="60" class="time-click time-circle">01h</div>
 
         <form name="timeForm" id="time-input">
-          <input type="text" name="minutesInput" class="time-option" />
+          <input
+            type="text"
+            name="minutesInput"
+            class="time-circle"
+            placeholder="|"
+          />
         </form>
       </div>
 
@@ -102,6 +100,8 @@
           <button type="submit">+ Adicionar</button>
         </form>
 
+        <h1>Suas meditações:</h1>
+
         <div id="the-entries"></div>
       </div>
 
@@ -111,8 +111,12 @@
           Os dados do Void ficam salvos no navegador. Se você apagar o cachê do
           navegador também apaga os dados no Void.
           <br />
-          <a href="">Baixe seus dados</a> para subí-los depois ou para usá-los
-          em outro navegador. Feito por
+          Baixe seus dados para subí-los depois ou para usá-los em outro
+          navegador.
+        </p>
+        <p><a href="">Baixe seus dados</a></p>
+        <p>
+          Criado por
           <a target="_blank" href="https://linktr.ee/codigoisaac">códigoisaac</a
           >.
         </p>
