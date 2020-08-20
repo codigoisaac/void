@@ -6,6 +6,7 @@
     <title>Void</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/tooltip.css" />
     <!-- Font Awesome  -->
     <script
       src="https://kit.fontawesome.com/0e6dcfaf2a.js"
@@ -29,22 +30,39 @@
 
       <!-- Times  -->
       <div id="time-options">
-        <div data-time="5" class="time-click time-circle">05m</div>
+        <div id="time-options-container">
+          <h1>Escolha o tempo para meditar:</h1>
+          <div id="time-choices">
+            <div data-time="5" class="time-click time-circle">
+              05m
+              <span class="tooltip">Medite por 5 minutos</span>
+            </div>
 
-        <div data-time="10" class="time-click time-circle">10m</div>
+            <div data-time="10" class="time-click time-circle">
+              10m
+              <span class="tooltip">Medite por 10 minutos</span>
+            </div>
 
-        <div data-time="30" class="time-click time-circle">30m</div>
+            <div data-time="30" class="time-click time-circle">
+              30m
+              <span class="tooltip">Medite por 30 minutos</span>
+            </div>
 
-        <div data-time="60" class="time-click time-circle">01h</div>
+            <form
+              name="timeForm"
+              id="time-input"
+              class="time-click time-circle"
+            >
+              <input type="text" name="minutesInput" placeholder="..." />
+              <span class="tooltip">Insira o tempo para meditar</span>
+            </form>
 
-        <form name="timeForm" id="time-input">
-          <input
-            type="text"
-            name="minutesInput"
-            class="time-circle"
-            placeholder="|"
-          />
-        </form>
+            <div class="time-click time-circle">
+              >
+              <span class="tooltip">Medite o tempo que quiser</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Sound  -->

@@ -1,6 +1,6 @@
 let countdown;
 const timerDisplay = document.querySelector("#timer");
-const timeOptions = [...document.querySelectorAll(".time-circle")];
+const timeOptions = [...document.querySelectorAll(".time-click")];
 
 // play by clicking on time options
 timeOptions.forEach((option) => {
