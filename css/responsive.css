@@ -6,7 +6,8 @@
   }
 
   #home {
-    grid-template-columns: auto 2fr 3fr;
+    height: 100vh;
+    grid-template-columns: 0.3fr 2.5fr 4fr;
     grid-template-areas:
       "foot entr logo"
       "foot entr time"
@@ -14,8 +15,17 @@
       "foot entr soun";
   }
 
+  #entries {
+    height: 100%;
+  }
+
+  footer {
+    width: 100%;
+  }
+
   footer p {
     writing-mode: tb-rl;
     transform: rotate(-180deg);
+    width: 100%;
   }
 }

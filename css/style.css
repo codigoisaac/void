@@ -67,6 +67,7 @@ section {
 #timer {
   grid-area: time;
   font-size: 1.5rem;
+  color: var(--white);
 }
 
 /* Enter Time */
@@ -75,7 +76,9 @@ section {
   grid-area: opts;
 }
 .time-circle {
-  border: 1px solid black;
+  border: 2px solid var(--white);
+  color: var(--white);
+  font-weight: bold;
   border-radius: 50%;
   padding: 0.5rem;
   margin: 0.1rem;
@@ -106,7 +109,9 @@ input {
 }
 .sound-circle,
 .sound-header {
-  border: 1px solid black;
+  border: 2px solid var(--white);
+  color: var(--white);
+  font-weight: 500;
   border-radius: 50%;
   --sound-circle: 2.2rem;
   width: var(--sound-circle);
@@ -132,13 +137,11 @@ input {
   height: 60vh;
 }
 #entries h1 {
-  font-weight: normal;
+  font-weight: bold;
   font-size: 1.1rem;
-  /* color: var(--white); */
 }
 .date {
   font-size: 1.3rem;
-  font-weight: lighter;
   color: var(--white);
 }
 .year {
@@ -161,6 +164,7 @@ input {
   margin: 0.5rem 0;
   border: 1px solid black;
   border-radius: var(--bRadius);
+  background-color: var(--white);
 }
 .entry-title {
   font-weight: bold;
@@ -178,7 +182,7 @@ input {
 }
 
 #entry-controls {
-  position: sticky;
+  /* position: sticky; */
   top: 0;
   margin: 1rem 0;
 }
@@ -206,7 +210,6 @@ input {
 /* Footer  */
 footer {
   grid-area: foot;
-  flex-direction: column;
 }
 p {
   margin: 0.5rem 0;
