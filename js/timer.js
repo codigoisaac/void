@@ -94,7 +94,8 @@ function timelessMeditation() {
 
 function displayTimeMeditated(start) {
   const passed = Date.now() - start;
-  const minsPassed = Math.floor(passed / 60000);
+  const hoursPassed = Math.floor(passed / 3600000);
+  const minsPassed = Math.floor((passed / 60000) % 60);
   const secsPassed = Math.floor((passed / 1000) % 60);
   timerDisplay.textContent =
     (minsPassed < 10 ? "0" : "") +
