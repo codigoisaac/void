@@ -74,6 +74,7 @@ function unselectTime() {
 // meditate the time you want
 const timeless = document.querySelector("#timeless");
 timeless.addEventListener("click", timelessMeditation);
+let isTimelessMeditating = false;
 
 function timelessMeditation() {
   unselectTime();
@@ -85,11 +86,12 @@ function timelessMeditation() {
   const now = Date.now(); // get moment
 
   countup = setInterval(() => {
-    displayTimeMeditated(now);
+    isTimelessMeditating ? displayTimeMeditated(now) : null;
   }, 1000);
 
   // change the text in the button
-  timeless.textContent = "| |";
+  isTimelessMeditating = !isTimelessMeditating;
+  timeless.textContent = isTimelessMeditating ? "| |" : ">";
 }
 
 function displayTimeMeditated(start) {
