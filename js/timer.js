@@ -1,6 +1,7 @@
 let countdown;
+let countup;
 const timerDisplay = document.querySelector("#timer");
-const timeOptions = [...document.querySelectorAll(".time-click")];
+const timeOptions = [...document.querySelectorAll(".playable")];
 
 // play by clicking on time options
 timeOptions.forEach((option) => {
@@ -20,6 +21,7 @@ function startTimer(e) {
 function timer(minutes) {
   // clear any active timers
   clearInterval(countdown);
+  clearInterval(countup);
 
   // get now
   const now = Date.now(); // value in milliseconds
@@ -63,4 +65,32 @@ function unselectTime() {
   timeOptions.forEach((option) => {
     option.classList.remove("selected");
   });
+}
+
+// meditate the time you want
+const timeless = document.querySelector("#timeless");
+timeless.addEventListener("click", timelessMeditation);
+
+function timelessMeditation() {
+  unselectTime();
+
+  // clear any active timers
+  clearInterval(countdown);
+  clearInterval(countup);
+
+  const now = Date.now(); // get moment
+
+  countup = setInterval(() => {
+    displayTimeMeditated(now);
+  }, 1000);
+
+  // change the text in the button
+  timeless.textContent = "||";
+}
+
+function displayTimeMeditated(start) {
+  timerDisplay.textContent =
+    Math.floor((Date.now() - start) / 60000) +
+    ":" +
+    Math.floor(((Date.now() - start) / 1000) % 60);
 }
