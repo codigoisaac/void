@@ -46,7 +46,11 @@ function displayTimeLeft(seconds) {
   const minutes = Math.floor(seconds / 60);
   const remainderSeconds = seconds % 60;
   timerDisplay.textContent =
-    minutes + ":" + (remainderSeconds < 10 ? "0" : "") + remainderSeconds;
+    (minutes < 10 ? "0" : "") +
+    minutes +
+    ":" +
+    (remainderSeconds < 10 ? "0" : "") +
+    remainderSeconds;
 }
 
 // accept custom time input
@@ -85,12 +89,17 @@ function timelessMeditation() {
   }, 1000);
 
   // change the text in the button
-  timeless.textContent = "||";
+  timeless.textContent = "| |";
 }
 
 function displayTimeMeditated(start) {
+  const passed = Date.now() - start;
+  const minsPassed = Math.floor(passed / 60000);
+  const secsPassed = Math.floor((passed / 1000) % 60);
   timerDisplay.textContent =
-    Math.floor((Date.now() - start) / 60000) +
+    (minsPassed < 10 ? "0" : "") +
+    minsPassed +
     ":" +
-    Math.floor(((Date.now() - start) / 1000) % 60);
+    (secsPassed < 10 ? "0" : "") +
+    secsPassed;
 }
