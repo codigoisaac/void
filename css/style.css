@@ -51,6 +51,7 @@ section {
   grid-template-areas:
     "logo"
     "time"
+    "desc"
     "opts"
     "soun"
     "entr"
@@ -68,6 +69,16 @@ section {
   grid-area: time;
   font-size: 1.5rem;
   color: var(--white);
+  align-items: flex-end;
+  margin-bottom: 0;
+}
+
+#timer-description {
+  grid-area: desc;
+  align-items: flex-start;
+  color: var(--white);
+  font-weight: lighter;
+  margin-top: 0;
 }
 
 /* Time */

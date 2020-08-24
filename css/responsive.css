@@ -11,6 +11,7 @@
     grid-template-areas:
       "foot entr logo"
       "foot entr time"
+      "foot entr desc"
       "foot entr opts"
       "foot entr soun";
   }

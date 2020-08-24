@@ -2,6 +2,7 @@ let countdown;
 let countup;
 const timerDisplay = document.querySelector("#timer");
 const timeOptions = [...document.querySelectorAll(".playable")];
+const timerDesc = document.querySelector("#timer-description");
 
 // play by clicking on time options
 timeOptions.forEach((option) => {
@@ -16,6 +17,9 @@ function startTimer(e) {
 
   // change background of selected time option
   e.target.classList.add("selected");
+
+  // change time description
+  timerDesc.textContent = "Tempo restante";
 }
 
 function timer(minutes) {
@@ -92,6 +96,9 @@ function timelessMeditation() {
   // change the text in the button
   isTimelessMeditating = !isTimelessMeditating;
   timeless.textContent = isTimelessMeditating ? "| |" : ">";
+
+  // change timer description
+  timerDesc.textContent = "Tempo meditado";
 }
 
 function displayTimeMeditated(start) {
