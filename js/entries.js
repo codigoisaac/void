@@ -80,10 +80,19 @@ function addEntry(e) {
   fetchEntries();
 }
 
-// Delete Entry
-deleteEntry = function (id) {
-  console.log("delete entry " + id);
-};
+function deleteEntry(id) {
+  const entries = getData();
+
+  // delete entry with given id
+  entries.forEach((entry) => {
+    entry.id == id ? entries.splice(entries.indexOf(entry), 1) : null;
+  });
+
+  // save again
+  localStorage.setItem("entries", JSON.stringify(entries));
+
+  fetchEntries();
+}
 
 function fetchEntries() {
   // get data and where to display it
@@ -148,8 +157,8 @@ function fetchEntries() {
         </div>
      </div>`
     );
-  }); // end foreach
-} // end fetchEntries()
+  }); // end of foreach
+} // end of fetchEntries()
 
 function getData() {
   return JSON.parse(localStorage.getItem("entries"));
