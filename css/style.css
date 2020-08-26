@@ -211,6 +211,7 @@ input {
   justify-content: space-between;
   margin-top: 0.5rem;
   font-weight: 300;
+  font-size: 0.8rem;
 }
 #the-entries {
   width: 100%;

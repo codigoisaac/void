@@ -41,6 +41,8 @@ function addEntry(e) {
       }
     });
   }
+  // add entry id
+  let entryId = chance.guid();
 
   // create entry obj
   let entry = {
@@ -50,6 +52,7 @@ function addEntry(e) {
     year: entryYear,
     time: entryTime,
     count: entryDayCount,
+    id: entryId,
   };
 
   // save
@@ -95,7 +98,8 @@ function fetchEntries() {
       date = entry.date,
       year = entry.year,
       time = entry.time,
-      count = entry.count;
+      count = entry.count,
+      id = entry.id;
 
     // test if there is other entries with same date
     let entriesInDay = entries.filter(
@@ -121,6 +125,11 @@ function fetchEntries() {
 
     entryList.innerHTML += `
       <div class="entry">
+        <div class="entry-buttons">
+          <button class="edit-btn">E</button>
+          <button class="delete-btn" onclick="deleteEntry(${id})">D</button>
+        </div>
+
         <div class="entry-title">${title}</div>
 
         <div class="entry-text">${text}</div>
@@ -136,6 +145,11 @@ function fetchEntries() {
 
 function getData() {
   return JSON.parse(localStorage.getItem("entries"));
+}
+
+// Delete Entry
+function deleteEntry(id) {
+  console.log("delete entry " + id);
 }
 
 // ``
