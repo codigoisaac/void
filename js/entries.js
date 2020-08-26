@@ -128,8 +128,10 @@ function fetchEntries() {
       }
     }
 
-    entryList.innerHTML += `
-      <div class="entry">
+    // inject HTML
+    entryList.insertAdjacentHTML(
+      "beforeend",
+      `<div class="entry">
         <div class="entry-buttons">
           <button class="edit-btn">E</button>
           <button class="delete-btn" onclick="deleteEntry('${id}')">D</button>
@@ -144,9 +146,10 @@ function fetchEntries() {
 
           <div class="number-in-the-day">${count}</div>
         </div>
-      </div>`;
-  });
-}
+     </div>`
+    );
+  }); // end foreach
+} // end fetchEntries()
 
 function getData() {
   return JSON.parse(localStorage.getItem("entries"));
