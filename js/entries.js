@@ -80,6 +80,11 @@ function addEntry(e) {
   fetchEntries();
 }
 
+// Delete Entry
+deleteEntry = function (id) {
+  console.log("delete entry " + id);
+};
+
 function fetchEntries() {
   // get data and where to display it
   const entries = getData(),
@@ -127,7 +132,7 @@ function fetchEntries() {
       <div class="entry">
         <div class="entry-buttons">
           <button class="edit-btn">E</button>
-          <button class="delete-btn" onclick="deleteEntry(${id})">D</button>
+          <button class="delete-btn" onclick="deleteEntry('${id}')">D</button>
         </div>
 
         <div class="entry-title">${title}</div>
@@ -145,11 +150,6 @@ function fetchEntries() {
 
 function getData() {
   return JSON.parse(localStorage.getItem("entries"));
-}
-
-// Delete Entry
-function deleteEntry(id) {
-  console.log("delete entry " + id);
 }
 
 // ``
