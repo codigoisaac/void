@@ -83,9 +83,13 @@ function addEntry(e) {
 function deleteEntry(id) {
   const entries = getData();
 
+  // ask confirmation to delete
+
   // delete entry with given id
   entries.forEach((entry) => {
-    entry.id == id ? entries.splice(entries.indexOf(entry), 1) : null;
+    if (entry.id == id) {
+      // entries.splice(entries.indexOf(entry), 1);
+    }
   });
 
   // save again
@@ -142,8 +146,12 @@ function fetchEntries() {
       "beforeend",
       `<div class="entry">
         <div class="entry-buttons">
-          <button class="edit-btn">E</button>
-          <button class="delete-btn" onclick="deleteEntry('${id}')">D</button>
+          <button class="edit-btn">
+            <i class="ri-pencil-line"></i>
+          </button>
+          <button class="delete-btn" >
+            <i class="ri-close-line"></i>
+          </button>
         </div>
 
         <div class="entry-title">${title}</div>
@@ -157,8 +165,27 @@ function fetchEntries() {
         </div>
      </div>`
     );
-  }); // end of foreach
-} // end of fetchEntries()
+  });
+
+  setDeleteBtns();
+}
+
+function setDeleteBtns() {
+  const btns = document.querySelectorAll(".delete-btn");
+  btns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (!btn.classList.contains("selected")) {
+        // if not selected
+        btn.classList.add("selected");
+        btn.innerHTML = '<i class="ri-delete-bin-line"></i>';
+      } else {
+        // if selected
+        btn.classList.remove("selected");
+        btn.innerHTML = '<i class="ri-close-line"></i>';
+      }
+    });
+  });
+}
 
 function getData() {
   return JSON.parse(localStorage.getItem("entries"));
