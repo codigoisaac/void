@@ -85,10 +85,7 @@ function fetchEntries() {
   const entries = getData(),
     entryList = document.querySelector("#the-entries");
 
-  // clean html before
   entryList.innerHTML = "";
-
-  let days = 0;
 
   // insert html
   entries.forEach((entry) => {
@@ -106,6 +103,7 @@ function fetchEntries() {
       (otherEntry) => otherEntry.date == entry.date
     );
 
+    let days = 0;
     const isOm = entriesInDay.length >= 2;
 
     // add date only before first entry in the day
@@ -148,27 +146,26 @@ function fetchEntries() {
      </div>`
     );
 
-    setDeleteBtn(id);
-    setEditBtn(entry);
-  });
-}
-
-function setDeleteBtn(entryId) {
-  document.querySelectorAll(".delete-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      if (!btn.classList.contains("selected")) {
+    // set buttons
+    const pageEntries = [...document.querySelectorAll(".entry")];
+    const thisEntry = pageEntries[pageEntries.length - 1]; // last item
+    const delBtn = thisEntry.querySelector(".delete-btn");
+    delBtn.addEventListener("click", () => {
+      if (!delBtn.classList.contains("selected")) {
         // if not selected
-        btn.classList.add("selected");
-        btn.innerHTML = '<i class="ri-delete-bin-line"></i>';
+        delBtn.classList.add("selected");
+        delBtn.innerHTML = '<i class="ri-delete-bin-line"></i>';
         // unselect after some seconds
         setTimeout(() => {
-          btn.classList.remove("selected");
-          btn.innerHTML = '<i class="ri-close-line"></i>';
-        }, 3000);
+          delBtn.classList.remove("selected");
+          delBtn.innerHTML = '<i class="ri-close-line"></i>';
+        }, 2000);
       } else {
-        // if selected
-        btn.classList.remove("selected");
-        deleteEntry(entryId);
+        // if previously selected
+        entries.splice(entries.indexOf(entry), 1);
+        // save again
+        localStorage.setItem("entries", JSON.stringify(entries));
+        fetchEntries();
       }
     });
   });
@@ -182,22 +179,6 @@ function setEditBtn(entry) {
       document.querySelector("#add-entry-text").value = entry.text;
     });
   });
-}
-
-function deleteEntry(id) {
-  const entries = getData();
-
-  // delete entry with given id
-  entries.forEach((entry) => {
-    if (entry.id == id) {
-      entries.splice(entries.indexOf(entry), 1);
-    }
-  });
-
-  // save again
-  localStorage.setItem("entries", JSON.stringify(entries));
-
-  fetchEntries();
 }
 
 function getData() {
