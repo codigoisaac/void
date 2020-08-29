@@ -80,24 +80,6 @@ function addEntry(e) {
   fetchEntries();
 }
 
-function deleteEntry(id) {
-  const entries = getData();
-
-  // ask confirmation to delete
-
-  // delete entry with given id
-  entries.forEach((entry) => {
-    if (entry.id == id) {
-      // entries.splice(entries.indexOf(entry), 1);
-    }
-  });
-
-  // save again
-  localStorage.setItem("entries", JSON.stringify(entries));
-
-  fetchEntries();
-}
-
 function fetchEntries() {
   // get data and where to display it
   const entries = getData(),
@@ -149,7 +131,7 @@ function fetchEntries() {
           <button class="edit-btn">
             <i class="ri-pencil-line"></i>
           </button>
-          <button class="delete-btn" >
+          <button class="delete-btn">
             <i class="ri-close-line"></i>
           </button>
         </div>
@@ -165,26 +147,44 @@ function fetchEntries() {
         </div>
      </div>`
     );
-  });
 
-  setDeleteBtns();
+    setDeleteBtn(entry.id);
+  });
 }
 
-function setDeleteBtns() {
-  const btns = document.querySelectorAll(".delete-btn");
+function setDeleteBtn(entryId) {
+  const btns = [...document.querySelectorAll(".delete-btn")];
   btns.forEach((btn) => {
     btn.addEventListener("click", () => {
       if (!btn.classList.contains("selected")) {
         // if not selected
         btn.classList.add("selected");
         btn.innerHTML = '<i class="ri-delete-bin-line"></i>';
+        // set timeout to go back to unselected...
       } else {
         // if selected
         btn.classList.remove("selected");
-        btn.innerHTML = '<i class="ri-close-line"></i>';
+        // delete
+        deleteEntry(entryId);
       }
     });
   });
+}
+
+function deleteEntry(id) {
+  const entries = getData();
+
+  // delete entry with given id
+  entries.forEach((entry) => {
+    if (entry.id == id) {
+      entries.splice(entries.indexOf(entry), 1);
+    }
+  });
+
+  // save again
+  localStorage.setItem("entries", JSON.stringify(entries));
+
+  fetchEntries();
 }
 
 function getData() {
