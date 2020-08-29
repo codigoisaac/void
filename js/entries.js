@@ -147,58 +147,61 @@ function fetchEntries() {
     );
 
     // set buttons
-    const pageEntries = [...document.querySelectorAll(".entry")];
-    const thisEntry = pageEntries[pageEntries.length - 1]; // last item
-    /// delete buttons
-    const delBtn = thisEntry.querySelector(".delete-btn");
-    delBtn.addEventListener("click", () => {
-      if (!delBtn.classList.contains("selected")) {
-        // if not selected
-        delBtn.classList.add("selected");
-        delBtn.innerHTML = '<i class="ri-delete-bin-line"></i>';
-        // unselect after some seconds
-        setTimeout(() => {
-          delBtn.classList.remove("selected");
-          delBtn.innerHTML = '<i class="ri-close-line"></i>';
-        }, 2000);
-      } else {
-        // if previously selected
-        entries.splice(entries.indexOf(entry), 1);
-        // save again
-        localStorage.setItem("entries", JSON.stringify(entries));
-        fetchEntries();
-      }
-    });
-    /// edit buttons
-    const editBtn = thisEntry.querySelector(".edit-btn");
-    editBtn.addEventListener("click", () => {
-      isFormOpen ? null : openForm();
-      const titleInput = document.querySelector("#add-entry-title");
-      const notesInput = document.querySelector("#add-entry-text");
-      if (titleInput.value == "" && notesInput.value == "") {
-        titleInput.value = entry.title;
-        notesInput.value = entry.text;
-      } else {
-        if (
-          confirm(
-            `Para editar você precisa usar o formulário.\nSobrescrever dados do formulário?`
-          )
-        ) {
-          titleInput.value = entry.title;
-          notesInput.value = entry.text;
-        }
-      }
-    });
+    setDeleteButton(entry);
+    setEditButton(entry);
   });
 }
 
-function setEditBtn(entry) {
-  document.querySelectorAll(".edit-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      isFormOpen ? null : openForm();
-      document.querySelector("#add-entry-title").value = entry.title;
-      document.querySelector("#add-entry-text").value = entry.text;
-    });
+function setDeleteButton(entry) {
+  const pageEntries = [...document.querySelectorAll(".entry")];
+  const thisEntry = pageEntries[pageEntries.length - 1]; // last item
+  /// delete buttons
+  const delBtn = thisEntry.querySelector(".delete-btn");
+  delBtn.addEventListener("click", () => {
+    if (!delBtn.classList.contains("selected")) {
+      // if not selected
+      delBtn.classList.add("selected");
+      delBtn.innerHTML = '<i class="ri-delete-bin-line"></i>';
+      // unselect after some seconds
+      setTimeout(() => {
+        delBtn.classList.remove("selected");
+        delBtn.innerHTML = '<i class="ri-close-line"></i>';
+      }, 2000);
+    } else {
+      // if previously selected
+      entries.splice(entries.indexOf(entry), 1);
+      // save again
+      localStorage.setItem("entries", JSON.stringify(entries));
+      fetchEntries();
+    }
+  });
+}
+
+function setEditButton(entry) {
+  const pageEntries = [...document.querySelectorAll(".entry")];
+  const thisEntry = pageEntries[pageEntries.length - 1]; // last item
+  /// edit buttons
+  const editBtn = thisEntry.querySelector(".edit-btn");
+  editBtn.addEventListener("click", () => {
+    isFormOpen ? null : openForm();
+    const titleInput = document.querySelector("#add-entry-title");
+    const notesInput = document.querySelector("#add-entry-text");
+    if (
+      (titleInput.value == "" && notesInput.value == "") ||
+      (titleInput.value == entry.title && notesInput.value == entry.text)
+    ) {
+      titleInput.value = entry.title;
+      notesInput.value = entry.text;
+    } else {
+      if (
+        confirm(
+          `Para editar você precisa usar o formulário.\nSobrescrever dados do formulário?`
+        )
+      ) {
+        titleInput.value = entry.title;
+        notesInput.value = entry.text;
+      }
+    }
   });
 }
 
