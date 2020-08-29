@@ -148,13 +148,13 @@ function fetchEntries() {
      </div>`
     );
 
-    setDeleteBtn(entry.id);
+    setDeleteBtn(id);
+    setEditBtn(entry);
   });
 }
 
 function setDeleteBtn(entryId) {
-  const btns = [...document.querySelectorAll(".delete-btn")];
-  btns.forEach((btn) => {
+  document.querySelectorAll(".delete-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       if (!btn.classList.contains("selected")) {
         // if not selected
@@ -170,6 +170,16 @@ function setDeleteBtn(entryId) {
         btn.classList.remove("selected");
         deleteEntry(entryId);
       }
+    });
+  });
+}
+
+function setEditBtn(entry) {
+  document.querySelectorAll(".edit-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      isFormOpen ? null : openForm();
+      document.querySelector("#add-entry-title").value = entry.title;
+      document.querySelector("#add-entry-text").value = entry.text;
     });
   });
 }
