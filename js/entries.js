@@ -149,6 +149,7 @@ function fetchEntries() {
     // set buttons
     const pageEntries = [...document.querySelectorAll(".entry")];
     const thisEntry = pageEntries[pageEntries.length - 1]; // last item
+    /// delete buttons
     const delBtn = thisEntry.querySelector(".delete-btn");
     delBtn.addEventListener("click", () => {
       if (!delBtn.classList.contains("selected")) {
@@ -166,6 +167,26 @@ function fetchEntries() {
         // save again
         localStorage.setItem("entries", JSON.stringify(entries));
         fetchEntries();
+      }
+    });
+    /// edit buttons
+    const editBtn = thisEntry.querySelector(".edit-btn");
+    editBtn.addEventListener("click", () => {
+      isFormOpen ? null : openForm();
+      const titleInput = document.querySelector("#add-entry-title");
+      const notesInput = document.querySelector("#add-entry-text");
+      if (titleInput.value == "" && notesInput.value == "") {
+        titleInput.value = entry.title;
+        notesInput.value = entry.text;
+      } else {
+        if (
+          confirm(
+            `Para editar você precisa usar o formulário.\nSobrescrever dados do formulário?`
+          )
+        ) {
+          titleInput.value = entry.title;
+          notesInput.value = entry.text;
+        }
       }
     });
   });
