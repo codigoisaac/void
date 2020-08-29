@@ -160,11 +160,14 @@ function setDeleteBtn(entryId) {
         // if not selected
         btn.classList.add("selected");
         btn.innerHTML = '<i class="ri-delete-bin-line"></i>';
-        // set timeout to go back to unselected...
+        // unselect after some seconds
+        setTimeout(() => {
+          btn.classList.remove("selected");
+          btn.innerHTML = '<i class="ri-close-line"></i>';
+        }, 3000);
       } else {
         // if selected
         btn.classList.remove("selected");
-        // delete
         deleteEntry(entryId);
       }
     });
