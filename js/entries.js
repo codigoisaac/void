@@ -3,7 +3,11 @@ addBtn.addEventListener("click", openForm);
 const form = document.querySelector("#add-entry-form");
 form.addEventListener("submit", addEntry);
 
+const titleInput = document.querySelector("#add-entry-title");
+const notesInput = document.querySelector("#add-entry-text");
+
 let isFormOpen = false;
+let editingEntry = "";
 
 function openForm() {
   isFormOpen = !isFormOpen;
@@ -155,11 +159,11 @@ function fetchEntries() {
 function setDeleteButton(entry) {
   const pageEntries = [...document.querySelectorAll(".entry")];
   const thisEntry = pageEntries[pageEntries.length - 1]; // last item
-  /// delete buttons
+  // delete
   const delBtn = thisEntry.querySelector(".delete-btn");
   delBtn.addEventListener("click", () => {
     if (!delBtn.classList.contains("selected")) {
-      // if not selected
+      // if not selected - insert trash icon
       delBtn.classList.add("selected");
       delBtn.innerHTML = '<i class="ri-delete-bin-line"></i>';
       // unselect after some seconds
@@ -180,29 +184,33 @@ function setDeleteButton(entry) {
 function setEditButton(entry) {
   const pageEntries = [...document.querySelectorAll(".entry")];
   const thisEntry = pageEntries[pageEntries.length - 1]; // last item
-  /// edit buttons
+  // handle form
   const editBtn = thisEntry.querySelector(".edit-btn");
   editBtn.addEventListener("click", () => {
     isFormOpen ? null : openForm();
-    const titleInput = document.querySelector("#add-entry-title");
-    const notesInput = document.querySelector("#add-entry-text");
     if (
       (titleInput.value == "" && notesInput.value == "") ||
       (titleInput.value == entry.title && notesInput.value == entry.text)
     ) {
-      titleInput.value = entry.title;
-      notesInput.value = entry.text;
+      // overwrite values if form is empty or equal to entry
+      overwriteForm(entry);
     } else {
       if (
         confirm(
           `Para editar você precisa usar o formulário.\nSobrescrever dados do formulário?`
         )
       ) {
-        titleInput.value = entry.title;
-        notesInput.value = entry.text;
+        // overwrite values if user accepts to
+        overwriteForm(entry);
       }
     }
   });
+}
+
+function overwriteForm(entry) {
+  titleInput.value = entry.title;
+  notesInput.value = entry.text;
+  editingEntry = entry.id;
 }
 
 function getData() {
