@@ -1,7 +1,10 @@
-const addBtn = document.querySelector("#add-entry-btn");
+const addBtn = document.querySelector("#open-form-btn");
 addBtn.addEventListener("click", openForm);
 const form = document.querySelector("#add-entry-form");
-form.addEventListener("submit", addEntry);
+form.addEventListener("submit", () => {
+  // adding new / editing entry
+  editingEntry == "" ? addEntry() : editEntry();
+});
 
 const titleInput = document.querySelector("#add-entry-title");
 const notesInput = document.querySelector("#add-entry-text");
@@ -19,8 +22,8 @@ function openForm() {
 
 function addEntry(e) {
   // get values from form
-  const entryTitle = document.querySelector("#add-entry-title").value,
-    entryText = document.querySelector("#add-entry-text").value;
+  const entryTitle = titleInput.value,
+    entryText = notesInput.value;
   // get date info
   const date = new Date(),
     entryDay = date.getDate(),
@@ -60,11 +63,10 @@ function addEntry(e) {
   };
 
   // save
-  // if not empty
+  // if form is not empty
   if (entryTitle != "" || entryText != "") {
-    // check storage
+    // if storage has no entries
     if (localStorage.getItem("entries") == null) {
-      // create item
       let entries = [];
       entries.push(entry);
       localStorage.setItem("entries", JSON.stringify(entries));
@@ -82,6 +84,22 @@ function addEntry(e) {
   form.reset();
 
   fetchEntries();
+}
+
+function editEntry(e) {
+  // copy data and modify given entry
+  const entries = getData();
+  entries.forEach((entry) => {
+    if (entry.id == editingEntry.id) {
+      entry.title = titleInput.value;
+      entry.text = notesInput.value;
+    }
+  });
+  // overwrite data
+  localStorage.setItem("entries", JSON.stringify(entries));
+
+  fetchEntries();
+  editingEntry = "";
 }
 
 function fetchEntries() {
@@ -151,12 +169,12 @@ function fetchEntries() {
     );
 
     // set buttons
-    setDeleteButton(entry);
-    setEditButton(entry);
+    setDelete(entry);
+    setEdit(entry);
   });
 }
 
-function setDeleteButton(entry) {
+function setDelete(entry) {
   const docEntries = [...document.querySelectorAll(".entry")];
   const docEntry = docEntries[docEntries.length - 1]; // last item
   // delete
@@ -186,26 +204,27 @@ function setDeleteButton(entry) {
   });
 }
 
-function setEditButton(entry) {
-  const pageEntries = [...document.querySelectorAll(".entry")];
-  const thisEntry = pageEntries[pageEntries.length - 1]; // last item
+function setEdit(entry) {
+  const docEntries = [...document.querySelectorAll(".entry")];
+  const docEntry = docEntries[docEntries.length - 1]; // last item
   // handle form
-  const editBtn = thisEntry.querySelector(".edit-btn");
+  const editBtn = docEntry.querySelector(".edit-btn");
   editBtn.addEventListener("click", () => {
     isFormOpen ? null : openForm();
+    // overwrite values only if form is empty or equal to entry
     if (
       (titleInput.value == "" && notesInput.value == "") ||
       (titleInput.value == entry.title && notesInput.value == entry.text)
     ) {
-      // overwrite values if form is empty or equal to entry
       overwriteForm(entry);
-    } else {
+    }
+    // otherwise ask confirmation to overwrite
+    else {
       if (
         confirm(
           `Para editar você precisa usar o formulário.\nSobrescrever dados do formulário?`
         )
       ) {
-        // overwrite values if user accepts to
         overwriteForm(entry);
       }
     }
@@ -215,7 +234,7 @@ function setEditButton(entry) {
 function overwriteForm(entry) {
   titleInput.value = entry.title;
   notesInput.value = entry.text;
-  editingEntry = entry.id;
+  editingEntry = entry;
 }
 
 function getData() {
