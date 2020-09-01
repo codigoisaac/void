@@ -86,8 +86,8 @@ function addEntry(e) {
 
 function fetchEntries() {
   // get data and where to display it
-  const entries = getData(),
-    entryList = document.querySelector("#the-entries");
+  const entries = getData();
+  const entryList = document.querySelector("#the-entries");
 
   entryList.innerHTML = "";
 
@@ -157,10 +157,10 @@ function fetchEntries() {
 }
 
 function setDeleteButton(entry) {
-  const pageEntries = [...document.querySelectorAll(".entry")];
-  const thisEntry = pageEntries[pageEntries.length - 1]; // last item
+  const docEntries = [...document.querySelectorAll(".entry")];
+  const docEntry = docEntries[docEntries.length - 1]; // last item
   // delete
-  const delBtn = thisEntry.querySelector(".delete-btn");
+  const delBtn = docEntry.querySelector(".delete-btn");
   delBtn.addEventListener("click", () => {
     if (!delBtn.classList.contains("selected")) {
       // if not selected - insert trash icon
@@ -173,7 +173,12 @@ function setDeleteButton(entry) {
       }, 2000);
     } else {
       // if previously selected
-      entries.splice(entries.indexOf(entry), 1);
+      const entries = getData();
+      entries.forEach((thisEntry) => {
+        if (thisEntry.id == entry.id) {
+          entries.splice(entries.indexOf(thisEntry), 1);
+        }
+      });
       // save again
       localStorage.setItem("entries", JSON.stringify(entries));
       fetchEntries();
