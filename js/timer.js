@@ -1,16 +1,19 @@
 let countdown;
 let countup;
 const timerDisplay = document.querySelector("#timer");
-const timeOptions = [...document.querySelectorAll(".playable")];
+const predefTimeOptions = [...document.querySelectorAll(".predefined-option")];
 const timerDesc = document.querySelector("#timer-description");
 
 // play by clicking on time options
-timeOptions.forEach((option) => {
-  option.addEventListener("click", startTimer);
+predefTimeOptions.forEach((btn) => {
+  btn.addEventListener("click", startTimer);
 });
 
 function startTimer(e) {
   unselectTime();
+
+  isTimelessMeditating = false;
+  timeless.textContent = ">";
 
   // initialize timer
   timer(e.target.dataset.time);
@@ -20,6 +23,13 @@ function startTimer(e) {
 
   // change time description
   timerDesc.textContent = "Tempo restante";
+}
+
+function unselectTime() {
+  // unselect any previously selected time option
+  predefTimeOptions.forEach((option) => {
+    option.classList.remove("selected");
+  });
 }
 
 function timer(minutes) {
@@ -68,13 +78,6 @@ document.timeForm.addEventListener("submit", function (e) {
   unselectTime();
 });
 
-function unselectTime() {
-  // unselect any previously selected time option
-  timeOptions.forEach((option) => {
-    option.classList.remove("selected");
-  });
-}
-
 // meditate the time you want
 const timeless = document.querySelector("#timeless");
 timeless.addEventListener("click", timelessMeditation);
@@ -87,15 +90,18 @@ function timelessMeditation() {
   clearInterval(countdown);
   clearInterval(countup);
 
-  const now = Date.now(); // get moment
-
-  countup = setInterval(() => {
-    isTimelessMeditating ? displayTimeMeditated(now) : null;
-  }, 1000);
-
   // change the text in the button
   isTimelessMeditating = !isTimelessMeditating;
   timeless.textContent = isTimelessMeditating ? "| |" : ">";
+
+  const now = Date.now(); // get moment
+
+  // set display interval
+  if (isTimelessMeditating) {
+    countup = setInterval(() => {
+      displayTimeMeditated(now);
+    }, 1000);
+  }
 
   // change timer description
   timerDesc.textContent = "Tempo meditado";

@@ -109,7 +109,8 @@ section {
   width: var(--time-circle);
   height: var(--time-circle);
 }
-.time-click {
+.predefined-option,
+#timeless {
   cursor: alias;
 }
 input {
