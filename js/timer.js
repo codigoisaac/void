@@ -11,9 +11,7 @@ predefTimeOptions.forEach((btn) => {
 
 function startTimer(e) {
   unselectTime();
-
-  isTimelessMeditating = false;
-  timeless.textContent = ">";
+  unselectTimeless();
 
   // initialize timer
   timer(e.target.dataset.time);
@@ -30,6 +28,14 @@ function unselectTime() {
   predefTimeOptions.forEach((option) => {
     option.classList.remove("selected");
   });
+}
+
+function unselectTimeless() {
+  // unselect timeless meditation
+  if (isTimelessMeditating) {
+    isTimelessMeditating = false;
+    timeless.textContent = ">";
+  }
 }
 
 function timer(minutes) {
@@ -49,11 +55,21 @@ function timer(minutes) {
     // stop if reached zero
     if (secondsLeft < 0) {
       clearInterval(countdown);
+      autoAddEntry();
       return;
     }
     // display
     displayTimeLeft(secondsLeft);
   }, 1000);
+}
+
+function autoAddEntry() {
+  // take the user to add an entry at the end of a meditation
+  timerDesc.innerHTML = `Parabéns! <br/>
+  Você acabou de dar um passo em direção à sua melhor versão. <br/>
+  Se quiser, escreva sobre a meditação. :)`;
+  openForm();
+  document.querySelector("#add-entry-title").focus();
 }
 
 function displayTimeLeft(seconds) {
@@ -76,6 +92,10 @@ document.timeForm.addEventListener("submit", function (e) {
   this.minutesInput.blur(); // unfocus from input
 
   unselectTime();
+  unselectTimeless();
+
+  // change timer description
+  timerDesc.textContent = "Tempo restante";
 });
 
 // meditate the time you want
