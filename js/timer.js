@@ -55,7 +55,7 @@ function timer(minutes) {
     // stop if reached zero
     if (secondsLeft < 0) {
       clearInterval(countdown);
-      autoAddEntry();
+      encourageEntry();
       return;
     }
     // display
@@ -63,8 +63,8 @@ function timer(minutes) {
   }, 1000);
 }
 
-function autoAddEntry() {
-  // take the user to add an entry at the end of a meditation
+function encourageEntry() {
+  // encourage the user to add an entry at the end of a meditation
   timerDesc.innerHTML = `Parabéns! <br/>
   Você acabou de dar um passo em direção à sua melhor versão. <br/>
   Se quiser, escreva sobre a meditação. :)`;
@@ -125,6 +125,9 @@ function timelessMeditation() {
 
   // change timer description
   timerDesc.textContent = "Tempo meditado";
+
+  // encourage to add entry
+  !isTimelessMeditating ? encourageEntry() : null;
 }
 
 function displayTimeMeditated(start) {
