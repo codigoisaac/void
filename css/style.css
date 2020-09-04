@@ -134,6 +134,9 @@ input {
 /* Sound  */
 #sound {
   grid-area: soun;
+  padding: 0 13rem;
+  flex-direction: column;
+  align-items: stretch;
 }
 #sound-container {
   align-items: flex-start;
@@ -142,19 +145,19 @@ input {
 .sound-group {
   display: flex;
 }
-.sound-circle,
-.sound-header {
+.music-btn {
   border: 2px solid var(--white);
   color: var(--white);
   font-weight: 500;
-  border-radius: 50%;
-  --sound-circle: 2.2rem;
-  width: var(--sound-circle);
-  height: var(--sound-circle);
+  --size: 2.2rem;
+  width: auto;
+  height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 /* Hovers  */
-.sound-circle:hover,
-.sound-header:hover,
+.artist:hover,
 .time-circle:hover {
   background-color: var(--white);
   color: var(--pink);
