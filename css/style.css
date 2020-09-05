@@ -15,6 +15,7 @@
   --white: #f9e9ec;
   --bRadius: 6px;
   --duration: 0.8s;
+  --void-duration: 2s;
 }
 
 * {
@@ -25,6 +26,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Ubuntu", sans-serif;
+  background-color: var(--pink);
 }
 
 section {
@@ -44,10 +46,10 @@ section {
 
 #home > * {
   margin: 1rem 0;
+  transition: opacity var(--void-duration);
 }
 
 #home {
-  background-color: var(--pink);
   display: grid;
   grid-template-areas:
     "logo"
@@ -64,10 +66,12 @@ section {
   font-size: 7rem;
   grid-area: logo;
   color: var(--white);
-  transition: color var(--duration);
 }
-#logo:hover {
-  color: var(--pink);
+#the-logo {
+  transition: opacity 9s;
+}
+#the-logo:hover {
+  opacity: 0;
 }
 
 #timer {
