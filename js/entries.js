@@ -125,8 +125,8 @@ function fetchEntries() {
       (otherEntry) => otherEntry.date == entry.date
     );
 
-    let days = 0;
     const isOm = entriesInDay.length >= 2;
+    let days = 0;
 
     // add date only before first entry in the day
     if (count == 1) {
@@ -191,12 +191,16 @@ function setDelete(entry) {
       }, 2000);
     } else {
       // if previously selected
-      const entries = getData();
+      let entries = getData();
       entries.forEach((thisEntry) => {
         if (thisEntry.id == entry.id) {
           entries.splice(entries.indexOf(thisEntry), 1);
         }
       });
+
+      // reset count in the day
+      entries = resetEntriesDayCount(entries);
+
       // save again
       localStorage.setItem("entries", JSON.stringify(entries));
       fetchEntries();
@@ -238,7 +242,26 @@ function overwriteForm(entry) {
 }
 
 function getData() {
-  return JSON.parse(localStorage.getItem("entries"));
+  if (localStorage.getItem("entries") != null) {
+    return JSON.parse(localStorage.getItem("entries"));
+  } else {
+    return [];
+  }
+}
+
+function resetEntriesDayCount(entries) {
+  // reset the entry count in the day
+  entries.forEach((entry) => {
+    let countInDay = 0;
+    entries.forEach((otherEntry) => {
+      if (otherEntry.date == entry.date) {
+        countInDay++;
+        otherEntry.count = countInDay;
+      }
+    });
+  });
+
+  return entries;
 }
 
 // ``

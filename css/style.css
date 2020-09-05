@@ -72,6 +72,7 @@ section {
 }
 #the-logo:hover {
   opacity: 0;
+  cursor: none;
 }
 
 #timer {
@@ -161,6 +162,7 @@ input {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  cursor: alias;
 }
 #sound-content > * {
   width: 100%;
