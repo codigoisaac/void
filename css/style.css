@@ -51,16 +51,14 @@ section {
 
 #home {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   grid-template-areas:
-    "logo logo"
-    "time time"
-    "desc desc"
-    "opts opts"
-    "soun soun"
-    "entr entr"
-    "foot ppup";
-  justify-content: center;
+    "logo"
+    "time"
+    "desc"
+    "opts"
+    "soun"
+    "entr"
+    "foot";
 }
 
 #logo {
@@ -191,7 +189,7 @@ input {
 /* Entries  */
 #entries {
   grid-area: entr;
-  border: 3px solid var(--white);
+  border: 2px solid var(--white);
   border-radius: var(--bRadius);
   padding: 0 1rem;
   flex-direction: column;
@@ -249,7 +247,6 @@ input {
 
 #entry-controls {
   top: 0;
-  margin: 1rem 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -280,7 +277,8 @@ input {
 footer {
   grid-area: foot;
   text-align: left;
-  justify-content: flex-start !important;
+  justify-content: space-between !important;
+  margin: 0 !important;
 }
 p {
   margin: 0;
