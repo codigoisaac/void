@@ -56,6 +56,7 @@ function timer(minutes) {
     if (secondsLeft < 0) {
       clearInterval(countdown);
       encourageEntry();
+      new Audio("audio/tibetan-bell.wav").play(); // end of timer alert
       return;
     }
     // display

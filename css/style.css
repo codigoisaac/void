@@ -109,6 +109,7 @@ section {
   display: flex;
 }
 .time-circle {
+  /* all time options */
   border: 2px solid var(--white);
   color: var(--white);
   font-weight: bold;
