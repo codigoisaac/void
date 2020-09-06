@@ -1,0 +1,32 @@
+#home {
+  position: relative;
+}
+
+aside {
+  margin: 0 !important;
+  justify-content: flex-end !important;
+}
+
+#info-btn {
+  padding: 0.5rem 1rem;
+  color: var(--white);
+  /* border  */
+  border: 2px solid var(--white);
+  border-radius: var(--bRadius);
+  /* type  */
+  font-weight: bold;
+  font-size: 0.9rem;
+  font-family: Misirlou;
+  /* center  */
+  display: flex;
+}
+
+aside.open {
+  height: var(--height);
+  width: var(--width);
+  margin: 1rem !important;
+  justify-content: center;
+  --size: 100%;
+  height: var(--size);
+  width: var(--size);
+}

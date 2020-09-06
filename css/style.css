@@ -37,8 +37,7 @@ section {
 #home > *,
 .centered,
 .time-circle,
-.sound-circle,
-.sound-header {
+.sound-circle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,18 +46,21 @@ section {
 #home > * {
   margin: 1rem 0;
   transition: opacity var(--void-duration);
+  width: 100%;
 }
 
 #home {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   grid-template-areas:
-    "logo"
-    "time"
-    "desc"
-    "opts"
-    "soun"
-    "entr"
-    "foot";
+    "logo logo"
+    "time time"
+    "desc desc"
+    "opts opts"
+    "soun soun"
+    "entr entr"
+    "foot ppup";
+  justify-content: center;
 }
 
 #logo {
@@ -150,20 +152,15 @@ input {
 /* Sound  */
 #sound {
   grid-area: soun;
-  padding: 0 13rem;
-  flex-direction: column;
-  align-items: stretch;
 }
 #sound-content {
+  background-color: var(--pink);
   border: 2px solid var(--white);
   color: var(--white);
   font-weight: 500;
-  --size: 2.2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   cursor: alias;
+  border-radius: var(--bRadius);
+  width: 100%;
 }
 #sound-content > * {
   width: 100%;
@@ -202,6 +199,7 @@ input {
   justify-content: start;
   align-items: flex-start;
   height: 60vh;
+  padding: 0 0.45rem;
 }
 #entries h1 {
   font-weight: bold;
@@ -250,9 +248,12 @@ input {
 }
 
 #entry-controls {
-  /* position: sticky; */
   top: 0;
   margin: 1rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 /* Add entry form  */
 #add-entry-form {
@@ -278,10 +279,11 @@ input {
 /* Footer  */
 footer {
   grid-area: foot;
-  text-align: center;
+  text-align: left;
+  justify-content: flex-start !important;
 }
 p {
-  margin: 0.5rem 0;
+  margin: 0;
 }
 a {
   color: black;
@@ -291,4 +293,9 @@ a {
 }
 a:hover {
   color: var(--white);
+}
+
+/* Popup  */
+aside {
+  grid-area: ppup;
 }

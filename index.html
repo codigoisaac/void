@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="css/tooltip.css" />
+    <link rel="stylesheet" href="css/popup.css" />
     <!-- Remix Icon  -->
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
@@ -32,7 +33,7 @@
           <h1>Escolha o tempo para meditar:</h1>
           <div id="time-choices">
             <!-- predefined options  -->
-            <div data-time="0.1" class="time-circle predefined-option">
+            <div data-time="05" class="time-circle predefined-option">
               05m
               <span class="tooltip">Medite por 5 minutos</span>
             </div>
@@ -84,6 +85,7 @@
       <!-- Entries  -->
       <div id="entries">
         <div id="entry-controls">
+          <h1>Suas meditações:</h1>
           <button id="open-form-btn">+</button>
         </div>
 
@@ -101,23 +103,18 @@
           <button type="submit">+ Adicionar</button>
         </form>
 
-        <h1>Suas meditações:</h1>
-
         <div id="the-entries"></div>
       </div>
 
       <!-- Footer  -->
       <footer>
-        <p>
-          Se você apagar o cachê do navegador também apaga os dados no Void.
-          <!-- <br /> -->
-          <a href="">Baixe seus dados</a>.
-          <br />
-          Feito por
-          <a target="_blank" href="https://linktr.ee/codigoisaac">códigoisaac</a
-          >.
-        </p>
+        <p>Feito por <a href="">códigoisaac</a>.</p>
       </footer>
+
+      <!-- Info Popup  -->
+      <aside class="">
+        <div id="info-btn">i</div>
+      </aside>
     </section>
 
     <!-- Scripts -->
@@ -129,3 +126,10 @@
     <script src="https://chancejs.com/chance.min.js"></script>
   </body>
 </html>
+
+<!-- create a div
+make it stay in the bottom right of the screen
+make it not ocupy the flexbox
+make it expand when i click it
+with content inside it
+make it shrink when i click again (in it's background) -->
