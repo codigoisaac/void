@@ -3,7 +3,8 @@
 /* Mobile L  */
 @media only screen and (min-width: 425px) {
   #sound-content,
-  #entries {
+  #entries,
+  footer {
     max-width: 445px;
   }
 }

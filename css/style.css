@@ -279,7 +279,7 @@ footer {
   grid-area: foot;
   text-align: left;
   justify-content: space-between !important;
-  margin: 0 !important;
+  margin: 1rem auto !important;
 }
 p {
   margin: 0;
