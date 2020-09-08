@@ -2,6 +2,24 @@
   position: relative;
 }
 
+#home.popup {
+  grid-template-areas:
+    "ppup"
+    "foot";
+}
+
+/* Laptop  */
+@media only screen and (min-width: 1024px) {
+  #home.popup {
+    grid-template-areas:
+      "foot ppup ppup"
+      "foot ppup ppup"
+      "foot ppup ppup"
+      "foot ppup ppup"
+      "foot ppup ppup";
+  }
+}
+
 #info-btn {
   padding: 0.5rem 1rem;
   color: var(--white);
@@ -16,8 +34,7 @@
   transition: width 2s;
 }
 
-#info-btn.open {
-  position: relative;
-  width: 90vw;
-  height: 90vh;
+#popup {
+  display: none;
+  grid-area: ppup;
 }
