@@ -1,5 +1,13 @@
 /* Responsiveness goes here */
 
+/* Mobile L  */
+@media only screen and (min-width: 425px) {
+  #sound-content,
+  #entries {
+    max-width: 445px;
+  }
+}
+
 /* Laptop  */
 @media only screen and (min-width: 1024px) {
   section {
@@ -17,18 +25,24 @@
       "foot entr soun";
   }
 
+  #sound-content {
+    max-width: 50%;
+  }
+
   #entries {
     height: 100%;
+    margin: 0;
+    max-width: 100%;
   }
 
   footer {
     width: 100%;
-    text-align: left;
+    flex-direction: column-reverse;
+    align-items: center;
   }
 
   footer p {
     writing-mode: tb-rl;
     transform: rotate(-180deg);
-    width: 100%;
   }
 }

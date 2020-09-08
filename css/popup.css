@@ -12,7 +12,12 @@
   font-weight: bold;
   font-size: 0.9rem;
   font-family: Misirlou;
+  /*  */
+  transition: width 2s;
 }
 
 #info-btn.open {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
 }

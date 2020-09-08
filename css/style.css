@@ -198,6 +198,7 @@ input {
   align-items: flex-start;
   height: 60vh;
   padding: 0 0.45rem;
+  margin: auto;
 }
 #entries h1 {
   font-weight: bold;
