@@ -32,9 +32,28 @@
   font-family: Misirlou;
   /*  */
   transition: width 2s;
+  cursor: help;
 }
 
 #popup {
   display: none;
   grid-area: ppup;
+}
+
+#popup h1 {
+  margin-bottom: 0.2rem;
+}
+
+#popup h2 {
+  font-size: 1rem;
+  margin: 0.2rem 0;
+}
+
+#popup h1,
+#popup h2 {
+  color: var(--white);
+}
+
+#popup-content > div {
+  border: 2px solid var(--white);
 }
