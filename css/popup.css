@@ -56,4 +56,5 @@
 
 #popup-content > div {
   border: 2px solid var(--white);
+  padding: 1rem;
 }
