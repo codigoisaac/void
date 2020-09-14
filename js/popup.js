@@ -9,22 +9,18 @@ let isPopupOpen = true;
 function handlePopup() {
   isPopupOpen = !isPopupOpen;
   if (!isPopupOpen) {
+    // close
     home.classList.remove("popup");
     hidable.forEach((element) => {
-      // element.style.opacity = "0";
-      // element.style.display = "none";
       element.classList.remove("hiden");
     });
-    // popup.style.display = "flex";
     popup.classList.add("hiden");
   } else {
+    // open
     home.classList.add("popup");
     hidable.forEach((element) => {
-      // element.style.opacity = "1";
-      // element.style.display = "flex";
       element.classList.add("hiden");
     });
-    // popup.style.display = "none";
     popup.classList.remove("hiden");
   }
 }

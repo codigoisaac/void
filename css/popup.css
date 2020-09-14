@@ -60,6 +60,7 @@
 }
 
 .hiden {
+  transition: opacity var(--duration), display var(--duration);
   opacity: 0;
   display: none !important;
 }
