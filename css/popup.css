@@ -36,7 +36,7 @@
 }
 
 #popup {
-  display: none;
+  display: flex;
   grid-area: ppup;
 }
 
@@ -57,4 +57,9 @@
 #popup-content > div {
   border: 2px solid var(--white);
   padding: 1rem;
+}
+
+.hiden {
+  opacity: 0;
+  display: none !important;
 }
