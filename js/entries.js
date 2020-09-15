@@ -176,8 +176,7 @@ function fetchEntries() {
     setEdit(entry);
   });
 
-  // set habit stats
-  setHabitStats(totalDays);
+  setHabitStats();
 }
 
 function setDelete(entry) {
@@ -245,14 +244,6 @@ function overwriteForm(entry) {
   titleInput.value = entry.title;
   notesInput.value = entry.text;
   editingEntry = entry;
-}
-
-function getData() {
-  if (localStorage.getItem("entries") != null) {
-    return JSON.parse(localStorage.getItem("entries"));
-  } else {
-    return [];
-  }
 }
 
 function resetEntriesDayCount(entries) {

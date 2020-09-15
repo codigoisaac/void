@@ -14,7 +14,7 @@
       rel="stylesheet"
     />
   </head>
-  <body onload="fetchEntries()">
+  <body onload="fetchEntries(), setHabitStats()">
     <section id="home">
       <!-- Logo  -->
       <div id="logo" class="below-popup">
@@ -111,7 +111,15 @@
               >horas <br />
               registradas</span
             >
-            <span class="stat">11:00</span>
+            <span class="stat">00:00</span>
+          </div>
+
+          <div id="meditations-recorded">
+            <span class="stat-label"
+              >meditações <br />
+              registradas</span
+            >
+            <span class="stat">0</span>
           </div>
 
           <div id="days-meditated">
@@ -119,7 +127,7 @@
               >dias <br />
               meditados</span
             >
-            <span class="stat">213</span>
+            <span class="stat">0</span>
           </div>
 
           <div id="days-meditated-twice">
@@ -127,7 +135,7 @@
               >dias <br />
               meditados 2x</span
             >
-            <span class="stat">192</span>
+            <span class="stat">0</span>
           </div>
 
           <div id="day-strike">
@@ -135,7 +143,7 @@
               >dias meditados <br />
               em seguida</span
             >
-            <span class="stat">69</span>
+            <span class="stat">0</span>
           </div>
 
           <div id="twice-day-strike">
@@ -143,7 +151,7 @@
               >dias meditados <br />
               2x em seguida</span
             >
-            <span class="stat">47</span>
+            <span class="stat">0</span>
           </div>
         </div>
       </div>
@@ -237,6 +245,16 @@
     </section>
 
     <!-- Scripts -->
+    <script>
+      // this script goes here for accessibility
+      function getData() {
+        if (localStorage.getItem("entries") != null) {
+          return JSON.parse(localStorage.getItem("entries"));
+        } else {
+          return [];
+        }
+      }
+    </script>
     <script src="js/popup.js"></script>
     <script src="js/habit-stats.js"></script>
     <script src="js/entries.js"></script>
