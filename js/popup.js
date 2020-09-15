@@ -15,6 +15,7 @@ function handlePopup() {
       element.classList.remove("hiden");
     });
     popup.classList.add("hiden");
+    infoBtn.classList.remove("active");
   } else {
     // open
     home.classList.add("popup");
@@ -22,5 +23,6 @@ function handlePopup() {
       element.classList.add("hiden");
     });
     popup.classList.remove("hiden");
+    infoBtn.classList.add("active");
   }
 }
