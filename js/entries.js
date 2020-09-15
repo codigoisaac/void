@@ -26,8 +26,10 @@ function addEntry(e) {
     entryText = notesInput.value;
   // get date info
   const date = new Date(),
-    entryDay = date.getDate(),
-    entryMonth = // add '0' in front of month
+    // add '0' in front of day
+    entryDay = date.getDate() < 10 ? "0" + date.getDate() : date.getDate(),
+    // add '0' in front of month
+    entryMonth =
       date.getMonth() + 1 < 10
         ? "0" + (date.getMonth() + 1)
         : date.getMonth() + 1,
@@ -109,7 +111,7 @@ function fetchEntries() {
 
   entryList.innerHTML = "";
 
-  let days = 0; // number of days in which entries were made
+  let totalDays = 0; // number of days in which entries were made
 
   // insert html
   entries.forEach((entry) => {
@@ -132,8 +134,8 @@ function fetchEntries() {
     // add date only before first entry in the day
     if (count == 1) {
       entryList.innerHTML += '<div class="day-info"></div>';
-      const dayInfo = entryList.querySelectorAll(".day-info")[days];
-      days++;
+      const dayInfo = entryList.querySelectorAll(".day-info")[totalDays];
+      totalDays++;
 
       dayInfo.innerHTML += `
         <div class="date">${date}<span class="year">/${year}</span></div>`;
@@ -173,6 +175,9 @@ function fetchEntries() {
     setDelete(entry);
     setEdit(entry);
   });
+
+  // set habit stats
+  setHabitStats(totalDays);
 }
 
 function setDelete(entry) {

@@ -305,7 +305,7 @@ p {
   margin: 0;
 }
 a {
-  color: black;
+  color: #0f00a0;
   text-decoration: none;
   font-weight: bold;
   transition: color var(--duration);
