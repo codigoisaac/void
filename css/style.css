@@ -198,6 +198,7 @@ input {
   align-items: flex-start;
   height: 60vh;
   margin: auto;
+  position: relative;
 }
 #entries h1 {
   font-weight: bold;
@@ -271,6 +272,26 @@ input {
 #add-entry-text {
   align-self: stretch;
   resize: vertical; /* for textarea only */
+}
+/* habit-stats  */
+#habit-stats {
+  background-color: var(--white);
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-radius: var(--bRadius) var(--bRadius) 0 0;
+  /* position  */
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+}
+#habit-stats > * {
+  display: flex;
+  flex-direction: column;
+}
+.stat-label {
+  font-size: 0.7rem;
 }
 
 /* Footer  */
