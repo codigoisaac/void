@@ -109,9 +109,11 @@ function fetchEntries() {
 
   entryList.innerHTML = "";
 
+  let days = 0; // number of days in which entries were made
+
   // insert html
   entries.forEach((entry) => {
-    // save values from storage
+    // get values from storage
     let title = entry.title,
       text = entry.text,
       date = entry.date,
@@ -120,13 +122,12 @@ function fetchEntries() {
       count = entry.count,
       id = entry.id;
 
-    // test if there is other entries with same date
+    // get other entries with same date
     let entriesInDay = entries.filter(
       (otherEntry) => otherEntry.date == entry.date
     );
 
-    const isOm = entriesInDay.length >= 2;
-    let days = 0;
+    const isOm = entriesInDay.length > 1;
 
     // add date only before first entry in the day
     if (count == 1) {
