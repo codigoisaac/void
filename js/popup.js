@@ -4,7 +4,7 @@ const infoBtn = document.querySelector("#info-btn"), // to click
   hidable = document.querySelectorAll(".below-popup"); // to be hided/shown
 
 infoBtn.addEventListener("click", handlePopup);
-let isPopupOpen = true;
+let isPopupOpen = false;
 
 function handlePopup() {
   isPopupOpen = !isPopupOpen;

@@ -173,9 +173,6 @@ function fetchEntries() {
     setDelete(entry);
     setEdit(entry);
   });
-
-  //
-  handlePopup();
 }
 
 function setDelete(entry) {
