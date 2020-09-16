@@ -282,7 +282,7 @@ input {
   padding: 0.5rem;
   border-radius: var(--bRadius) var(--bRadius) 0 0;
   /* position  */
-  position: absolute;
+  position: sticky;
   bottom: 0px;
   left: 0;
 }

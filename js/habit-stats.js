@@ -17,17 +17,23 @@ function setHabitStats() {
     dayTwiceStrike: 0,
   };
 
+  const previousEntryDay = 1;
+
   savedEntries.forEach((entry) => {
     stat.entries++;
 
-    // nuber of days
+    // days
     if (entry.count == 1) {
       stat.days++;
     }
 
+    // days 2x
     if (entry.count > 1) {
       stat.daysTwice++;
     }
+
+    // day strike
+    // console.log(entry.date);
   });
 
   // display >>
