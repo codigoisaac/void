@@ -9,7 +9,6 @@ function setHabitStats() {
   const savedEntries = getData();
 
   let stat = {
-    time: "00:00",
     entries: 0,
     days: 0,
     doubleDays: 0,
@@ -22,8 +21,6 @@ function setHabitStats() {
   let didIhad2PlusYesterday = false;
 
   savedEntries.forEach((entry) => {
-    // hours
-
     // entries
     stat.entries++;
 
@@ -76,21 +73,14 @@ function setHabitStats() {
   });
 
   // display >>
-
-  // hours
-
   // entries
   entriesDisplay.textContent = stat.entries;
-
   // days
   daysDisplay.textContent = stat.days;
-
   // days 2x
   doubleDaysDisplay.textContent = stat.doubleDays;
-
   // day strike
   dayStrikeDisplay.textContent = stat.dayStrike;
-
   // 2x day strike
   doubleStrikeDisplay.textContent = stat.doubleStrike;
 }

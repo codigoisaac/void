@@ -291,7 +291,7 @@ input {
 }
 #habit-stats > * {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
 }
 .stat-label {
   font-size: 0.7rem;
