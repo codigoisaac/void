@@ -21,6 +21,9 @@ function setHabitStats() {
   let strike = 1;
 
   savedEntries.forEach((entry) => {
+    // hours
+
+    // entries
     stat.entries++;
 
     // days
@@ -28,21 +31,26 @@ function setHabitStats() {
       stat.days++;
     }
 
+    const entryDay = entry.date.substring(0, 2); // get day
+
     // days 2x
-    if (entry.count > 1) {
+    if (entry.count == 2) {
       stat.daysTwice++;
     }
 
     // day strike
-    const entryDay = entry.date.substring(0, 2); // get day
     if (entryDay == previousEntryDay + 1) {
       strike++;
     }
     previousEntryDay = entryDay;
     stat.dayStrike = strike;
+
+    // 2x day strike
   });
 
   // display >>
+
+  // hours
 
   // entries
   entries.textContent = stat.entries;
@@ -50,9 +58,11 @@ function setHabitStats() {
   // days
   days.textContent = stat.days;
 
-  // days twice
+  // days 2x
   daysTwice.textContent = stat.daysTwice;
 
   // day strike
   dayStrike.textContent = stat.dayStrike;
+
+  // 2x day strike
 }
