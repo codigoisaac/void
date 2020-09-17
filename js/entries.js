@@ -18,6 +18,8 @@ function openForm() {
   // display form
   form.style.display = isFormOpen ? "flex" : "none";
   addBtn.textContent = isFormOpen ? "X" : "+";
+
+  isFormOpen ? titleInput.focus() : null;
 }
 
 function addEntry(e) {

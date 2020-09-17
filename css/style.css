@@ -293,6 +293,9 @@ input {
   display: flex;
   flex-direction: column-reverse;
 }
+.stat {
+  font-weight: bold;
+}
 .stat-label {
   font-size: 0.7rem;
 }
