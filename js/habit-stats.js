@@ -17,7 +17,8 @@ function setHabitStats() {
     dayTwiceStrike: 0,
   };
 
-  const previousEntryDay = 1;
+  let previousEntryDay = 0;
+  let strike = 1;
 
   savedEntries.forEach((entry) => {
     stat.entries++;
@@ -33,7 +34,12 @@ function setHabitStats() {
     }
 
     // day strike
-    // console.log(entry.date);
+    const entryDay = entry.date.substring(0, 2); // get day
+    if (entryDay == previousEntryDay + 1) {
+      strike++;
+    }
+    previousEntryDay = entryDay;
+    stat.dayStrike = strike;
   });
 
   // display >>
@@ -46,4 +52,7 @@ function setHabitStats() {
 
   // days twice
   daysTwice.textContent = stat.daysTwice;
+
+  // day strike
+  dayStrike.textContent = stat.dayStrike;
 }
