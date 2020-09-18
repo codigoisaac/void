@@ -158,25 +158,25 @@
       <!-- Popup  -->
       <div id="popup" class="hiden">
         <div id="popup-content">
-          <div id="about-app">
+          <div class="popup-div">
             <h1>Sobre o App</h1>
             <p>
               Void é um aplicativo Web feito para te ajudar no processo de
-              adotar o hábito de meditar 2 vezes por dia.
+              adotar o hábito de meditar duas vezes por dia.
             </p>
             <!-- 2x -->
-            <h2>Por que 2 vezes por dia?</h2>
+            <h2>Por que duas vezes por dia?</h2>
             <p>
-              Os mestres dizem que entrar em meditação no mínimo 2x por dia é o
-              ideal para alcançar melhores resultados, pois com a primeira
-              meditação nós nos distanciamos da mente, mas o dia-a-dia acaba nos
-              imergindo novamente nela. A segunda meditação é para te manter um
-              passo à frente da mente, o que te traz muito mais resultados do
-              que 1 meditação por dia.
+              Os mestres dizem que entrar em meditação no mínimo duas vezes por
+              dia é o ideal para alcançar melhores resultados, pois com a
+              primeira meditação nós nos distanciamos da mente, mas o dia-a-dia
+              acaba nos imergindo novamente nela. A segunda meditação é para te
+              manter um passo à frente da mente, o que te traz muito mais
+              resultados do que uma meditação por dia.
             </p>
           </div>
 
-          <div id="about-data">
+          <div class="popup-div">
             <h1>Sobre seus dados</h1>
             <p>
               Os dados que você insere no Void são salvos nesse endereço no
@@ -184,7 +184,7 @@
               <br />
               Isso significa duas coisas:
             </p>
-            <ol>
+            <ol id="data-warnings">
               <li>
                 Se você apagar o cachê do navegador também apaga os dados no
                 Void.
@@ -194,44 +194,61 @@
                 dados que estão salvos aqui não vão estar lá.
               </li>
             </ol>
-            <p>
-              Então, se quiser limpar o cachê do navegador por favor baixe seus
-              dados antes. (Ou se quiser usá-los em outro navegador).
-            </p>
-            <p>
-              Se voçê tem dados baixados e quer usá-los aqui, suba e carregue
-              seus dados.
-              <br />
-              <b>Atenção:</b> os dados atuais vão ser apagados e subsituídos por
-              aqueles que você subir.
-            </p>
 
-            <ul>
-              <li><a href="">Baixe seus dados</a></li>
-              <li><a href="">Suba seus dados</a></li>
-            </ul>
+            <div id="data-options">
+              <div>
+                <p>
+                  Então, se quiser limpar o cachê do navegador por favor baixe
+                  seus dados antes. <br />
+                  (Ou se quiser usá-los em outro navegador).
+                </p>
+                <button>Baixar dados</button>
+              </div>
+
+              <div>
+                <p>
+                  Se voçê tem dados baixados e quer usá-los aqui, suba seus
+                  dados.
+                  <br />
+                  <b>Atenção:</b> os dados atuais serão apagados e subsituídos
+                  por aqueles que você subir.
+                </p>
+                <button>Subir dados</button>
+              </div>
+            </div>
           </div>
 
-          <div id="about-developer">
+          <div class="popup-div" id="about-developer">
             <h1>Sobre o Desenvolvedor</h1>
             <p>
-              Meu nome é Isaac Muniz e eu sou um jovem programador que sonha em
+              Meu nome é Isaac Muniz, também conhecido como códigoisaac, 
+              e eu sou um jovem programador que sonha em
               fazer do mundo um lugar melhor através de software.
             </p>
 
             <!-- Donation info  -->
-            <h2>Eu preciso da sua ajuda</h2>
-            <ul>
-              <li>
-                <a href="">Me faça uma doação</a> se gosta do meu trabalho. Vai
-                ser muito agradecida e usada para fazer mais dele. :)
-              </li>
-              <li>
-                <a href="">Seja um investidor.</a> Eu tenho bons e promissores
-                projetos no papel para tornar realidade.
-              </li>
-            </ul>
+            <div id="dev-options">
+              <div>
+                <p>
+                  Se você gosta do meu trabalho e quer fazer uma doação para
+                  retribuir e mostrar seu apreço, você pode.
+                </p>
+
+                <p>
+                  Se você é um investidor, eu tenho bons e promissores projetos
+                  no papel para tornar realidade.
+                </p>
+              </div>
+
+              <div id="dev-btns">
+                <button>Retribuir</button>
+                <button>Seja um investidor</button>
+              </div>
+            </div>
           </div>
+
+          <div id="bug">
+            <p>Achou um bug? Por favor <a href="">reporte-o</a>.</p>
         </div>
       </div>
     </section>

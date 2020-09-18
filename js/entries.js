@@ -19,6 +19,7 @@ function openForm() {
   form.style.display = isFormOpen ? "flex" : "none";
   addBtn.textContent = isFormOpen ? "X" : "+";
 
+  // focus when open
   isFormOpen ? titleInput.focus() : null;
 }
 

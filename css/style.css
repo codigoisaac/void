@@ -311,7 +311,7 @@ p {
   margin: 0;
 }
 a {
-  color: #0f00a0;
+  color: black;
   text-decoration: none;
   font-weight: bold;
   transition: color var(--duration);
