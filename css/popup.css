@@ -82,6 +82,11 @@
   font-weight: bold;
   min-width: 200px;
   border-radius: var(--bRadius);
+  cursor: pointer;
+}
+#popup button:hover {
+  color: var(--white);
+  border: 2px solid var(--pink);
 }
 
 #data-options {
