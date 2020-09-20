@@ -89,8 +89,9 @@
   cursor: pointer;
 }
 #popup button:hover {
-  color: var(--white);
+  color: var(--pink);
   border: 2px solid var(--pink);
+  background-color: black;
 }
 
 /* About the Data  */
