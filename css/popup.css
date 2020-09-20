@@ -55,9 +55,13 @@
   margin-bottom: 0;
 }
 
+#popup-content {
+  padding: 0 15rem;
+}
+
 .popup-div {
   border: 2px solid var(--white);
-  padding: 1rem;
+  padding: 1rem 3rem;
   border-radius: var(--bRadius);
   margin: 1rem 0;
   background-color: var(--white);
@@ -89,27 +93,32 @@
   border: 2px solid var(--pink);
 }
 
+/* About the Data  */
 #data-options {
   display: flex;
   column-gap: 2rem;
   justify-content: space-around;
 }
+
+/* About the Developer  */
 #dev-options {
   display: flex;
   justify-content: space-between;
   column-gap: 2rem;
   align-items: center;
+  margin-top: 1rem;
 }
 #dev-btns {
   display: flex;
   flex-direction: column;
 }
 
-#bug {
+/* Bug Report  */
+#about-bug {
   display: flex;
   justify-content: flex-end;
 }
-#bug a {
+#about-bug a {
   font-weight: normal;
   text-decoration: underline;
 }
