@@ -70,6 +70,7 @@
 /* entries area  */
 #the-entries {
   width: 100%;
+  min-height: 30rem;
 }
 
 /* entry  */
@@ -96,10 +97,12 @@
 /* habit-stats  */
 #habit-stats {
   background-color: var(--white);
-  display: flex;
   width: 100%;
-  justify-content: space-between;
   padding: 0.5rem;
+  /* flex  */
+  display: flex;
+  justify-content: space-between;
+  /* border  */
   border-radius: var(--bRadius) var(--bRadius) 0 0;
   border-left: 1px solid black;
   border-top: 1px solid black;
@@ -126,5 +129,9 @@
     height: 100%;
     margin: 0;
     max-width: 100%;
+  }
+
+  #the-entries {
+    min-height: 50rem;
   }
 }
