@@ -207,3 +207,45 @@ a {
 a:hover {
   color: var(--white);
 }
+
+/* Mobile L  */
+@media only screen and (min-width: 425px) {
+  #sound-content,
+  #entries,
+  footer {
+    max-width: 445px;
+  }
+}
+
+/* Laptop  */
+@media only screen and (min-width: 1024px) {
+  section {
+    padding: 5rem 0.5rem;
+  }
+
+  #home {
+    height: 100vh;
+    grid-template-columns: 0.3fr 2.5fr 4fr;
+    grid-template-areas:
+      "foot entr logo"
+      "foot entr time"
+      "foot entr desc"
+      "foot entr opts"
+      "foot entr soun";
+  }
+
+  #sound-content {
+    max-width: 50%;
+  }
+
+  footer {
+    width: 100%;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  footer p {
+    writing-mode: tb-rl;
+    transform: rotate(-180deg);
+  }
+}
