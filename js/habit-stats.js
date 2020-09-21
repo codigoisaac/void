@@ -1,5 +1,4 @@
-const hoursDisplay = document.querySelector("#hours-meditated > .stat"),
-  entriesDisplay = document.querySelector("#meditations-recorded > .stat"),
+const entriesDisplay = document.querySelector("#meditations-recorded > .stat"),
   daysDisplay = document.querySelector("#days-meditated > .stat"),
   doubleDaysDisplay = document.querySelector("#days-meditated-twice > .stat"),
   dayStrikeDisplay = document.querySelector("#day-strike > .stat"),
