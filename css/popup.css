@@ -37,25 +37,32 @@ aside {
   display: flex;
   grid-area: ppup;
 }
+.popup-div {
+  border-radius: var(--bRadius);
+  background-color: var(--white);
+  padding: 1rem 0.6rem;
+  margin: 1rem 0;
+  line-height: 1.4;
+}
 #popup h1 {
-  margin: 0.2rem;
   color: var(--pink);
+  margin: 0;
+  margin-bottom: 0.2rem;
 }
 #popup h2 {
   font-size: 1rem;
   margin-top: 0.8rem;
   margin-bottom: 0;
 }
-#popup-content {
-  padding: 0 15rem;
+
+/* About the Data  */
+#data-warnings {
+  font-weight: bold;
+  padding-inline-start: 20px;
 }
-.popup-div {
-  border: 2px solid var(--white);
-  padding: 1rem 3rem;
-  border-radius: var(--bRadius);
-  margin: 1rem 0;
-  background-color: var(--white);
-  line-height: 1.4;
+#data-options {
+  display: flex;
+  flex-direction: column;
 }
 
 /* Buttons  */
@@ -65,7 +72,7 @@ aside {
   padding: 0.3rem;
   margin: 0.5rem 0;
   font-weight: bold;
-  min-width: 200px;
+  width: 200px;
   border-radius: var(--bRadius);
   cursor: pointer;
 }
@@ -75,27 +82,12 @@ aside {
   background-color: black;
 }
 
-/* About the Data  */
-#data-warnings {
-  font-weight: bold;
-}
-#data-options {
-  display: flex;
-  column-gap: 2rem;
-  justify-content: space-around;
-}
-
 /* About the Developer  */
-#dev-options {
-  display: flex;
-  justify-content: space-between;
-  column-gap: 2rem;
-  align-items: center;
-  margin-top: 1rem;
-}
-#dev-btns {
+#contribution-options {
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
+  row-gap: 0.5rem;
 }
 
 /* Bug Report  */
@@ -126,7 +118,35 @@ aside {
       "foot ppup ppup";
   }
 
+  /* Popup  */
   #popup {
     padding: 0 10rem 0 3rem;
+  }
+  #popup-content {
+    padding: 0 15rem;
+  }
+  .popup-div {
+    padding: 1rem 3rem;
+    margin: 1rem 0;
+  }
+  #popup h1 {
+    margin: 0.2rem;
+  }
+
+  /* About the Data  */
+  #data-warnings {
+    padding-inline-start: 40px;
+  }
+  #data-options {
+    flex-direction: row;
+    column-gap: 2rem;
+    justify-content: space-around;
+  }
+
+  /* About the Developer  */
+  #contribution-options {
+    justify-content: space-between;
+    column-gap: 2rem;
+    align-items: center;
   }
 }
