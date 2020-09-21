@@ -118,8 +118,9 @@
   flex-direction: row-reverse;
   align-items: center;
   column-gap: 0.3rem;
-  flex-grow: 1;
+  flex-grow: 0;
   justify-content: flex-end;
+  flex-basis: 33%;
 }
 .stat {
   font-weight: bold;
