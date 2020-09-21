@@ -1,9 +1,9 @@
-/* Fonts */
+/* Fonts > */
 /* Ubuntu  */
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap");
 /* Questrial */
 @import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
-
+/* Misirlou  */
 @font-face {
   font-family: Misirlou;
   src: url(misirlou.day.ttf);
@@ -45,12 +45,7 @@ section {
   justify-content: center;
 }
 
-#home > * {
-  margin: 1rem 0;
-  transition: opacity var(--void-duration);
-  width: 100%;
-}
-
+/* Home  */
 #home {
   display: grid;
   grid-template-areas:
@@ -62,7 +57,13 @@ section {
     "entr"
     "foot";
 }
+#home > * {
+  margin: 1rem 0;
+  transition: opacity var(--void-duration);
+  width: 100%;
+}
 
+/* Logo  */
 #logo {
   font-family: Misirlou;
   font-size: 7rem;
@@ -77,6 +78,7 @@ section {
   cursor: none;
 }
 
+/* Timer  */
 #timer {
   grid-area: time;
   font-size: 1.5rem;
@@ -84,7 +86,6 @@ section {
   align-items: flex-end;
   margin-bottom: 0;
 }
-
 #timer-description {
   grid-area: desc;
   align-items: flex-start;
@@ -93,7 +94,7 @@ section {
   margin-top: 0;
 }
 
-/* Time */
+/* Time options */
 #time-options {
   grid-area: opts;
   flex-direction: column;
@@ -187,120 +188,6 @@ input {
   transition: height var(--duration);
 }
 
-/* Entries  */
-#entries {
-  grid-area: entr;
-  border: 2px solid var(--white);
-  border-radius: var(--bRadius);
-  padding: 0 1rem;
-  flex-direction: column;
-  overflow-y: scroll;
-  justify-content: start;
-  align-items: flex-start;
-  height: 60vh;
-  margin: auto;
-  position: relative;
-}
-#entries h1 {
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-.date {
-  font-size: 1.3rem;
-  color: var(--white);
-}
-.year {
-  font-size: 0.8rem;
-}
-
-.day-info {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.day-info:not(:first-child) {
-  margin-top: 2rem;
-}
-.om {
-  color: var(--white);
-}
-.entry {
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border: 1px solid black;
-  border-radius: var(--bRadius);
-  background-color: var(--white);
-}
-.entry-title {
-  font-weight: bold;
-  margin: 0.5rem 0;
-  font-family: "Questrial", sans-serif;
-}
-.entry-infos {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.5rem;
-  font-weight: 300;
-  font-size: 0.8rem;
-}
-#the-entries {
-  width: 100%;
-}
-
-#entry-controls {
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-/* Add entry form  */
-#add-entry-form {
-  display: none; /* flex in js */
-  flex-direction: column;
-  width: 100%;
-  margin-bottom: 2rem;
-  align-items: flex-end;
-}
-#add-entry-form > * {
-  margin: 0.3rem 0;
-  background-color: transparent;
-  border: 1px solid black;
-  padding: 0.5rem;
-  border-radius: var(--bRadius);
-}
-#add-entry-title,
-#add-entry-text {
-  align-self: stretch;
-  resize: vertical; /* for textarea only */
-}
-/* habit-stats  */
-#habit-stats {
-  background-color: var(--white);
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  padding: 0.5rem;
-  border-radius: var(--bRadius) var(--bRadius) 0 0;
-  border-left: 1px solid black;
-  border-top: 1px solid black;
-  border-right: 1px solid black;
-  /* position  */
-  position: sticky;
-  bottom: 0;
-  left: 0;
-}
-#habit-stats > * {
-  display: flex;
-  flex-direction: column-reverse;
-}
-.stat {
-  font-weight: bold;
-}
-.stat-label {
-  font-size: 0.7rem;
-}
-
 /* Footer  */
 footer {
   grid-area: foot;
@@ -319,9 +206,4 @@ a {
 }
 a:hover {
   color: var(--white);
-}
-
-/* Popup  */
-aside {
-  grid-area: ppup;
 }

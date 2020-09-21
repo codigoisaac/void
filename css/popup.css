@@ -1,25 +1,18 @@
+aside {
+  grid-area: ppup;
+}
+
+/* Home  */
 #home {
   position: relative;
 }
-
 #home.popup {
   grid-template-areas:
     "ppup"
     "foot";
 }
 
-/* Laptop  */
-@media only screen and (min-width: 1024px) {
-  #home.popup {
-    grid-template-areas:
-      "foot ppup ppup"
-      "foot ppup ppup"
-      "foot ppup ppup"
-      "foot ppup ppup"
-      "foot ppup ppup";
-  }
-}
-
+/* Popup open/close button  */
 #info-btn {
   padding: 0.5rem 1rem;
   color: var(--white);
@@ -39,26 +32,23 @@
   color: var(--pink);
 }
 
+/* Popup  */
 #popup {
   display: flex;
   grid-area: ppup;
 }
-
 #popup h1 {
   margin: 0.2rem;
   color: var(--pink);
 }
-
 #popup h2 {
   font-size: 1rem;
   margin-top: 0.8rem;
   margin-bottom: 0;
 }
-
 #popup-content {
   padding: 0 15rem;
 }
-
 .popup-div {
   border: 2px solid var(--white);
   padding: 1rem 3rem;
@@ -68,16 +58,7 @@
   line-height: 1.4;
 }
 
-.hiden {
-  transition: opacity var(--duration), display var(--duration);
-  opacity: 0;
-  display: none !important;
-}
-
-#data-warnings {
-  font-weight: bold;
-}
-
+/* Buttons  */
 #popup button {
   background-color: var(--pink);
   border: 2px solid black;
@@ -95,6 +76,9 @@
 }
 
 /* About the Data  */
+#data-warnings {
+  font-weight: bold;
+}
 #data-options {
   display: flex;
   column-gap: 2rem;
@@ -122,4 +106,27 @@
 #about-bug a {
   font-weight: normal;
   text-decoration: underline;
+}
+
+/* When hidden  */
+.hiden {
+  transition: opacity var(--duration), display var(--duration);
+  opacity: 0;
+  display: none !important;
+}
+
+/* Laptop  */
+@media only screen and (min-width: 1024px) {
+  #home.popup {
+    grid-template-areas:
+      "foot ppup ppup"
+      "foot ppup ppup"
+      "foot ppup ppup"
+      "foot ppup ppup"
+      "foot ppup ppup";
+  }
+
+  #popup {
+    padding: 0 10rem 0 3rem;
+  }
 }
