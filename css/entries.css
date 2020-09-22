@@ -70,7 +70,7 @@
 /* entries area  */
 #the-entries {
   width: 100%;
-  min-height: 30rem;
+  min-height: 100vh;
 }
 
 /* entry  */
@@ -135,9 +135,5 @@
     height: 100%;
     margin: 0;
     max-width: 100%;
-  }
-
-  #the-entries {
-    min-height: 50rem;
   }
 }

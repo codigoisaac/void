@@ -211,8 +211,7 @@ a:hover {
 /* Mobile L  */
 @media only screen and (min-width: 425px) {
   #sound-content,
-  #entries,
-  footer {
+  #entries {
     max-width: 445px;
   }
 }
