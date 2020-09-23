@@ -264,4 +264,17 @@ function resetEntriesDayCount(entries) {
   return entries;
 }
 
+// show/hide entries
+const theEntries = document.querySelector("#the-entries");
+const entriesTitle = document.querySelector("#entries-title");
+entriesTitle.addEventListener("click", toggleShowEntries);
+let isEntriesShown = true;
+
+function toggleShowEntries() {
+  isEntriesShown = !isEntriesShown;
+  isEntriesShown
+    ? theEntries.classList.remove("hide")
+    : theEntries.classList.add("hide");
+}
+
 // ``
