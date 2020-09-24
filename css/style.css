@@ -55,6 +55,7 @@ section {
     "opts"
     "soun"
     "entr"
+    "habs"
     "foot";
 }
 #home > * {
@@ -230,7 +231,7 @@ a:hover {
       "foot entr time"
       "foot entr desc"
       "foot entr opts"
-      "foot entr soun";
+      "foot habs soun";
   }
 
   #sound-content {

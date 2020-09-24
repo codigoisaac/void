@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/entries.css" />
     <link rel="stylesheet" href="css/tooltip.css" />
     <link rel="stylesheet" href="css/popup.css" />
+    <link rel="stylesheet" href="css/habit-stats.css" />
     <!-- Remix Icon  -->
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
@@ -104,8 +105,31 @@
         </form>
 
         <div id="the-entries"></div>
+      </div>
 
-        <div id="habit-stats">
+      <!-- Habit-Stats  -->
+      <div id="habit-stats">
+        <div id="strike-stats" class="stat-div">
+          <!-- Twice a day strike -->
+          <div id="twice-day-strike">
+            <span class="stat-label"
+              >dias meditados <br />
+              2x em seguida</span
+            >
+            <span class="stat">0</span>
+          </div>
+
+          <!-- Day strike -->
+          <div id="day-strike">
+            <span class="stat-label"
+              >dias meditados <br />
+              em seguida</span
+            >
+            <span class="stat">0</span>
+          </div>
+        </div>
+
+        <div id="other-stats" class="stat-div">
           <!-- Meditations recorded  -->
           <div id="meditations-recorded">
             <span class="stat-label">meditações</span>
@@ -126,24 +150,6 @@
             <span class="stat-label"
               >dias <br />
               meditados 2x</span
-            >
-            <span class="stat">0</span>
-          </div>
-
-          <!-- Day strike -->
-          <div id="day-strike">
-            <span class="stat-label"
-              >dias meditados <br />
-              em seguida</span
-            >
-            <span class="stat">0</span>
-          </div>
-
-          <!-- Twice a day strike -->
-          <div id="twice-day-strike">
-            <span class="stat-label"
-              >dias meditados <br />
-              2x em seguida</span
             >
             <span class="stat">0</span>
           </div>
