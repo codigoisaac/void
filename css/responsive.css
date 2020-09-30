@@ -1,0 +1,86 @@
+/* Mobile L  */
+@media only screen and (min-width: 425px) {
+  #sound-content,
+  #entries,
+  #habit-stats,
+  footer,
+  #popup-content {
+    max-width: 445px;
+  }
+
+  #habit-stats {
+    margin: 1rem auto;
+  }
+}
+
+/* Laptop  */
+@media only screen and (min-width: 1024px) {
+  section {
+    padding: 5rem 0.5rem;
+  }
+  #home {
+    height: 100vh;
+    grid-template-columns: 0.3fr 2.5fr 4fr;
+    grid-template-areas:
+      "foot entr logo"
+      "foot entr time"
+      "foot entr desc"
+      "foot entr opts"
+      "foot habs soun";
+  }
+  #sound-content {
+    max-width: 50%;
+  }
+  footer {
+    width: 100%;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 1rem 0;
+  }
+  footer p {
+    writing-mode: tb-rl;
+    transform: rotate(-180deg);
+  }
+
+  /* Entries  */
+  #entries {
+    margin: 0;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  /* Popup  */
+  #home.popup {
+    grid-template-areas:
+      "foot ppup ppup"
+      "foot ppup ppup"
+      "foot ppup ppup"
+      "foot ppup ppup"
+      "foot ppup ppup";
+  }
+  #popup-content {
+    max-width: 1000px;
+  }
+  .popup-div {
+    padding: 1rem 3rem;
+    margin: 1rem 0;
+  }
+  #popup h1 {
+    margin: 0.2rem;
+  }
+  /* About the Data  */
+  #data-warnings {
+    padding-inline-start: 40px;
+  }
+  #data-options {
+    flex-direction: row;
+    column-gap: 2rem;
+    justify-content: space-around;
+  }
+  /* About Developer  */
+  .contribute-option {
+    display: flex;
+    column-gap: 1.5rem;
+    align-items: center;
+  }
+}
