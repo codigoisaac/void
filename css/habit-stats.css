@@ -4,6 +4,7 @@
   background-color: var(--white);
   width: 100%;
   padding: 0.5rem;
+  margin-top: 0;
   /* flex  */
   display: flex;
   flex-direction: column;
