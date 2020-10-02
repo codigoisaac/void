@@ -10,6 +10,7 @@
 
   #habit-stats {
     margin: 1rem auto;
+    margin-top: 0;
   }
 }
 
@@ -28,19 +29,6 @@
       "foot entr opts"
       "foot habs soun";
   }
-  #sound-content {
-    max-width: 50%;
-  }
-  footer {
-    width: 100%;
-    flex-direction: column-reverse;
-    align-items: center;
-    padding: 1rem 0;
-  }
-  footer p {
-    writing-mode: tb-rl;
-    transform: rotate(-180deg);
-  }
 
   /* Entries  */
   #entries {
@@ -50,6 +38,31 @@
   #entries,
   #habit-stats {
     max-width: 100%;
+    margin-left: 1rem;
+  }
+
+  /* Habit-stats  */
+  #habit-stats {
+    margin-top: 1rem;
+    margin-bottom: 0;
+  }
+
+  /* Sound  */
+  #sound-content {
+    max-width: 50%;
+  }
+
+  /* Footer  */
+  footer p {
+    writing-mode: tb-rl;
+    transform: rotate(-180deg);
+  }
+  footer {
+    width: 100%;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 0;
+    margin: 0 !important;
   }
 
   /* Popup  */
