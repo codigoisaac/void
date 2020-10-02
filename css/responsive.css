@@ -45,8 +45,11 @@
   /* Entries  */
   #entries {
     margin: 0;
-    max-width: 100%;
     max-height: 100%;
+  }
+  #entries,
+  #habit-stats {
+    max-width: 100%;
   }
 
   /* Popup  */
