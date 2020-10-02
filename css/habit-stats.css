@@ -11,10 +11,6 @@
   /* border  */
   border-radius: var(--bRadius);
   border: 1px solid black;
-  /* position  */
-  position: sticky;
-  bottom: 0;
-  left: 0;
 }
 .stat-div {
   display: flex;
