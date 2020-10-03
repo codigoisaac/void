@@ -1,6 +1,7 @@
 /* Tooltips goes here */
 
 .tooltip {
+  display: none;
   visibility: hidden;
   min-width: 13rem;
   padding: 0.5rem 1rem;
@@ -18,8 +19,4 @@
 
 .time-circle {
   position: relative;
-}
-
-.time-circle:hover .tooltip {
-  visibility: visible;
 }
