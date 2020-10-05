@@ -13,12 +13,18 @@
   border-radius: var(--bRadius);
   border: 1px solid black;
 }
-.stat-div {
+#the-stats {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.6rem;
+}
+.stat-row {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   column-gap: 1rem;
 }
-.stat-div > * {
+.stat-row > * {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;

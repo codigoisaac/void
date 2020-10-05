@@ -52,6 +52,14 @@
     margin-top: 1rem;
     margin-bottom: 0;
   }
+  #the-stats {
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  .stat-row {
+    margin: 0 0.5rem;
+  }
 
   /* Sound  */
   #sound-content {
