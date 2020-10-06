@@ -117,7 +117,9 @@ function fetchEntries() {
   let totalDays = 0; // number of days in which entries were made
 
   // insert html
-  entries.forEach((entry) => {
+  for (let i = entries.length - 1; i >= 0; i--) {
+    const entry = entries[i];
+    console.log(entry);
     // get values from storage
     let title = entry.title,
       text = entry.text,
@@ -135,7 +137,8 @@ function fetchEntries() {
     const isOm = entriesInDay.length > 1;
 
     // add date only before first entry in the day
-    if (count == 1) {
+    // add date only before last entry in the day
+    if (count == entriesInDay.length) {
       entryList.innerHTML += '<div class="day-info"></div>';
       const dayInfo = entryList.querySelectorAll(".day-info")[totalDays];
       totalDays++;
@@ -143,7 +146,7 @@ function fetchEntries() {
       dayInfo.innerHTML += `
         <div class="date">${date}<span class="year">/${year}</span></div>`;
 
-      // add om symbol when more than one entry in this day
+      // add om symbol when there is more than one entry in this day
       if (isOm) {
         dayInfo.innerHTML += '<div class="om"><i class="fas fa-om"></i></div>';
       }
@@ -177,7 +180,7 @@ function fetchEntries() {
     // set buttons
     setDelete(entry);
     setEdit(entry);
-  });
+  }
 
   setHabitStats();
 }
