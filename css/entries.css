@@ -100,3 +100,21 @@
   font-weight: 300;
   font-size: 0.8rem;
 }
+
+/* entry buttons */
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+}
+.entry-buttons {
+  display: flex;
+  column-gap: 0.2rem;
+}
+.entry-buttons button {
+  background-color: var(--white);
+  border: 1px solid black;
+  color: var(--pink);
+  border: 1px solid var(--pink);
+  border-radius: var(--bRadius);
+  height: fit-content;
+}

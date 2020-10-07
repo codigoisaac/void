@@ -116,7 +116,7 @@ function fetchEntries() {
 
   let totalDays = 0; // number of days in which entries were made
 
-  // insert html
+  // Display entries
   for (let i = entries.length - 1; i >= 0; i--) {
     const entry = entries[i];
     console.log(entry);
@@ -136,10 +136,10 @@ function fetchEntries() {
 
     const isOm = entriesInDay.length > 1;
 
-    // add date only before first entry in the day
     // add date only before last entry in the day
     if (count == entriesInDay.length) {
       entryList.innerHTML += '<div class="day-info"></div>';
+      // select the last day-info and add it to the totalDays count
       const dayInfo = entryList.querySelectorAll(".day-info")[totalDays];
       totalDays++;
 
@@ -156,17 +156,19 @@ function fetchEntries() {
     entryList.insertAdjacentHTML(
       "beforeend",
       `<div class="entry">
-        <div class="entry-buttons">
-          <button class="edit-btn">
-            <i class="ri-pencil-line"></i>
-          </button>
-          <button class="delete-btn">
-            <i class="ri-close-line"></i>
-          </button>
+        <div class="entry-header">
+          <div class="entry-title">${title}</div>
+
+          <div class="entry-buttons">
+            <button class="edit-btn">
+              <i class="ri-pencil-line"></i>
+            </button>
+            <button class="delete-btn">
+              <i class="ri-close-line"></i>
+            </button>
+          </div>
         </div>
-
-        <div class="entry-title">${title}</div>
-
+        
         <div class="entry-text">${text}</div>
 
         <div class="entry-infos">
