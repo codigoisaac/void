@@ -51,8 +51,6 @@ section {
   grid-template-areas:
     "logo"
     "time"
-    "desc"
-    "opts"
     "soun"
     "habs"
     "entr"
@@ -80,9 +78,19 @@ section {
 }
 
 /* Timer  */
-#timer {
+#time-div {
+  display: flex;
+  flex-direction: column;
   grid-area: time;
-  font-size: 1.5rem;
+}
+#timer-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#timer {
+  font-size: 1.2rem;
+  font-weight: bold;
   color: var(--white);
   align-items: flex-end;
   margin-bottom: 0;

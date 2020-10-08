@@ -2,7 +2,7 @@ let countdown;
 let countup;
 const timerDisplay = document.querySelector("#timer");
 const predefTimeOptions = [...document.querySelectorAll(".predefined-option")];
-const timerDesc = document.querySelector("#timer-description");
+const timerMsg = document.querySelector("#time-message");
 
 // play by clicking on time options
 predefTimeOptions.forEach((btn) => {
@@ -19,8 +19,10 @@ function startTimer(e) {
   // change background of selected time option
   e.target.classList.add("selected");
 
-  // change time description
-  timerDesc.textContent = "Tempo restante";
+  setTimerMsg();
+
+  const timeInput = document.querySelector("#time-input");
+  openForm();
 }
 
 function unselectTime() {
@@ -65,12 +67,8 @@ function timer(minutes) {
 }
 
 function encourageEntry() {
-  // encourage the user to add an entry at the end of a meditation
-  timerDesc.innerHTML = `Parabéns! <br/>
-  Você acabou de dar um passo em direção à sua melhor versão. <br/>
-  Se quiser, escreva sobre a meditação. :)`;
+  setTimerMsg("write about");
   openForm();
-  document.querySelector("#add-entry-title").focus();
 }
 
 function displayTimeLeft(seconds) {
@@ -94,9 +92,7 @@ document.timeForm.addEventListener("submit", function (e) {
 
   unselectTime();
   unselectTimeless();
-
-  // change timer description
-  timerDesc.textContent = "Tempo restante";
+  setTimerMsg();
 });
 
 // meditate the time you want
@@ -125,7 +121,7 @@ function timelessMeditation() {
   }
 
   // change timer description
-  timerDesc.textContent = "Tempo meditado";
+  setTimerMsg("timeless");
 
   // encourage to add entry
   !isTimelessMeditating ? encourageEntry() : null;
@@ -142,4 +138,14 @@ function displayTimeMeditated(start) {
     ":" +
     (secsPassed < 10 ? "0" : "") +
     secsPassed;
+}
+
+function setTimerMsg(timeless = "") {
+  if (timeless == "timeless") {
+    timerMsg.textContent = "Tempo meditado:";
+  } else if (timeless == "write about") {
+    timerMsg.textContent = "Escreva sobre sua meditação";
+  } else {
+    timerMsg.textContent = "Tempo restante:";
+  }
 }
