@@ -66,7 +66,16 @@
   font-size: 0.8rem;
 }
 .om {
-  color: var(--white);
+  /* color: var(--pink); */
+  color: black;
+  background-color: var(--white);
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  /* center  */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* entries area  */
