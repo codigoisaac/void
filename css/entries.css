@@ -18,6 +18,14 @@
   font-size: 1.1rem;
   cursor: alias;
 }
+/* Entries Scrollbar  */
+#entries::-webkit-scrollbar {
+  width: 5px;
+}
+#entries::-webkit-scrollbar-thumb {
+  background-color: var(--white);
+  border-radius: var(--bRadius);
+}
 
 /* Controls  */
 #entry-controls {
