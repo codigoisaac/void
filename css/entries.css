@@ -3,7 +3,6 @@
   grid-area: entr;
   border: 2px solid var(--white);
   border-radius: var(--bRadius);
-  padding: 0 1rem;
   flex-direction: column;
   overflow-y: scroll;
   justify-content: start;
@@ -13,10 +12,11 @@
   margin: auto;
   position: relative;
 }
-#entries-title {
+#entries-header {
   font-weight: bold;
   font-size: 1.1rem;
   cursor: alias;
+  margin: 0;
 }
 /* Entries Scrollbar  */
 #entries::-webkit-scrollbar {
@@ -34,6 +34,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  background-color: var(--white);
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  /* border  */
+  border-radius: 0 0 var(--bRadius) var(--bRadius);
+  border-bottom: 3px solid var(--pink);
 }
 
 /* Form  */
@@ -43,6 +50,7 @@
   width: 100%;
   margin-bottom: 2rem;
   align-items: flex-end;
+  padding: 0 1rem;
 }
 #add-entry-form > * {
   margin: 0.3rem 0;
@@ -92,6 +100,7 @@
   min-height: 100vh;
   transition: height var(--duration);
   display: block;
+  padding: 0 1rem;
 }
 #the-entries.hide {
   display: none;

@@ -44,6 +44,9 @@
     max-width: 100%;
     margin-left: 1rem;
   }
+  #entry-controls {
+    background: var(--pink);
+  }
 
   /* Habit-stats  */
   #habit-stats {
