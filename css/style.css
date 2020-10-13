@@ -20,8 +20,6 @@
 
 * {
   box-sizing: border-box;
-  transition: background-color var(--duration), color var(--duration),
-    border var(--duration);
 }
 
 body {
@@ -180,6 +178,8 @@ input {
   font-size: 1rem;
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
+  transition: background-color var(--duration), color var(--duration);
 }
 #music-title:hover {
   background-color: var(--white);
