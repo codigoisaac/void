@@ -273,7 +273,11 @@ function resetEntriesDayCount(entries) {
 const theEntries = document.querySelector("#the-entries");
 const entryControls = document.querySelector("#entry-controls");
 const entriesTitle = document.querySelector("#entries-header");
-entriesTitle.addEventListener("click", toggleShowEntries);
+entriesTitle.addEventListener("click", () => {
+  if (screen.width < 1024) { // entries hideable only for mobile
+    toggleShowEntries();
+  }
+});
 let isEntriesShown = true;
 
 function toggleShowEntries() {
