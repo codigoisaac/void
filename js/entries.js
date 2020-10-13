@@ -271,15 +271,20 @@ function resetEntriesDayCount(entries) {
 
 // show/hide entries
 const theEntries = document.querySelector("#the-entries");
-const entriesTitle = document.querySelector("#entries-title");
+const entryControls = document.querySelector("#entry-controls");
+const entriesTitle = document.querySelector("#entries-header");
 entriesTitle.addEventListener("click", toggleShowEntries);
 let isEntriesShown = true;
 
 function toggleShowEntries() {
   isEntriesShown = !isEntriesShown;
-  isEntriesShown
-    ? theEntries.classList.remove("hide")
-    : theEntries.classList.add("hide");
+  if (isEntriesShown) {
+    theEntries.classList.remove("hide");
+    entryControls.classList.remove("entries-hidden");
+  } else {
+    theEntries.classList.add("hide");
+    entryControls.classList.add("entries-hidden");
+  }
 }
 
 // ``
