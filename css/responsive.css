@@ -1,5 +1,5 @@
 /* Mobile L  */
-@media only screen and (min-width: 425px) {
+@media (min-width: 425px) {
   #sound-content,
   #entries,
   #habit-stats,
@@ -15,7 +15,7 @@
 }
 
 /* Laptop  */
-@media only screen and (min-width: 1024px) {
+@media (min-width: 1024px) {
   section {
     padding: 5rem 0.5rem;
   }
