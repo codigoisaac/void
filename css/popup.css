@@ -36,6 +36,14 @@ aside {
 #popup {
   display: flex;
   grid-area: ppup;
+  /* height: 85vh;
+  overflow-y: scroll;
+  border-radius: var(--bRadius); */
+}
+#popup-content {
+  height: 85vh;
+  overflow-y: scroll;
+  border-radius: var(--bRadius);
 }
 .popup-div {
   border-radius: var(--bRadius);
@@ -75,6 +83,7 @@ aside {
   width: 200px;
   border-radius: var(--bRadius);
   cursor: pointer;
+  outline: none;
 }
 #popup button:hover {
   color: var(--pink);
