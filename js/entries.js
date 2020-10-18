@@ -81,7 +81,7 @@ function addEntry(e) {
       localStorage.setItem("entries", JSON.stringify(entries));
     }
   } else {
-    alert("silence can not be recorded.");
+    alert("Por favor insira informação. Silêncio não pode ser gravado.");
   }
 
   e.preventDefault();
@@ -119,7 +119,6 @@ function fetchEntries() {
   // Display entries
   for (let i = entries.length - 1; i >= 0; i--) {
     const entry = entries[i];
-    console.log(entry);
     // get values from storage
     let title = entry.title,
       text = entry.text,
@@ -272,9 +271,10 @@ function resetEntriesDayCount(entries) {
 // show/hide entries
 const theEntries = document.querySelector("#the-entries");
 const entryControls = document.querySelector("#entry-controls");
-const entriesTitle = document.querySelector("#entries-header");
-entriesTitle.addEventListener("click", () => {
-  if (screen.width < 1024) { // entries hideable only for mobile
+const entriesHeader = document.querySelector("#entries-header");
+entriesHeader.addEventListener("click", () => {
+  if (screen.width < 1024) {
+    // entries hideable only for mobile
     toggleShowEntries();
   }
 });
@@ -289,6 +289,12 @@ function toggleShowEntries() {
     theEntries.classList.add("hide");
     entryControls.classList.add("entries-hidden");
   }
+}
+
+// erase "tap to minimize" tip
+function eraseTip() {
+  const tip = document.querySelector("#entries-header span");
+  tip.style.opacity = 0;
 }
 
 // ``

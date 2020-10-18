@@ -16,7 +16,7 @@
       rel="stylesheet"
     />
   </head>
-  <body onload="fetchEntries()">
+  <body onload="fetchEntries(), eraseTip()">
     <section id="home">
       <!-- Logo  -->
       <div id="logo" class="below-popup">
@@ -91,7 +91,9 @@
       <!-- Entries  -->
       <div id="entries" class="below-popup">
         <div id="entry-controls">
-          <h1 id="entries-header">Suas meditações:</h1>
+          <h1 id="entries-header">
+            Suas meditações: <span>clique p/ minimizar</span>
+          </h1>
           <button id="open-form-btn">+</button>
         </div>
 
@@ -185,7 +187,7 @@
             <h1>Sobre o App</h1>
             <p>
               Void é um aplicativo Web feito para te ajudar no processo de
-              adotar o hábito de meditar duas vezes por dia.
+              adotar o hábito de meditar, duas vezes por dia.
             </p>
             <!-- 2x -->
             <h2>Por que duas vezes por dia?</h2>
@@ -203,8 +205,8 @@
           <div class="popup-div">
             <h1>Sobre seus dados</h1>
             <p>
-              Os dados que você insere no Void são salvos nesse endereço, nesse
-              navegador.
+              Os dados que você insere no Void são salvos apenas localmente,
+              nesse endereço e nesse navegador.
               <br />
               Isso significa duas coisas:
             </p>
@@ -224,7 +226,7 @@
                 <p>
                   Então, se quiser limpar o cachê do navegador por favor baixe
                   seus dados antes. <br />
-                  (Ou se quiser usá-los em outro navegador).
+                  (Ou se quiser usá-los em outro navegador/aparelho).
                 </p>
                 <button>Baixar dados</button>
               </div>
@@ -246,9 +248,8 @@
             <h1>Sobre o Desenvolvedor</h1>
             <!-- About me  -->
             <p>
-              Meu nome é Isaac Muniz (códigoisaac), e eu sou um jovem
-              programador que sonha em fazer do mundo um lugar melhor através de
-              software.
+              Eu sou um jovem Programador que sonha em fazer do mundo um lugar
+              melhor através de software.
             </p>
 
             <!-- Contribution info  -->
@@ -257,8 +258,7 @@
               <div class="contribute-option">
                 <p>
                   Se você gosta do meu trabalho e quer fazer uma doação para
-                  retribuir e mostrar seu apreço, você pode. Vai me deixar muito
-                  feliz.
+                  retribuir e mostrar seu apreço, aqui está o convite.
                 </p>
                 <button>Retribuir</button>
               </div>
@@ -266,9 +266,8 @@
               <!-- Invest  -->
               <div class="contribute-option">
                 <p>
-                  Se você é um investidor, eu tenho projetos promissores no
-                  papel para tornar realidade, e preciso da sua ajuda. Entre em
-                  contato.
+                  Se você é um investidor, eu tenho projetos promissores que
+                  podemos tornar realidade. Entre em contato.
                 </p>
                 <button>Seja um investidor</button>
               </div>
@@ -277,7 +276,7 @@
 
           <!-- Bug Report  -->
           <div id="about-bug">
-            <p>Achou um bug? Por favor <a href="">reporte-o</a>.</p>
+            <p><a href="">Reportar problema</a>.</p>
           </div>
         </div>
       </div>

@@ -15,8 +15,11 @@
 #entries-header {
   font-weight: bold;
   font-size: 1.1rem;
-  cursor: alias;
   margin: 0;
+}
+#entries-header span {
+  font-size: 0.6rem;
+  transition: opacity 5s;
 }
 /* Entries Scrollbar  */
 #entries::-webkit-scrollbar {
