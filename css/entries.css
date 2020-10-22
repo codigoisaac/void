@@ -94,17 +94,17 @@
   justify-content: center;
 }
 #om-tooltip {
-  background-color: var(--pink);
-  color: black;
-  border: 2px solid black;
   border-radius: var(--bRadius);
   margin: 0 0.5rem;
   padding: 0.5rem 0.6rem;
+  transition: opacity var(--duration);
+  /* gradient style  */
+  background: radial-gradient(circle, var(--white) 0%, var(--pink) 100%);
+  border: 2px solid black;
+  color: black;
   /* position and hide  */
   position: sticky;
-  /* position: absolute; */
   bottom: 1rem;
-  /* top: 14rem; */
   opacity: 0;
 }
 #om-tooltip.shown {
