@@ -93,6 +93,23 @@
   align-items: center;
   justify-content: center;
 }
+#om-tooltip {
+  background-color: var(--pink);
+  color: black;
+  border: 2px solid black;
+  border-radius: var(--bRadius);
+  margin: 0 0.5rem;
+  padding: 0.5rem 0.6rem;
+  /* position and hide  */
+  position: sticky;
+  /* position: absolute; */
+  bottom: 1rem;
+  /* top: 14rem; */
+  opacity: 0;
+}
+#om-tooltip.shown {
+  opacity: 1;
+}
 
 /* entries area  */
 #the-entries {

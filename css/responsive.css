@@ -47,6 +47,10 @@
   #entry-controls {
     background: var(--pink);
   }
+  #om-tooltip {
+    margin: 0 2rem;
+    padding: 1rem;
+  }
 
   /* Habit-stats  */
   #habit-stats {

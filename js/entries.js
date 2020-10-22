@@ -183,7 +183,16 @@ function fetchEntries() {
     setEdit(entry);
   }
 
+  // insert tooltip for Om buttons
+  entryList.insertAdjacentHTML(
+    "beforeend",
+    `<div id="om-tooltip">
+        O símbolo Om é adquirido nos dias em que você medita 2 vezes ou mais.
+    </div>`
+  );
+
   setHabitStats();
+  setOmTooltip();
 }
 
 function setDelete(entry) {
@@ -295,6 +304,23 @@ function toggleShowEntries() {
 function eraseTip() {
   const tip = document.querySelector("#entries-header span");
   tip.style.opacity = 0;
+}
+
+// show/hide Om tooltip
+let showOmTooltip = false;
+function setOmTooltip() {
+  const oms = document.querySelectorAll(".om");
+  const omTooltip = document.querySelector("#om-tooltip");
+  oms.forEach((om) => {
+    // show tooltip
+    om.addEventListener("mouseover", () => {
+      omTooltip.classList.add("shown");
+    });
+    // hide tooltip
+    om.addEventListener("mouseout", () => {
+      omTooltip.classList.remove("shown");
+    });
+  });
 }
 
 // ``
