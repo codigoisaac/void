@@ -21,14 +21,6 @@
   font-size: 0.6rem;
   transition: opacity 5s;
 }
-/* Entries Scrollbar  */
-#entries::-webkit-scrollbar {
-  width: 5px;
-}
-#entries::-webkit-scrollbar-thumb {
-  background-color: var(--white);
-  border-radius: var(--bRadius);
-}
 
 /* Controls  */
 #entry-controls {

@@ -1,0 +1,9 @@
+#entries::-webkit-scrollbar,
+#popup-content::-webkit-scrollbar {
+  width: 5px;
+}
+#entries::-webkit-scrollbar-thumb,
+#popup-content::-webkit-scrollbar-thumb {
+  background-color: var(--white);
+  border-radius: var(--bRadius);
+}

@@ -36,12 +36,8 @@ aside {
 #popup {
   display: flex;
   grid-area: ppup;
-  /* height: 85vh;
-  overflow-y: scroll;
-  border-radius: var(--bRadius); */
 }
 #popup-content {
-  height: 85vh;
   overflow-y: scroll;
   border-radius: var(--bRadius);
 }
@@ -106,7 +102,9 @@ aside {
 }
 #about-bug a {
   font-weight: normal;
-  text-decoration: underline;
+}
+#about-bug p:not(:first-child) {
+  margin-left: 1rem;
 }
 
 /* When hidden  */

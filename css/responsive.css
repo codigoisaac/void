@@ -91,6 +91,8 @@
   }
   #popup-content {
     max-width: 1000px;
+    max-height: 51rem;
+    padding-right: 0.5rem;
   }
   .popup-div {
     padding: 1rem 3rem;
