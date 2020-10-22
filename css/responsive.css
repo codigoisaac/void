@@ -39,6 +39,10 @@
     margin: 0;
     max-height: 100%;
   }
+  /* "tap to minimize" tip  */
+  #entries-header span {
+    display: none;
+  }
   #entries,
   #habit-stats {
     max-width: 100%;

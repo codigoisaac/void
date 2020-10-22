@@ -17,6 +17,7 @@
   font-size: 1.1rem;
   margin: 0;
 }
+/* "tap to minimize" tip  */
 #entries-header span {
   font-size: 0.6rem;
   transition: opacity 5s;
