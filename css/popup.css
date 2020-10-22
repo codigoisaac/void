@@ -45,8 +45,10 @@ aside {
   border-radius: var(--bRadius);
   background-color: var(--white);
   padding: 1rem 0.6rem;
-  margin: 1rem 0;
   line-height: 1.4;
+}
+.popup-div:not(:first-child) {
+  margin: 1rem 0;
 }
 #popup h1 {
   color: var(--pink);
@@ -69,22 +71,10 @@ aside {
   flex-direction: column;
 }
 
-/* Buttons  */
-#popup button {
-  background-color: var(--pink);
-  border: 2px solid black;
-  padding: 0.3rem;
-  margin: 0.5rem 0;
-  font-weight: bold;
-  width: 200px;
-  border-radius: var(--bRadius);
-  cursor: pointer;
-  outline: none;
-}
-#popup button:hover {
-  color: var(--pink);
-  border: 2px solid var(--pink);
-  background-color: black;
+/* How to use  */
+#how-to-use p,
+#about-the-app p {
+  margin-bottom: 0.7rem;
 }
 
 /* About the Developer  */
@@ -99,12 +89,35 @@ aside {
 #about-bug {
   display: flex;
   justify-content: flex-end;
+  font-size: 0.9rem;
+}
+#about-bug > * {
+  flex-basis: 0;
+  flex-grow: 1;
 }
 #about-bug a {
   font-weight: normal;
 }
 #about-bug p:not(:first-child) {
   margin-left: 1rem;
+}
+
+/* Buttons  */
+#popup button {
+  background-color: var(--pink);
+  border: 2px solid black;
+  padding: 0.3rem;
+  margin: 0.5rem 0;
+  font-weight: bold;
+  min-width: 200px;
+  border-radius: var(--bRadius);
+  cursor: pointer;
+  outline: none;
+}
+#popup button:hover {
+  color: var(--pink);
+  border: 2px solid var(--pink);
+  background-color: black;
 }
 
 /* When hidden  */

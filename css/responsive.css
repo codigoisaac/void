@@ -96,10 +96,12 @@
   }
   .popup-div {
     padding: 1rem 3rem;
+  }
+  .popup-div:not(:first-child) {
     margin: 1rem 0;
   }
   #popup h1 {
-    margin: 0.2rem;
+    margin: 0.2rem 0;
   }
   /* About the Data  */
   #data-warnings {
@@ -115,5 +117,13 @@
     display: flex;
     column-gap: 1.5rem;
     align-items: center;
+  }
+  /* Bug Report  */
+  #about-bug {
+    font-size: 1rem;
+  }
+  #about-bug > * {
+    flex-basis: initial;
+    flex-grow: initial;
   }
 }
