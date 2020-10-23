@@ -4,9 +4,9 @@
   border: 2px solid var(--white);
   border-radius: var(--bRadius);
   flex-direction: column;
-  overflow-y: scroll;
   justify-content: start;
   align-items: flex-start;
+  overflow-y: scroll;
   height: 100%;
   max-height: 60vh;
   margin: auto;

@@ -3,6 +3,7 @@
   grid-area: habs;
   background-color: var(--white);
   width: 100%;
+  height: fit-content;
   padding: 0.5rem;
   margin-top: 0;
   /* flex  */

@@ -10,13 +10,13 @@ function toggleOpen() {
   isMusicOpen = !isMusicOpen;
 
   if (isMusicOpen) {
-    player.style.height = "42vh";
-    iframe.style.height = "42vh";
+    player.classList.add("shown");
+    iframe.classList.add("shown");
     title.innerHTML = 'Música <i class="ri-toggle-fill"></i>';
     contribute.classList.add("shown");
   } else {
-    player.style.height = "0";
-    iframe.style.height = "0";
+    player.classList.remove("shown");
+    iframe.classList.remove("shown");
     title.innerHTML = 'Música <i class="ri-toggle-line"></i>';
     contribute.classList.remove("shown");
   }

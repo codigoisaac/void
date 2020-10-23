@@ -26,6 +26,7 @@
     grid-template-areas:
       "foot entr logo"
       "foot entr time"
+      "foot entr soun"
       "foot habs soun";
   }
 
