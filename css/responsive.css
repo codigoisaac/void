@@ -4,7 +4,8 @@
   #entries,
   #habit-stats,
   footer,
-  #popup-content {
+  #popup-content,
+  #playlist-contribution {
     max-width: 445px;
   }
 
@@ -72,7 +73,7 @@
 
   /* Sound  */
   #sound-content {
-    max-width: 50%;
+    width: 100rem;
   }
 
   /* Footer  */

@@ -160,16 +160,19 @@ input {
 /* Sound  */
 #sound {
   grid-area: soun;
+  flex-direction: column;
+  align-items: center;
 }
 #sound-content {
   background-color: var(--pink);
-  border: 2px solid var(--white);
   color: var(--white);
+  border: 2px solid var(--white);
+  border-radius: var(--bRadius);
   font-weight: 500;
   cursor: alias;
-  border-radius: var(--bRadius);
   width: 100%;
 }
+
 #sound-content > * {
   width: 100%;
 }
@@ -195,6 +198,23 @@ input {
 #music-player iframe {
   height: 0;
   transition: height var(--duration);
+}
+#playlist-contribution {
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+  color: var(--white);
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+#playlist-contribution a {
+  color: var(--white);
+  font-weight: normal;
+  border-bottom: 1px dotted;
+  margin-left: 0.3rem;
+}
+#playlist-contribution a:hover {
+  color: black;
 }
 
 /* Footer  */
