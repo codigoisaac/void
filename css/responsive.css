@@ -26,6 +26,12 @@
     grid-template-areas:
       "foot entr logo"
       "foot entr time"
+      "foot habs soun";
+  }
+  #home.music-open {
+    grid-template-areas:
+      "foot entr logo"
+      "foot entr time"
       "foot entr soun"
       "foot habs soun";
   }
@@ -75,6 +81,9 @@
   /* Sound  */
   #sound {
     margin-bottom: 0;
+  }
+  #sound.open {
+    margin: 0;
   }
   #sound-content {
     width: 100rem;

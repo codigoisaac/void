@@ -54,7 +54,7 @@
   height: 0;
 }
 #playlist-contribution.shown {
-  height: 100%;
+  height: fit-content;
   opacity: 1;
   margin-top: 0.2rem;
 }

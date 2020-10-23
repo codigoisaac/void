@@ -6,11 +6,11 @@ form.addEventListener("submit", () => {
   editingEntry == "" ? addEntry() : editEntry();
 });
 
-const titleInput = document.querySelector("#add-entry-title");
-const notesInput = document.querySelector("#add-entry-text");
+const titleInput = document.querySelector("#add-entry-title"),
+  notesInput = document.querySelector("#add-entry-text");
 
-let isFormOpen = false;
-let editingEntry = "";
+let isFormOpen = false,
+  editingEntry = "";
 
 function openForm() {
   isFormOpen = !isFormOpen;
@@ -26,9 +26,9 @@ function openForm() {
 function addEntry(e) {
   // get values from form
   const entryTitle = titleInput.value,
-    entryText = notesInput.value;
-  // get date info
-  const date = new Date(),
+    entryText = notesInput.value,
+    // get date info
+    date = new Date(),
     // add '0' in front of day
     entryDay = date.getDate() < 10 ? "0" + date.getDate() : date.getDate(),
     // add '0' in front of month
@@ -109,8 +109,8 @@ function editEntry(e) {
 
 function fetchEntries() {
   // get data and where to display it
-  const entries = getData();
-  const entryList = document.querySelector("#the-entries");
+  const entries = getData(),
+    entryList = document.querySelector("#the-entries");
 
   entryList.innerHTML = "";
 
@@ -196,8 +196,8 @@ function fetchEntries() {
 }
 
 function setDelete(entry) {
-  const docEntries = [...document.querySelectorAll(".entry")];
-  const docEntry = docEntries[docEntries.length - 1]; // last item
+  const docEntries = [...document.querySelectorAll(".entry")],
+    docEntry = docEntries[docEntries.length - 1]; // last item
   // delete
   const delBtn = docEntry.querySelector(".delete-btn");
   delBtn.addEventListener("click", () => {
@@ -230,8 +230,8 @@ function setDelete(entry) {
 }
 
 function setEdit(entry) {
-  const docEntries = [...document.querySelectorAll(".entry")];
-  const docEntry = docEntries[docEntries.length - 1]; // last item
+  const docEntries = [...document.querySelectorAll(".entry")],
+    docEntry = docEntries[docEntries.length - 1]; // last item
   // handle form
   const editBtn = docEntry.querySelector(".edit-btn");
   editBtn.addEventListener("click", () => {
@@ -278,9 +278,9 @@ function resetEntriesDayCount(entries) {
 }
 
 // show/hide entries
-const theEntries = document.querySelector("#the-entries");
-const entryControls = document.querySelector("#entry-controls");
-const entriesHeader = document.querySelector("#entries-header");
+const theEntries = document.querySelector("#the-entries"),
+  entryControls = document.querySelector("#entry-controls"),
+  entriesHeader = document.querySelector("#entries-header");
 entriesHeader.addEventListener("click", () => {
   if (screen.width < 1024) {
     // entries hideable only for mobile
@@ -309,8 +309,8 @@ function eraseTip() {
 // show/hide Om tooltip
 let showOmTooltip = false;
 function setOmTooltip() {
-  const oms = document.querySelectorAll(".om");
-  const omTooltip = document.querySelector("#om-tooltip");
+  const oms = document.querySelectorAll(".om"),
+    omTooltip = document.querySelector("#om-tooltip");
   oms.forEach((om) => {
     // show tooltip
     om.addEventListener("mouseover", () => {

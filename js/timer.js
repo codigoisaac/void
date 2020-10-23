@@ -1,8 +1,7 @@
-let countdown;
-let countup;
-const timerDisplay = document.querySelector("#timer");
-const predefTimeOptions = [...document.querySelectorAll(".predefined-option")];
-const timerMsg = document.querySelector("#time-message");
+let countdown, countup;
+const timerDisplay = document.querySelector("#timer"),
+  predefTimeOptions = [...document.querySelectorAll(".predefined-option")],
+  timerMsg = document.querySelector("#time-message");
 
 // play by clicking on time options
 predefTimeOptions.forEach((btn) => {
@@ -72,8 +71,8 @@ function encourageEntry() {
 }
 
 function displayTimeLeft(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const remainderSeconds = seconds % 60;
+  const minutes = Math.floor(seconds / 60),
+    remainderSeconds = seconds % 60;
   timerDisplay.textContent =
     (minutes < 10 ? "0" : "") +
     minutes +
@@ -128,10 +127,10 @@ function timelessMeditation() {
 }
 
 function displayTimeMeditated(start) {
-  const passed = Date.now() - start;
-  const hoursPassed = Math.floor(passed / 3600000);
-  const minsPassed = Math.floor((passed / 60000) % 60);
-  const secsPassed = Math.floor((passed / 1000) % 60);
+  const passed = Date.now() - start,
+    hoursPassed = Math.floor(passed / 3600000),
+    minsPassed = Math.floor((passed / 60000) % 60),
+    secsPassed = Math.floor((passed / 1000) % 60);
   timerDisplay.textContent =
     (minsPassed < 10 ? "0" : "") +
     minsPassed +
