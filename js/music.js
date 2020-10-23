@@ -4,12 +4,20 @@ const title = document.querySelector("#music-title");
 const music = document.querySelector("#sound-content");
 music.addEventListener("click", toggleOpen);
 let isMusicOpen = false;
+const contribute = document.querySelector("#playlist-contribution");
 
 function toggleOpen() {
   isMusicOpen = !isMusicOpen;
-  player.style.height = isMusicOpen ? "42vh" : "0";
-  iframe.style.height = isMusicOpen ? "42vh" : "0";
-  title.innerHTML = isMusicOpen
-    ? 'Música <i class="ri-toggle-fill"></i>'
-    : 'Música <i class="ri-toggle-line"></i>';
+
+  if (isMusicOpen) {
+    player.style.height = "42vh";
+    iframe.style.height = "42vh";
+    title.innerHTML = 'Música <i class="ri-toggle-fill"></i>';
+    contribute.classList.add("shown");
+  } else {
+    player.style.height = "0";
+    iframe.style.height = "0";
+    title.innerHTML = 'Música <i class="ri-toggle-line"></i>';
+    contribute.classList.remove("shown");
+  }
 }

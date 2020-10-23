@@ -72,6 +72,9 @@
   }
 
   /* Sound  */
+  #sound {
+    margin-bottom: 0;
+  }
   #sound-content {
     width: 100rem;
   }

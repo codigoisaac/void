@@ -172,7 +172,6 @@ input {
   cursor: alias;
   width: 100%;
 }
-
 #sound-content > * {
   width: 100%;
 }
@@ -201,11 +200,19 @@ input {
 }
 #playlist-contribution {
   font-size: 0.8rem;
-  margin-top: 0.2rem;
+  margin-top: 0;
   color: var(--white);
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  opacity: 0;
+  transition: opacity var(--duration);
+  height: 0;
+}
+#playlist-contribution.shown {
+  height: 100%;
+  opacity: 1;
+  margin-top: 0.2rem;
 }
 #playlist-contribution a {
   color: var(--white);
