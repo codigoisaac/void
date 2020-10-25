@@ -296,17 +296,19 @@ function toggleShowEntries() {
   isEntriesShown = !isEntriesShown;
 
   if (isEntriesShown) {
-    theEntries.classList.remove("hide");
-    entryControls.classList.remove("entries-hidden");
+    theEntries.classList.add("shown");
+    entryControls.classList.add("entries-shown");
+    entriesHeader.innerHTML = 'Meditações <i class="ri-toggle-fill"></i>';
   } else {
-    theEntries.classList.add("hide");
-    entryControls.classList.add("entries-hidden");
+    theEntries.classList.remove("shown");
+    entryControls.classList.remove("entries-shown");
+    entriesHeader.innerHTML = 'Meditações <i class="ri-toggle-line"></i>';
   }
 }
 
 // erase "tap to minimize" tip
 function eraseTip() {
-  const tip = document.querySelector("#entries-header span");
+  const tip = document.querySelector("#entries-header #tip");
   tip.style.opacity = 0;
 }
 

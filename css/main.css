@@ -1,8 +1,6 @@
 /* Fonts > */
 /* Ubuntu  */
-@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap");
-/* Questrial */
-@import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
 /* Misirlou  */
 @font-face {
   font-family: Misirlou;
