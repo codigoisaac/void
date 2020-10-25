@@ -15,13 +15,6 @@
   align-items: flex-end;
   margin-bottom: 0;
 }
-#timer-description {
-  grid-area: desc;
-  align-items: flex-start;
-  color: var(--white);
-  font-weight: lighter;
-  margin-top: 0;
-}
 
 /* Time options */
 #time-options {

@@ -64,13 +64,27 @@ section {
   font-size: 7rem;
   grid-area: logo;
   color: var(--white);
+  transition: all var(--duration);
+}
+#logo.hide {
+  margin: 0;
+}
+#logo.hide #the-logo {
+  font-size: 0;
 }
 #the-logo {
-  transition: opacity 9s;
+  transition: all var(--duration), opacity 9s;
 }
 #the-logo:hover {
   opacity: 0;
   cursor: none;
+}
+/* remove time-div margin when logo is hidden  */
+#time-div {
+  transition: margin var(--duration);
+}
+#time-div.logo-hidden {
+  margin: 0;
 }
 
 /* Footer  */

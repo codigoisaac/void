@@ -1,5 +1,5 @@
-const logo = document.querySelector("#the-logo");
-const all = [...document.querySelector("#home").children];
+const logo = document.querySelector("#the-logo"),
+  all = [...document.querySelector("#home").children];
 
 logo.onmouseover = () => {
   all.forEach((element) => {

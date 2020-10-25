@@ -23,14 +23,11 @@
     <section id="home">
       <!-- Logo  -->
       <div id="logo" class="below-popup">
-        <span id="the-logo">Void</span>
+        <div id="the-logo">Void</div>
       </div>
 
       <!-- Timer  -->
       <div id="time-div" class="below-popup">
-        <!-- Timer Description  -->
-        <div id="timer-description" class="below-popup"></div>
-
         <!-- Time Options  -->
         <div id="time-options" class="below-popup">
           <div id="time-options-container">
@@ -333,16 +330,7 @@
     </section>
 
     <!-- Scripts -->
-    <script>
-      // this script goes here for accessibility
-      function getData() {
-        if (localStorage.getItem("entries") != null) {
-          return JSON.parse(localStorage.getItem("entries"));
-        } else {
-          return [];
-        }
-      }
-    </script>
+    <script src="js/general.js"></script>
     <script src="js/popup.js"></script>
     <script src="js/habit-stats.js"></script>
     <script src="js/entries.js"></script>

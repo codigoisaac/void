@@ -21,7 +21,6 @@ function startTimer(e) {
   setTimerMsg();
 
   const timeInput = document.querySelector("#time-input");
-  openForm();
 }
 
 function unselectTime() {
