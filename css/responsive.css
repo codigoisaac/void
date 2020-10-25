@@ -30,6 +30,13 @@
       "foot habs soun";
   }
 
+  #logo {
+    align-items: flex-start;
+  }
+  #time-div {
+    justify-content: flex-start;
+  }
+
   /* Enable time-options tooltips  */
   .time-circle:hover .tooltip {
     visibility: visible;
