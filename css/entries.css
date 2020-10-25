@@ -12,29 +12,23 @@
   margin: auto;
   position: relative;
 }
-#entries-header {
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin: 0;
-}
-/* "tap to minimize" tip  */
-#entries-header span {
-  font-size: 0.6rem;
-  transition: opacity 5s;
-}
 
 /* Controls  */
 #entry-controls {
+  position: sticky;
   top: 0;
+
   width: 100%;
+  height: 41px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  background-color: var(--white);
+
+  /* background-color: var(--white); */
   margin-bottom: 1rem;
   padding: 0.5rem;
-  /* border  */
+
   border-radius: 0 0 var(--bRadius) var(--bRadius);
   border-bottom: 3px solid var(--pink);
 }
@@ -44,14 +38,31 @@
   border-radius: 0;
 }
 
+/* Entries header  */
+#entries-header {
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+  width: 100%;
+}
+/* "tap to minimize" tip  */
+#entries-header span {
+  font-size: 0.6rem;
+  transition: opacity 5s;
+}
+
 /* Form  */
 #add-entry-form {
-  display: none; /* flex in js */
+  display: none;
   flex-direction: column;
   width: 100%;
   margin-bottom: 2rem;
   align-items: flex-end;
   padding: 0 1rem;
+}
+#add-entry-form.shown {
+  display: flex;
 }
 #add-entry-form > * {
   margin: 0.3rem 0;
@@ -64,6 +75,32 @@
 #add-entry-text {
   align-self: stretch;
   resize: vertical; /* for textarea only */
+}
+#open-form-btn {
+  background-color: var(--white);
+  color: var(--pink);
+  font-weight: bolder;
+
+  border: none;
+  border-radius: var(--bRadius);
+  outline: none;
+
+  --size: 1.7rem;
+  width: var(--size);
+  height: var(--size);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* the entries  */
+#the-entries {
+  width: 100%;
+  padding: 0 1rem;
+}
+#the-entries.hide {
+  display: none;
 }
 
 /* Date  */
@@ -112,18 +149,6 @@
   opacity: 1;
 }
 
-/* entries area  */
-#the-entries {
-  width: 100%;
-  min-height: 100vh;
-  transition: height var(--duration);
-  display: block;
-  padding: 0 1rem;
-}
-#the-entries.hide {
-  display: none;
-}
-
 /* entry  */
 .entry {
   padding: 0.5rem;
@@ -157,7 +182,6 @@
 }
 .entry-buttons button {
   background-color: var(--white);
-  border: 1px solid black;
   color: var(--pink);
   border: 1px solid var(--pink);
   border-radius: var(--bRadius);

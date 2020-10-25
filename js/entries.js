@@ -16,11 +16,14 @@ function openForm() {
   isFormOpen = !isFormOpen;
 
   // display form
-  form.style.display = isFormOpen ? "flex" : "none";
-  addBtn.textContent = isFormOpen ? "X" : "+";
-
-  // focus when open
-  isFormOpen ? titleInput.focus() : null;
+  if (isFormOpen) {
+    addBtn.innerHTML = '<i class="ri-close-line"></i>';
+    form.classList.add("shown");
+    titleInput.focus();
+  } else {
+    addBtn.innerHTML = '<i class="ri-add-line"></i>';
+    form.classList.remove("shown");
+  }
 }
 
 function addEntry(e) {
@@ -282,15 +285,16 @@ const theEntries = document.querySelector("#the-entries"),
   entryControls = document.querySelector("#entry-controls"),
   entriesHeader = document.querySelector("#entries-header");
 entriesHeader.addEventListener("click", () => {
+  // entries hideable only for mobile
   if (screen.width < 1024) {
-    // entries hideable only for mobile
     toggleShowEntries();
   }
 });
-let isEntriesShown = true;
+let isEntriesShown = false;
 
 function toggleShowEntries() {
   isEntriesShown = !isEntriesShown;
+
   if (isEntriesShown) {
     theEntries.classList.remove("hide");
     entryControls.classList.remove("entries-hidden");
