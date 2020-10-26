@@ -86,3 +86,8 @@ function toggleShowLogo() {
     timeDiv.classList.add("logo-hidden");
   }
 }
+
+// logo transition when load the page
+function animateLogo() {
+  logoArea.classList.add("loaded");
+}
