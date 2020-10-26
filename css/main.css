@@ -64,12 +64,14 @@ section {
   font-size: 0;
   grid-area: logo;
   color: var(--white);
+  color: black;
   opacity: 0;
   transition: all var(--duration);
 }
 #logo.loaded {
   font-size: 7rem;
   opacity: 1;
+  color: var(--white);
 }
 #logo.hide {
   margin: 0;
