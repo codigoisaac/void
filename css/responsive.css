@@ -50,7 +50,8 @@
     max-height: 100%;
   }
   /* "tap to minimize" tip  */
-  #entries-header span {
+  #entries-header #tip,
+  #entries-header i {
     display: none;
   }
   #entries,
