@@ -23,6 +23,7 @@
   #home {
     height: 100vh;
     grid-template-columns: 0.3fr 2.5fr 4fr;
+    grid-template-rows: 0.5fr 0.5fr auto auto; /* fix entries height */
     grid-template-areas:
       "foot entr logo"
       "foot entr time"
@@ -62,6 +63,9 @@
   }
   #the-entries {
     display: initial;
+  }
+  .day-info:first-child {
+    margin-top: 1rem;
   }
   #om-tooltip {
     margin: 0 2rem;
