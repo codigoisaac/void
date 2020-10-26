@@ -23,12 +23,14 @@ function toggleMusicOpen() {
     sound.classList.add("open");
     contribute.classList.add("shown");
 
-    // close entries
-    if (isEntriesOpen) {
-      toggleEntriesOpen();
-    }
+    if (screen.width < 1024) {
+      // close entries
+      if (isEntriesOpen) {
+        toggleEntriesOpen();
+      }
 
-    toggleShowLogo();
+      toggleShowLogo();
+    }
   } else {
     player.classList.remove("shown");
     iframe.classList.remove("shown");
@@ -36,33 +38,37 @@ function toggleMusicOpen() {
     sound.classList.remove("open");
     contribute.classList.remove("shown");
 
-    if (!isEntriesOpen) {
-      toggleShowLogo();
+    if (screen.width < 1024) {
+      if (!isEntriesOpen) {
+        toggleShowLogo();
+      }
     }
   }
 }
 
 function toggleEntriesOpen() {
-  isEntriesOpen = !isEntriesOpen;
+  if (screen.width < 1024) {
+    isEntriesOpen = !isEntriesOpen;
 
-  if (isEntriesOpen) {
-    theEntries.classList.add("shown");
-    entryControls.classList.add("entries-shown");
-    entriesHeader.innerHTML = 'Meditações <i class="ri-toggle-fill"></i>';
+    if (isEntriesOpen) {
+      theEntries.classList.add("shown");
+      entryControls.classList.add("entries-shown");
+      entriesHeader.innerHTML = 'Meditações <i class="ri-toggle-fill"></i>';
 
-    // close music
-    if (isMusicOpen) {
-      toggleMusicOpen();
-    }
+      // close music
+      if (isMusicOpen) {
+        toggleMusicOpen();
+      }
 
-    toggleShowLogo();
-  } else {
-    theEntries.classList.remove("shown");
-    entryControls.classList.remove("entries-shown");
-    entriesHeader.innerHTML = 'Meditações <i class="ri-toggle-line"></i>';
-
-    if (!isMusicOpen) {
       toggleShowLogo();
+    } else {
+      theEntries.classList.remove("shown");
+      entryControls.classList.remove("entries-shown");
+      entriesHeader.innerHTML = 'Meditações <i class="ri-toggle-line"></i>';
+
+      if (!isMusicOpen) {
+        toggleShowLogo();
+      }
     }
   }
 }

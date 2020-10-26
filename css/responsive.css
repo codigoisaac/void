@@ -60,6 +60,9 @@
   #entry-controls {
     background: var(--pink);
   }
+  #the-entries {
+    display: initial;
+  }
   #om-tooltip {
     margin: 0 2rem;
     padding: 1rem;
