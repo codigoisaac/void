@@ -63,7 +63,6 @@ section {
   font-family: Misirlou;
   font-size: 0;
   grid-area: logo;
-  color: var(--white);
   color: black;
   opacity: 0;
   transition: all var(--duration);

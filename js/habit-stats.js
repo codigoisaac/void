@@ -4,16 +4,16 @@ const entriesDisplay = document.querySelector("#meditations-recorded > .stat"),
   dayStrikeDisplay = document.querySelector("#day-strike > .stat"),
   doubleStrikeDisplay = document.querySelector("#twice-day-strike > .stat");
 
+let stat = {
+  entries: 0,
+  days: 0,
+  doubleDays: 0,
+  dayStrike: 0,
+  doubleStrike: 0,
+};
+
 function setHabitStats() {
   const savedEntries = getData();
-
-  let stat = {
-    entries: 0,
-    days: 0,
-    doubleDays: 0,
-    dayStrike: 0,
-    doubleStrike: 0,
-  };
 
   let previousEntryDay = 0;
   let strike = 1;
@@ -50,7 +50,7 @@ function setHabitStats() {
     if (entry.count == 2) {
       // this day is a 2x day
       if (didIhad2PlusYesterday) {
-        // the last day i had 2plus
+        // the last day i had 2plus meditations
         stat.doubleStrike++;
       } else {
         // turn it true for tomorrow
@@ -71,15 +71,18 @@ function setHabitStats() {
     }
   });
 
-  // display >>
-  // entries
-  entriesDisplay.textContent = stat.entries;
-  // days
-  daysDisplay.textContent = stat.days;
-  // days 2x
-  doubleDaysDisplay.textContent = stat.doubleDays;
-  // day strike
-  dayStrikeDisplay.textContent = stat.dayStrike;
+  displayStats();
+}
+
+function displayStats() {
   // 2x day strike
   doubleStrikeDisplay.textContent = stat.doubleStrike;
+  // day strike
+  dayStrikeDisplay.textContent = stat.dayStrike;
+  // entries
+  entriesDisplay.textContent = stat.entries;
+  // days 2x
+  doubleDaysDisplay.textContent = stat.doubleDays;
+  // days
+  daysDisplay.textContent = stat.days;
 }

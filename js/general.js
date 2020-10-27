@@ -12,6 +12,7 @@ function getData() {
 // they are used in each other's script.
 let isMusicOpen = false,
   isEntriesOpen = false;
+const theEntries = document.querySelector("#the-entries");
 
 function toggleMusicOpen() {
   isMusicOpen = !isMusicOpen;

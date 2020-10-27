@@ -112,10 +112,15 @@ function editEntry(e) {
 
 function fetchEntries() {
   // get data and where to display it
-  const entries = getData(),
-    entryList = document.querySelector("#the-entries");
+  const entries = getData();
 
-  entryList.innerHTML = "";
+  theEntries.innerHTML = "";
+
+  // Show message if there is no entries
+  if (entries.length == 0) {
+    const noEntriesMessage = document.querySelector("#no-entries-message");
+    noEntriesMessage.classList.add("shown");
+  }
 
   let totalDays = 0; // number of days in which entries were made
 
@@ -140,9 +145,9 @@ function fetchEntries() {
 
     // add date only before last entry in the day
     if (count == entriesInDay.length) {
-      entryList.innerHTML += '<div class="day-info"></div>';
+      theEntries.innerHTML += '<div class="day-info"></div>';
       // select the last day-info and add it to the totalDays count
-      const dayInfo = entryList.querySelectorAll(".day-info")[totalDays];
+      const dayInfo = theEntries.querySelectorAll(".day-info")[totalDays];
       totalDays++;
 
       dayInfo.innerHTML += `
@@ -155,7 +160,7 @@ function fetchEntries() {
     }
 
     // inject HTML
-    entryList.insertAdjacentHTML(
+    theEntries.insertAdjacentHTML(
       "beforeend",
       `<div class="entry">
         <div class="entry-header">
@@ -187,7 +192,7 @@ function fetchEntries() {
   }
 
   // insert tooltip for Om buttons
-  entryList.insertAdjacentHTML(
+  theEntries.insertAdjacentHTML(
     "beforeend",
     `<div id="om-tooltip">
         O símbolo Om é adquirido nos dias em que você medita 2 vezes ou mais.
@@ -281,8 +286,7 @@ function resetEntriesDayCount(entries) {
 }
 
 // show/hide entries
-const theEntries = document.querySelector("#the-entries"),
-  entryControls = document.querySelector("#entry-controls"),
+const entryControls = document.querySelector("#entry-controls"),
   entriesHeader = document.querySelector("#entries-header");
 entriesHeader.addEventListener("click", () => {
   // entries hideable only for mobile
