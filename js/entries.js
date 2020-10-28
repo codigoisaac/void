@@ -116,12 +116,6 @@ function fetchEntries() {
 
   theEntries.innerHTML = "";
 
-  // Show message if there is no entries
-  if (entries.length == 0) {
-    const noEntriesMessage = document.querySelector("#no-entries-message");
-    noEntriesMessage.classList.add("shown");
-  }
-
   let totalDays = 0; // number of days in which entries were made
 
   // Display entries

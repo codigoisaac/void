@@ -2,7 +2,8 @@ const entriesDisplay = document.querySelector("#meditations-recorded > .stat"),
   daysDisplay = document.querySelector("#days-meditated > .stat"),
   doubleDaysDisplay = document.querySelector("#days-meditated-twice > .stat"),
   dayStrikeDisplay = document.querySelector("#day-strike > .stat"),
-  doubleStrikeDisplay = document.querySelector("#twice-day-strike > .stat");
+  doubleStrikeDisplay = document.querySelector("#twice-day-strike > .stat"),
+  entries = getData();
 
 let stat = {
   entries: 0,
@@ -13,13 +14,11 @@ let stat = {
 };
 
 function setHabitStats() {
-  const savedEntries = getData();
-
   let previousEntryDay = 0;
   let strike = 1;
   let didIhad2PlusYesterday = false;
 
-  savedEntries.forEach((entry) => {
+  entries.forEach((entry) => {
     // entries
     stat.entries++;
 
@@ -59,9 +58,9 @@ function setHabitStats() {
       }
     } else if (entry.count == 1) {
       // first entry in a day
-      if (savedEntries.indexOf(entry) != savedEntries.length - 1) {
+      if (entries.indexOf(entry) != entries.length - 1) {
         // if there is a next entry
-        let nextEntry = savedEntries[savedEntries.indexOf(entry) + 1];
+        let nextEntry = entries[entries.indexOf(entry) + 1];
         if (nextEntry.count != 2) {
           // ...and the next entry is not today
           stat.doubleStrike = 0; // 2+ strike fail
@@ -85,4 +84,12 @@ function displayStats() {
   doubleDaysDisplay.textContent = stat.doubleDays;
   // days
   daysDisplay.textContent = stat.days;
+}
+
+function checkNoEntriesMessage() {
+  // Show message if there is no entries
+  if (entries.length == 0 && isEntriesOpen) {
+    const noEntriesMessage = document.querySelector("#no-entries-message");
+    noEntriesMessage.classList.add("shown");
+  }
 }
