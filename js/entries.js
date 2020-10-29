@@ -284,7 +284,7 @@ const entryControls = document.querySelector("#entry-controls"),
   entriesHeader = document.querySelector("#entries-header");
 entriesHeader.addEventListener("click", () => {
   // entries hideable only for mobile
-  if (screen.width < 1024) {
+  if (inMobile) {
     toggleEntriesOpen();
   }
 });
