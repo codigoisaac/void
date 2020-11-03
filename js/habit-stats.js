@@ -88,8 +88,11 @@ function displayStats() {
 
 function checkNoEntriesMessage() {
   // Show message if there is no entries
+  const noEntriesMessage = document.querySelector("#no-entries-message");
+
   if (entries.length == 0 && screen.width < 1024 && isEntriesOpen) {
-    const noEntriesMessage = document.querySelector("#no-entries-message");
     noEntriesMessage.classList.add("shown");
+  } else {
+    noEntriesMessage.classList.remove("shown");
   }
 }

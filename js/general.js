@@ -62,7 +62,6 @@ function toggleEntriesOpen() {
       }
 
       toggleShowLogo();
-      checkNoEntriesMessage();
     } else {
       theEntries.classList.remove("shown");
       entryControls.classList.remove("entries-shown");
@@ -72,6 +71,8 @@ function toggleEntriesOpen() {
         toggleShowLogo();
       }
     }
+
+    checkNoEntriesMessage();
   }
 }
 

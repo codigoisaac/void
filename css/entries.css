@@ -207,6 +207,7 @@
 /* no entries message  */
 #no-entries-message {
   display: none;
+  padding: 1rem;
 }
 #no-entries-message.shown {
   display: initial;
