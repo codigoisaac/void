@@ -88,7 +88,7 @@ function displayStats() {
 
 function checkNoEntriesMessage() {
   // Show message if there is no entries
-  if (entries.length == 0 && inMobile && isEntriesOpen) {
+  if (entries.length == 0 && screen.width < 1024 && isEntriesOpen) {
     const noEntriesMessage = document.querySelector("#no-entries-message");
     noEntriesMessage.classList.add("shown");
   }

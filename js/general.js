@@ -7,10 +7,6 @@ function getData() {
   }
 }
 
-// check if in mobile
-let inMobile = true;
-inMobile = screen.width < 1024 ? true : false;
-
 // entries and music can't be open at the same time in mobile.
 // this functions and variables are here because
 // they are used in each other's script.
@@ -28,7 +24,7 @@ function toggleMusicOpen() {
     sound.classList.add("open");
     contribute.classList.add("shown");
 
-    if (inMobile) {
+    if (screen.width < 1024) {
       // close entries
       if (isEntriesOpen) {
         toggleEntriesOpen();
@@ -43,7 +39,7 @@ function toggleMusicOpen() {
     sound.classList.remove("open");
     contribute.classList.remove("shown");
 
-    if (inMobile) {
+    if (screen.width < 1024) {
       if (!isEntriesOpen) {
         toggleShowLogo();
       }
@@ -52,7 +48,7 @@ function toggleMusicOpen() {
 }
 
 function toggleEntriesOpen() {
-  if (inMobile) {
+  if (screen.width < 1024) {
     isEntriesOpen = !isEntriesOpen;
 
     if (isEntriesOpen) {
