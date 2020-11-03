@@ -195,6 +195,7 @@ function fetchEntries() {
 
   setHabitStats();
   setOmTooltip();
+  checkNoEntriesMessage();
 }
 
 function setDelete(entry) {
@@ -312,4 +313,28 @@ function setOmTooltip() {
   });
 }
 
-// ``
+// show/hide no-entries-message
+function checkNoEntriesMessage() {
+  const noEntriesMessage = document.querySelector("#no-entries-message");
+
+  if (entries.length == 0) {
+    // if in mobile
+    if (screen.width < 1024) {
+      if (isEntriesOpen) {
+        noEntriesMessage.classList.add("shown");
+      } else {
+        noEntriesMessage.classList.remove("shown");
+      }
+      // if not in mobile
+    } else {
+      noEntriesMessage.classList.add("shown");
+    }
+  } else {
+    noEntriesMessage.classList.remove("shown");
+  }
+  // if (entries.length == 0 && screen.width < 1024 && isEntriesOpen) {
+  //   noEntriesMessage.classList.add("shown");
+  // } else {
+  //   noEntriesMessage.classList.remove("shown");
+  // }
+}

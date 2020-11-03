@@ -85,14 +85,3 @@ function displayStats() {
   // days
   daysDisplay.textContent = stat.days;
 }
-
-function checkNoEntriesMessage() {
-  // Show message if there is no entries
-  const noEntriesMessage = document.querySelector("#no-entries-message");
-
-  if (entries.length == 0 && screen.width < 1024 && isEntriesOpen) {
-    noEntriesMessage.classList.add("shown");
-  } else {
-    noEntriesMessage.classList.remove("shown");
-  }
-}
