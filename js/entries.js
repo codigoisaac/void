@@ -113,7 +113,6 @@ function editEntry(e) {
 function fetchEntries() {
   // get data and where to display it
   const entries = getData();
-
   theEntries.innerHTML = "";
 
   let totalDays = 0; // number of days in which entries were made
@@ -317,6 +316,8 @@ function setOmTooltip() {
 function checkNoEntriesMessage() {
   const noEntriesMessage = document.querySelector("#no-entries-message");
 
+  let entries = getData();
+
   if (entries.length == 0) {
     // if in mobile
     if (screen.width < 1024) {
@@ -332,9 +333,4 @@ function checkNoEntriesMessage() {
   } else {
     noEntriesMessage.classList.remove("shown");
   }
-  // if (entries.length == 0 && screen.width < 1024 && isEntriesOpen) {
-  //   noEntriesMessage.classList.add("shown");
-  // } else {
-  //   noEntriesMessage.classList.remove("shown");
-  // }
 }
