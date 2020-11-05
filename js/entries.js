@@ -1,5 +1,5 @@
 const addBtn = document.querySelector("#open-form-btn");
-addBtn.addEventListener("click", openForm);
+addBtn.addEventListener("click", toggleFormOpen);
 const form = document.querySelector("#add-entry-form");
 form.addEventListener("submit", () => {
   // adding new / editing entry
@@ -12,7 +12,7 @@ const titleInput = document.querySelector("#add-entry-title"),
 let isFormOpen = false,
   editingEntry = "";
 
-function openForm() {
+function toggleFormOpen() {
   isFormOpen = !isFormOpen;
 
   // display form
@@ -90,6 +90,7 @@ function addEntry(e) {
   e.preventDefault();
 
   form.reset();
+  toggleFormOpen();
 
   fetchEntries();
 }
@@ -237,7 +238,7 @@ function setEdit(entry) {
   // handle form
   const editBtn = docEntry.querySelector(".edit-btn");
   editBtn.addEventListener("click", () => {
-    isFormOpen ? null : openForm();
+    isFormOpen ? null : toggleFormOpen();
     // overwrite values only if form is empty or equal to entry
     if (
       (titleInput.value == "" && notesInput.value == "") ||
