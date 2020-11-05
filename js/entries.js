@@ -3,7 +3,7 @@ addBtn.addEventListener("click", openForm);
 const form = document.querySelector("#add-entry-form");
 form.addEventListener("submit", () => {
   // adding new / editing entry
-  editingEntry == "" ? addEntry() : editEntry();
+  editingEntry == "" ? addEntry(event) : editEntry();
 });
 
 const titleInput = document.querySelector("#add-entry-title"),

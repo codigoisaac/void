@@ -2,8 +2,7 @@ const entriesDisplay = document.querySelector("#meditations-recorded > .stat"),
   daysDisplay = document.querySelector("#days-meditated > .stat"),
   doubleDaysDisplay = document.querySelector("#days-meditated-twice > .stat"),
   dayStrikeDisplay = document.querySelector("#day-strike > .stat"),
-  doubleStrikeDisplay = document.querySelector("#twice-day-strike > .stat"),
-  entries = getData();
+  doubleStrikeDisplay = document.querySelector("#twice-day-strike > .stat");
 
 let stat = {
   entries: 0,
@@ -17,6 +16,8 @@ function setHabitStats() {
   let previousEntryDay = 0;
   let strike = 1;
   let didIhad2PlusYesterday = false;
+
+  let entries = getData();
 
   entries.forEach((entry) => {
     // entries

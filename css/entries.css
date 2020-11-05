@@ -116,7 +116,7 @@
   display: none;
 }
 #the-entries.shown {
-  display: block;
+  display: initial;
 }
 
 /* Date  */
