@@ -112,3 +112,8 @@ a {
 a:hover {
   color: var(--white);
 }
+
+/* hide not important */
+.not-important {
+  display: none !important;
+}

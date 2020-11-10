@@ -18,6 +18,7 @@ function toggleMusicOpen() {
   isMusicOpen = !isMusicOpen;
 
   if (isMusicOpen) {
+    // show music section
     player.classList.add("shown");
     iframe.classList.add("shown");
     title.innerHTML = 'Música <i class="ri-toggle-fill"></i>';
@@ -33,6 +34,7 @@ function toggleMusicOpen() {
       toggleShowLogo();
     }
   } else {
+    // hide music section
     player.classList.remove("shown");
     iframe.classList.remove("shown");
     title.innerHTML = 'Música <i class="ri-toggle-line"></i>';
@@ -45,6 +47,8 @@ function toggleMusicOpen() {
       }
     }
   }
+
+  hideAllElse();
 }
 
 function toggleEntriesOpen() {
@@ -52,6 +56,7 @@ function toggleEntriesOpen() {
     isEntriesOpen = !isEntriesOpen;
 
     if (isEntriesOpen) {
+      // show entries section
       theEntries.classList.add("shown");
       entryControls.classList.add("entries-shown");
       entriesHeader.innerHTML = 'Meditações <i class="ri-toggle-fill"></i>';
@@ -63,6 +68,7 @@ function toggleEntriesOpen() {
 
       toggleShowLogo();
     } else {
+      // hide entries section
       theEntries.classList.remove("shown");
       entryControls.classList.remove("entries-shown");
       entriesHeader.innerHTML = 'Meditações <i class="ri-toggle-line"></i>';
@@ -73,10 +79,11 @@ function toggleEntriesOpen() {
     }
 
     checkNoEntriesMessage();
+    hideAllElse();
   }
 }
 
-// only when music and entries are closed we see the Void logo.
+// display logo only when music and entries are closed
 const logoArea = document.querySelector("#logo"),
   timeDiv = document.querySelector("#time-div");
 
@@ -93,4 +100,40 @@ function toggleShowLogo() {
 // logo transition when load the page
 function animateLogo() {
   logoArea.classList.add("loaded");
+}
+
+// hide not important
+function hideAllElse() {
+  if (screen.width < 1024) {
+    // elements not important
+    const habitStats = document.querySelector("#habit-stats"),
+      musicArea = document.querySelector("#sound"),
+      entriesArea = document.querySelector("#entries"),
+      footer = document.querySelector("footer");
+
+    // show/hide all
+    if (isMusicOpen || isEntriesOpen) {
+      timeDiv.classList.add("not-important");
+      habitStats.classList.add("not-important");
+      footer.classList.add("not-important");
+    } else {
+      timeDiv.classList.remove("not-important");
+      habitStats.classList.remove("not-important");
+      footer.classList.remove("not-important");
+    }
+
+    // show/hide entries
+    if (isMusicOpen) {
+      entriesArea.classList.add("not-important");
+    } else {
+      entriesArea.classList.remove("not-important");
+    }
+
+    // show/hide music
+    if (isEntriesOpen) {
+      musicArea.classList.add("not-important");
+    } else {
+      musicArea.classList.remove("not-important");
+    }
+  }
 }
