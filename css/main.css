@@ -87,7 +87,7 @@ section {
 }
 /* remove time-div margin when logo is hidden  */
 #time-div {
-  transition: margin var(--duration);
+  transition: margin var(--duration), opacity var(--void-duration);
 }
 #time-div.logo-hidden {
   margin: 0;
