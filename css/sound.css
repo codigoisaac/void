@@ -3,6 +3,9 @@
   flex-direction: column;
   align-items: center;
 }
+#sound.open {
+  margin: 0;
+}
 #sound-content {
   background-color: var(--pink);
   color: var(--white);
@@ -41,7 +44,7 @@
 }
 #music-player.shown,
 #music-player iframe.shown {
-  height: 42vh;
+  height: 80vh;
 }
 #playlist-contribution {
   font-size: 0.8rem;
