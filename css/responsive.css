@@ -98,6 +98,10 @@
   #sound-content {
     width: 100rem;
   }
+  #music-player.shown,
+  #music-player iframe.shown {
+    height: 42vh;
+  }
 
   /* Footer  */
   footer p {
