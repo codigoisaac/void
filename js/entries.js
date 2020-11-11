@@ -118,7 +118,7 @@ function fetchEntries() {
 
   let totalDays = 0; // number of days in which entries were made
 
-  // Display entries
+  // prepare and display entries
   for (let i = entries.length - 1; i >= 0; i--) {
     const entry = entries[i];
     // get values from storage
@@ -185,7 +185,7 @@ function fetchEntries() {
     setEdit(entry);
   }
 
-  // insert tooltip for Om buttons
+  // insert Om tooltip
   theEntries.insertAdjacentHTML(
     "beforeend",
     `<div id="om-tooltip">
@@ -223,7 +223,7 @@ function setDelete(entry) {
       });
 
       // reset count in the day
-      entries = resetEntriesDayCount(entries);
+      entries = resetEntriesCountInDays(entries);
 
       // save again
       localStorage.setItem("entries", JSON.stringify(entries));
@@ -265,7 +265,7 @@ function overwriteForm(entry) {
   editingEntry = entry;
 }
 
-function resetEntriesDayCount(entries) {
+function resetEntriesCountInDays(entries) {
   // reset the entry count in the day
   entries.forEach((entry) => {
     let countInDay = 0;

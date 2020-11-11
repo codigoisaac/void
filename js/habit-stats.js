@@ -1,26 +1,20 @@
-const entriesDisplay = document.querySelector("#meditations-recorded > .stat"),
-  daysDisplay = document.querySelector("#days-meditated > .stat"),
-  doubleDaysDisplay = document.querySelector("#days-meditated-twice > .stat"),
-  dayStrikeDisplay = document.querySelector("#day-strike > .stat"),
-  doubleStrikeDisplay = document.querySelector("#twice-day-strike > .stat");
-
-let stat = {
-  entries: 0,
-  days: 0,
-  doubleDays: 0,
-  dayStrike: 0,
-  doubleStrike: 0,
-};
-
 function setHabitStats() {
-  let previousEntryDay = 0;
-  let strike = 1;
-  let didIhad2PlusYesterday = false;
+  //
+  let stat = {
+    entries: 0,
+    days: 0,
+    doubleDays: 0,
+    dayStrike: 0,
+    doubleStrike: 0,
+  };
 
-  let entries = getData();
+  let previousEntryDay = 0,
+    strike = 1,
+    didIhad2PlusYesterday = false,
+    entries = getData();
 
   entries.forEach((entry) => {
-    // entries
+    // entries count
     stat.entries++;
 
     // days
@@ -71,10 +65,16 @@ function setHabitStats() {
     }
   });
 
-  displayStats();
+  displayStats(stat);
 }
 
-function displayStats() {
+function displayStats(stat) {
+  const entriesDisplay = document.querySelector("#meditation-count > .stat"),
+    daysDisplay = document.querySelector("#days-meditated > .stat"),
+    doubleDaysDisplay = document.querySelector("#days-meditated-twice > .stat"),
+    dayStrikeDisplay = document.querySelector("#day-strike > .stat"),
+    doubleStrikeDisplay = document.querySelector("#twice-day-strike > .stat");
+
   // 2x day strike
   doubleStrikeDisplay.textContent = stat.doubleStrike;
   // day strike
