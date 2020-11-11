@@ -88,18 +88,18 @@ aside {
 /* Bug Report  */
 #about-bug {
   display: flex;
-  justify-content: flex-end;
   font-size: 0.9rem;
+  gap: 0.9rem;
 }
 #about-bug > * {
   flex-basis: 0;
   flex-grow: 1;
 }
+#about-bug p:last-child {
+  text-align: end;
+}
 #about-bug a {
   font-weight: normal;
-}
-#about-bug p:not(:first-child) {
-  margin-left: 1rem;
 }
 
 /* Buttons  */

@@ -157,6 +157,7 @@
   /* Bug Report  */
   #about-bug {
     font-size: 1rem;
+    justify-content: flex-end;
   }
   #about-bug > * {
     flex-basis: initial;
