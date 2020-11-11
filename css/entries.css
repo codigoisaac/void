@@ -201,7 +201,7 @@
   color: var(--pink);
   border: 1px solid var(--pink);
   border-radius: var(--bRadius);
-  height: fit-content;
+  height: max-content;
 }
 
 /* no entries message  */
