@@ -66,7 +66,7 @@ function timer(minutes) {
 
 function encourageEntry() {
   setTimerMsg("write about");
-  openForm();
+  toggleFormOpen();
 }
 
 function displayTimeLeft(seconds) {
