@@ -8,9 +8,7 @@ function setHabitStats() {
     doubleStrike: 0,
   };
 
-  let previousEntryDay = 0,
-    strike = 1,
-    didIhad2PlusYesterday = false,
+  let didIhad2PlusYesterday = false,
     entries = getData();
 
   entries.forEach((entry) => {
@@ -27,18 +25,8 @@ function setHabitStats() {
       stat.doubleDays++;
     }
 
-    const entryDay = parseInt(entry.date.substring(0, 2)); // get day
-
     // day strike
-    if (entryDay != previousEntryDay) {
-      if (previousEntryDay + 1 == entryDay) {
-        strike++;
-      } else {
-        strike = 1; // strike fail
-      }
-      previousEntryDay = entryDay;
-      stat.dayStrike = strike;
-    }
+    stat = calculateDayStrike(stat);
 
     // 2x day strike
     if (entry.count == 2) {
@@ -85,4 +73,55 @@ function displayStats(stat) {
   doubleDaysDisplay.textContent = stat.doubleDays;
   // days
   daysDisplay.textContent = stat.days;
+}
+
+function calculateDayStrike(stat) {
+  let prevEntryD = 0, // prev: previous
+    prevEntryM = 0,
+    prevEntryY = 0,
+    strike = 1,
+    entries = getData();
+
+  entries.forEach((entry) => {
+    const entryDay = parseInt(entry.date.substring(0, 2)), // get day
+      entryMonth = parseInt(entry.date.substring(3, 5)); // get month
+
+    if (entryDay != prevEntryD) {
+      // not the same day
+      if (entryMonth == prevEntryM) {
+        // same month
+        if (prevEntryD + 1 == entryDay) {
+          // one day ahead
+          strike++;
+        } else {
+          strike = 1; // strike fail
+        }
+      } else {
+        // not the same month
+        if (entryDay == 1) {
+          // current entry is day 1
+          const lastDayInPrevEntryMonth = daysInMonth(prevEntryM, prevEntryY);
+          if (prevEntryD == lastDayInPrevEntryMonth) {
+            // previous entry day is the last of it's month
+            strike++;
+          } else {
+            strike = 1; // strike fail
+          }
+        } else {
+          strike = 1; // strike fail
+        }
+      }
+
+      prevEntryD = entryDay;
+      prevEntryM = entryMonth;
+      prevEntryY = entry.year;
+      stat.dayStrike = strike;
+    }
+  });
+
+  return stat;
+}
+
+function daysInMonth(month, year) {
+  return 32 - new Date(year, month - 1, 32).getDate();
 }
