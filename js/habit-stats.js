@@ -56,6 +56,146 @@ function setHabitStats() {
   displayStats(stat);
 }
 
+function calculateDayStrike(stat) {
+  let previousEntryDay = 0, //
+    previousEntryMonth = 0,
+    previousEntryYear = 0,
+    strike = 1,
+    entries = getData();
+
+  entries.forEach((entry) => {
+    const currentEntryDay = parseInt(entry.date.substring(0, 2)), // get day
+      currentEntryMonth = parseInt(entry.date.substring(3, 5)), // get month
+      currentEntryYear = entry.year;
+
+    //* calculation
+    if (currentEntryDay != previousEntryDay) {
+      // different day
+      if (currentEntryMonth == previousEntryMonth) {
+        // same month
+        if (currentEntryYear == previousEntryYear) {
+          // same year
+          if (previousEntryDay + 1 == currentEntryDay) {
+            // 1 day difference
+            strike++; // increase strike
+          } else {
+            // more than 1 day difference
+            strike = 1; // fail strike
+          }
+        } else {
+          // same month and
+          // different year
+          strike = 1; // fail strike
+        }
+      } else {
+        // different day and
+        // different month
+        if (currentEntryYear == previousEntryYear) {
+          // same year
+          if (currentEntryMonth == previousEntryMonth + 1) {
+            // 1 month difference
+
+            // get number of days in previuous entry's month
+            const daysInPrevEntrysMonth = daysInMonth(
+              previousEntryMonth,
+              previousEntryYear
+            );
+            if (
+              previousEntryDay == daysInPrevEntrysMonth &&
+              currentEntryDay == 1
+            ) {
+              // previous entry is in last day of its month and
+              // current entry is in first day of its month
+              strike++; // increase strike
+            } else {
+              strike = 1; // fail strike
+            }
+          } else {
+            // more than 1 month difference
+            strike = 1; // fail strike
+          }
+        } else {
+          // different day,
+          // different month and
+          // different year
+          if (previousEntryMonth == 12 && currentEntryMonth == 1) {
+            // from December to January
+
+            // get number of days in previuous entry's month
+            const daysInPrevEntrysMonth = daysInMonth(
+              previousEntryMonth,
+              previousEntryYear
+            );
+            if (
+              previousEntryDay == daysInPrevEntrysMonth &&
+              currentEntryDay == 1
+            ) {
+              // previous entry is in last day of December and
+              // current entry is in first day of January
+              strike++; // increase strike
+            } else {
+              strike = 1; // fail strike
+            }
+          } else {
+            // not from December to January
+            strike = 1; // fail strike
+          }
+        }
+      }
+    } else {
+      // same day number
+      if (
+        currentEntryMonth != previousEntryMonth ||
+        currentEntryYear != previousEntryYear
+      ) {
+        // different month or
+        // different year
+        strike = 1; // fail strike
+      }
+    }
+
+    previousEntryDay = currentEntryDay;
+    previousEntryMonth = currentEntryMonth;
+    previousEntryYear = entry.year;
+    stat.dayStrike = strike;
+  });
+
+  checkStrikeFail(stat);
+
+  return stat;
+}
+
+function checkStrikeFail(stat) {
+  //* fail the strike if there's no entry for more than a day
+  // get current date
+  const date = new Date(),
+    curDay = date.getDate(),
+    curMonth = date.getMonth() + 1,
+    curYear = date.getFullYear();
+
+  // get last entry's date
+  const entries = getData(),
+    lastEntry = entries[entries.length - 1],
+    lastEntryDay = parseInt(lastEntry.date.substring(0, 2)),
+    lastEntryMonth = parseInt(lastEntry.date.substring(3, 5)),
+    lastEntryYear = lastEntry.year;
+
+  //TODO: this alg
+
+  if (lastEntryMonth == curMonth) {
+    // in the same month
+    if (lastEntryDay + 1 < curDay) {
+      // fail strikes
+      stat.dayStrike = 0;
+      stat.doubleStrike = 0;
+    }
+  } else if (curMonth == lastEntryMonth + 1) {
+    const daysInLastEntrysMonth = daysInMonth(lastEntryMonth, lastEntryYear);
+    if (lastEntryDay == daysInLastEntrysMonth && curDay == 1) {
+    }
+  }
+}
+
 function displayStats(stat) {
   const entriesDisplay = document.querySelector("#meditation-count > .stat"),
     daysDisplay = document.querySelector("#days-meditated > .stat"),
@@ -73,53 +213,6 @@ function displayStats(stat) {
   doubleDaysDisplay.textContent = stat.doubleDays;
   // days
   daysDisplay.textContent = stat.days;
-}
-
-function calculateDayStrike(stat) {
-  let prevEntryD = 0, // prev: previous
-    prevEntryM = 0,
-    prevEntryY = 0,
-    strike = 1,
-    entries = getData();
-
-  entries.forEach((entry) => {
-    const entryDay = parseInt(entry.date.substring(0, 2)), // get day
-      entryMonth = parseInt(entry.date.substring(3, 5)); // get month
-
-    if (entryDay != prevEntryD) {
-      // not the same day
-      if (entryMonth == prevEntryM) {
-        // same month
-        if (prevEntryD + 1 == entryDay) {
-          // one day ahead
-          strike++;
-        } else {
-          strike = 1; // strike fail
-        }
-      } else {
-        // not the same month
-        if (entryDay == 1) {
-          // current entry is day 1
-          const lastDayInPrevEntryMonth = daysInMonth(prevEntryM, prevEntryY);
-          if (prevEntryD == lastDayInPrevEntryMonth) {
-            // previous entry day is the last of it's month
-            strike++;
-          } else {
-            strike = 1; // strike fail
-          }
-        } else {
-          strike = 1; // strike fail
-        }
-      }
-
-      prevEntryD = entryDay;
-      prevEntryM = entryMonth;
-      prevEntryY = entry.year;
-      stat.dayStrike = strike;
-    }
-  });
-
-  return stat;
 }
 
 function daysInMonth(month, year) {
