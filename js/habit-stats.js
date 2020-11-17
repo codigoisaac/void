@@ -25,9 +25,6 @@ function setHabitStats() {
       stat.doubleDays++;
     }
 
-    // day strike
-    stat = calculateDayStrike(stat);
-
     // 2x day strike
     if (entry.count == 2) {
       // this day is a 2x day
@@ -53,11 +50,16 @@ function setHabitStats() {
     }
   });
 
+  // day strike
+  stat = calculateDayStrike(stat);
+
+  stat = checkStrikesFail(stat);
+
   displayStats(stat);
 }
 
 function calculateDayStrike(stat) {
-  let previousEntryDay = 0, //
+  let previousEntryDay = 0,
     previousEntryMonth = 0,
     previousEntryYear = 0,
     strike = 1,
@@ -156,44 +158,80 @@ function calculateDayStrike(stat) {
 
     previousEntryDay = currentEntryDay;
     previousEntryMonth = currentEntryMonth;
-    previousEntryYear = entry.year;
+    previousEntryYear = currentEntryYear;
     stat.dayStrike = strike;
   });
-
-  checkStrikeFail(stat);
 
   return stat;
 }
 
-function checkStrikeFail(stat) {
-  //* fail the strike if there's no entry for more than a day
+function checkStrikesFail(stat) {
+  //* fail the strikes if there's no entry for more than a day
   // get current date
   const date = new Date(),
-    curDay = date.getDate(),
-    curMonth = date.getMonth() + 1,
-    curYear = date.getFullYear();
+    currentDay = date.getDate(),
+    currentMonth = date.getMonth() + 1,
+    currentYear = date.getFullYear();
 
   // get last entry's date
   const entries = getData(),
     lastEntry = entries[entries.length - 1],
-    lastEntryDay = parseInt(lastEntry.date.substring(0, 2)),
-    lastEntryMonth = parseInt(lastEntry.date.substring(3, 5)),
-    lastEntryYear = lastEntry.year;
+    lastEntrysDay = parseInt(lastEntry.date.substring(0, 2)),
+    lastEntrysMonth = parseInt(lastEntry.date.substring(3, 5)),
+    lastEntrysYear = lastEntry.year;
 
-  //TODO: this alg
-
-  if (lastEntryMonth == curMonth) {
-    // in the same month
-    if (lastEntryDay + 1 < curDay) {
+  //* calculation
+  if (currentYear != lastEntrysYear) {
+    // different year
+    if (!(currentMonth == 1 && lastEntrysMonth == 12)) {
+      // not December / January
       // fail strikes
       stat.dayStrike = 0;
       stat.doubleStrike = 0;
+    } else {
+      // is December / January
+      const daysInLastEntrysMonth = daysInMonth(currentMonth, currentYear);
+      if (!(currentDay == 1 && lastEntrysDay == daysInLastEntrysMonth)) {
+        // not last / first day
+        // fail strikes
+        stat.dayStrike = 0;
+        stat.doubleStrike = 0;
+      }
     }
-  } else if (curMonth == lastEntryMonth + 1) {
-    const daysInLastEntrysMonth = daysInMonth(lastEntryMonth, lastEntryYear);
-    if (lastEntryDay == daysInLastEntrysMonth && curDay == 1) {
+  } else {
+    // same year
+    if (currentMonth != lastEntrysMonth) {
+      // different month
+      if (currentMonth == lastEntrysMonth + 1) {
+        // 1 month apart
+        const daysInLastEntrysMonth = daysInMonth(
+          lastEntrysMonth,
+          lastEntrysYear
+        );
+        if (!(lastEntrysDays == daysInLastEntrysMonth && currentDay == 1)) {
+          // not last / first day
+          // fail strikes
+          stat.dayStrike = 0;
+          stat.doubleStrike = 0;
+        }
+      } else {
+        // more than 1 month apart
+        // fail strikes
+        stat.dayStrike = 0;
+        stat.doubleStrike = 0;
+      }
+    } else {
+      // same month
+      if (currentDay > lastEntrysDay + 1) {
+        // more than 1 day apart
+        // fail strikes
+        stat.dayStrike = 0;
+        stat.doubleStrike = 0;
+      }
     }
   }
+
+  return stat;
 }
 
 function displayStats(stat) {
