@@ -68,8 +68,8 @@ function calculateDayStrike(stat) {
     entries = getData();
 
   entries.forEach((entry) => {
-    const currentEntryDay = parseInt(entry.date.substring(0, 2)), // get day
-      currentEntryMonth = parseInt(entry.date.substring(3, 5)), // get month
+    const currentEntryDay = entry.day,
+      currentEntryMonth = entry.month,
       currentEntryYear = entry.year;
 
     //* calculation
@@ -180,8 +180,8 @@ function checkStrikesFail(stat) {
   // get last entry's date
   const entries = getData(),
     lastEntry = entries[entries.length - 1],
-    lastEntrysDay = parseInt(lastEntry.date.substring(0, 2)),
-    lastEntrysMonth = parseInt(lastEntry.date.substring(3, 5)),
+    lastEntrysDay = lastEntry.day,
+    lastEntrysMonth = lastEntry.month,
     lastEntrysYear = lastEntry.year;
 
   //* calculation

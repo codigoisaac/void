@@ -3,7 +3,7 @@ addBtn.addEventListener("click", toggleFormOpen);
 const form = document.querySelector("#add-entry-form");
 form.addEventListener("submit", () => {
   // adding new / editing entry
-  editingEntry == "" ? addEntry(event) : editEntry();
+  editingEntry == "" ? addEntry() : editEntry();
 });
 
 const titleInput = document.querySelector("#add-entry-title"),
@@ -17,68 +17,14 @@ function fetchEntries() {
   const entries = getData();
   theEntries.innerHTML = "";
 
-  prepareAndDisplay(entries);
-
-  insertOmTooltip();
-
-  setHabitStats();
-  setOmTooltip();
-  checkNoEntriesMessage();
-}
-
-function getOtherEntriesWSameDate(entry, arrayOfEntries) {
-  // todo: check year too
-
-  return arrayOfEntries.filter((otherEntry) => otherEntry.date == entry.date);
-}
-
-function addDayHeader(entry, isOm, totalDays) {
-  theEntries.innerHTML += '<div class="day-info"></div>';
-  const dayInfo = theEntries.querySelectorAll(".day-info")[totalDays];
-  dayInfo.innerHTML += `
-        <div class="date">${entry.date}<span class="year">/${entry.year}</span></div>`;
-
-  // add om symbol when there is more than one entry in this day
-  if (isOm) {
-    dayInfo.innerHTML += '<div class="om"><i class="fas fa-om"></i></div>';
+  if (entries.length > 0) {
+    prepareAndDisplay(entries);
+    insertOmTooltip();
+    setHabitStats();
+    setOmTooltip();
   }
-}
 
-function injectEntryHTML(entry) {
-  theEntries.insertAdjacentHTML(
-    "beforeend",
-    `<div class="entry">
-      <div class="entry-header">
-        <div class="entry-title">${entry.title}</div>
-
-        <div class="entry-buttons">
-          <button class="edit-btn">
-            <i class="ri-pencil-line"></i>
-          </button>
-          <button class="delete-btn">
-            <i class="ri-close-line"></i>
-          </button>
-        </div>
-      </div>
-      
-      <div class="entry-text">${entry.note}</div>
-
-      <div class="entry-infos">
-        <div class="hour">${entry.time}</div>
-
-        <div class="number-in-the-day">${entry.count}</div>
-      </div>
-   </div>`
-  );
-}
-
-function insertOmTooltip() {
-  theEntries.insertAdjacentHTML(
-    "beforeend",
-    `<div id="om-tooltip">
-        O símbolo Om é adquirido nos dias em que você medita 2 vezes ou mais.
-    </div>`
-  );
+  checkNoEntriesMessage();
 }
 
 function prepareAndDisplay(entries) {
@@ -102,6 +48,49 @@ function prepareAndDisplay(entries) {
     setDelete(entry);
     setEdit(entry);
   }
+}
+
+function insertOmTooltip() {
+  theEntries.insertAdjacentHTML(
+    "beforeend",
+    `<div id="om-tooltip">
+        O símbolo Om é adquirido nos dias em que você medita 2 vezes ou mais.
+    </div>`
+  );
+}
+
+function getOtherEntriesWSameDate(entry, arrayOfEntries) {
+  // todo: check year too
+
+  return arrayOfEntries.filter((otherEntry) => otherEntry.date == entry.date);
+}
+
+function injectEntryHTML(entry) {
+  theEntries.insertAdjacentHTML(
+    "beforeend",
+    `<div class="entry">
+      <div class="entry-header">
+        <div class="entry-title">${entry.title}</div>
+
+        <div class="entry-buttons">
+          <button class="edit-btn">
+            <i class="ri-pencil-line"></i>
+          </button>
+          <button class="delete-btn">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="entry-text">${entry.note}</div>
+
+      <div class="entry-infos">
+        <div class="hour">${entry.hourNMinute}</div>
+
+        <div class="number-in-the-day">${entry.count}</div>
+      </div>
+   </div>`
+  );
 }
 
 function setDelete(entry) {
@@ -165,7 +154,19 @@ function setEdit(entry) {
   });
 }
 
-function addEntry(e) {
+function addDayHeader(entry, isOm, totalDays) {
+  theEntries.innerHTML += '<div class="day-info"></div>';
+  const dayInfo = theEntries.querySelectorAll(".day-info")[totalDays];
+  dayInfo.innerHTML += `
+        <div class="date">${entry.dayNMonth}<span class="year">/${entry.year}</span></div>`;
+
+  // add om symbol when there is more than one entry in this day
+  if (isOm) {
+    dayInfo.innerHTML += '<div class="om"><i class="fas fa-om"></i></div>';
+  }
+}
+
+function addEntry() {
   const entryText = getFormValues(),
     entryTime = getCurrentDateTime(),
     entryCount = setEntrysCountInDay(entryTime.dayNMonth);
@@ -189,28 +190,9 @@ function addEntry(e) {
   };
 
   saveEntry(entry);
-
-  // console.log("addEntry - entry: " + entry);
-
-  e.preventDefault();
   form.reset();
   toggleFormOpen();
   fetchEntries();
-}
-
-function setEntrysCountInDay(dayAndMonth) {
-  let numberInDay = 1;
-
-  if (localStorage.getItem("entries") != null) {
-    const entries = getData();
-    entries.forEach((entry) => {
-      if (entry.dayAndMonth == dayAndMonth) {
-        numberInDay++;
-      }
-    });
-  }
-
-  return numberInDay;
 }
 
 function getFormValues() {
@@ -228,14 +210,41 @@ function getCurrentDateTime() {
   const dateTime = {
     day: realDay(currentDate),
     month: realMonth(currentDate),
-    dayNMonth: day + "/" + month,
     year: currentDate.getFullYear(),
     hour: realHour(currentDate),
     minute: realMinute(currentDate),
-    hourNMinute: hour + ":" + minute,
   };
+  dateTime.dayNMonth = dateTime.day + "/" + dateTime.month;
+  dateTime.hourNMinute = dateTime.hour + ":" + dateTime.minute;
 
   return dateTime;
+}
+
+function setEntrysCountInDay(dayAndMonth) {
+  let numberInDay = 1;
+
+  if (localStorage.getItem("entries") != null) {
+    const entries = getData();
+    entries.forEach((entry) => {
+      if (entry.dayAndMonth == dayAndMonth) {
+        numberInDay++;
+      }
+    });
+  }
+
+  return numberInDay;
+}
+
+function saveEntry(entry) {
+  if (entry.title != "" || entry.note != "") {
+    // if at least one of the form fields are not empty
+    entries = getData();
+    entries.push(entry);
+    localStorage.setItem("entries", JSON.stringify(entries));
+  } else {
+    // if both form fields are empty
+    alert("Por favor insira alguma informação. O vazio não pode ser gravado.");
+  }
 }
 
 function toggleFormOpen() {
@@ -275,19 +284,7 @@ function realMinute(date) {
   return date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
 }
 
-function saveEntry(entry) {
-  if (entry.title != "" || entry.note != "") {
-    // if at least one of the form fields are not empty
-    entries = getData();
-    entries.push(entry);
-    localStorage.setItem("entries", JSON.stringify(entries));
-  } else {
-    // if both form fields are empty
-    alert("Por favor insira informação. O vazio não pode ser gravado.");
-  }
-}
-
-function editEntry(e) {
+function editEntry() {
   // copy data and modify given entry
   const entries = getData();
   entries.forEach((entry) => {
