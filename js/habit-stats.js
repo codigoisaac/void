@@ -1,53 +1,20 @@
-function setHabitStats() {
-  //
-  let stat = {
+let stat = {
     entries: 0,
     days: 0,
     doubleDays: 0,
     dayStrike: 0,
     doubleStrike: 0,
-  };
+  },
+  had2PlusYesterday = false;
 
-  let didIhad2PlusYesterday = false,
-    entries = getData();
+function setHabitStats() {
+  let entries = getData();
 
   entries.forEach((entry) => {
-    // entries count
-    stat.entries++;
-
-    // days
-    if (entry.count == 1) {
-      stat.days++;
-    }
-
-    // days 2x
-    if (entry.count == 2) {
-      stat.doubleDays++;
-    }
-
-    // 2x day strike
-    if (entry.count == 2) {
-      // this day is a 2x day
-      if (didIhad2PlusYesterday) {
-        // the last day i had 2plus meditations
-        stat.doubleStrike++;
-      } else {
-        // turn it true for tomorrow
-        didIhad2PlusYesterday = true;
-        stat.doubleStrike = 1;
-      }
-    } else if (entry.count == 1) {
-      // first entry in a day
-      if (entries.indexOf(entry) != entries.length - 1) {
-        // if there is a next entry
-        let nextEntry = entries[entries.indexOf(entry) + 1];
-        if (nextEntry.count != 2) {
-          // ...and the next entry is not today
-          stat.doubleStrike = 0; // 2+ strike fail
-          didIhad2PlusYesterday = false; // turn it false for tomorrow
-        }
-      }
-    }
+    statMeditations();
+    statDaysMeditated(entry);
+    statDaysMeditatedTwice(entry);
+    statDaysMeditatedTwiceStrike(entry, entries);
   });
 
   // day strike
@@ -57,7 +24,48 @@ function setHabitStats() {
   // check strikes fail
   stat = checkStrikesFail(stat);
 
-  displayStats(stat);
+  displayStats();
+}
+
+function statMeditations() {
+  stat.entries++;
+}
+
+function statDaysMeditated(entry) {
+  if (entry.count == 1) {
+    stat.days++;
+  }
+}
+
+function statDaysMeditatedTwice(entry) {
+  if (entry.count == 2) {
+    stat.doubleDays++;
+  }
+}
+
+function statDaysMeditatedTwiceStrike(entry, entries) {
+  if (entry.count == 2) {
+    // this day is a 2x day
+    if (had2PlusYesterday) {
+      // the last day i had 2plus meditations
+      stat.doubleStrike++; // increase strike
+    } else {
+      // turn it true for tomorrow
+      had2PlusYesterday = true;
+      stat.doubleStrike = 1; // fail strike
+    }
+  } else if (entry.count == 1) {
+    // first entry in a day
+    if (entries.indexOf(entry) != entries.length - 1) {
+      // if there is a next entry
+      let nextEntry = entries[entries.indexOf(entry) + 1];
+      if (nextEntry.count != 2) {
+        // ...and the next entry is not today
+        stat.doubleStrike = 0; // fail strike
+        had2PlusYesterday = false; // turn it false for tomorrow
+      }
+    }
+  }
 }
 
 function calculateDayStrike(stat) {
@@ -238,12 +246,14 @@ function checkStrikesFail(stat) {
   return stat;
 }
 
-function displayStats(stat) {
+function displayStats() {
   const entriesDisplay = document.querySelector("#meditation-count > .stat"),
     daysDisplay = document.querySelector("#days-meditated > .stat"),
     doubleDaysDisplay = document.querySelector("#days-meditated-twice > .stat"),
     dayStrikeDisplay = document.querySelector("#day-strike > .stat"),
     doubleStrikeDisplay = document.querySelector("#twice-day-strike > .stat");
+
+  console.log(stat);
 
   // 2x day strike
   doubleStrikeDisplay.textContent = stat.doubleStrike;

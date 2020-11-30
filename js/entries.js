@@ -35,8 +35,6 @@ function prepareAndDisplay(entries) {
       otherEntriesWSameDate = getOtherEntriesWSameDate(entry, entries),
       isOm = otherEntriesWSameDate.length > 1;
 
-    console.log(otherEntriesWSameDate);
-
     // add header only before last entry in a day
     if (entry.count == otherEntriesWSameDate.length) {
       // if it is the last entry in it's day
