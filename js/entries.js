@@ -150,6 +150,12 @@ function editEntry(e) {
   editingEntry = "";
 }
 
+function getOtherEntriesWSameDate(entry, arrayOfEntries) {
+  // todo: check year too
+
+  return arrayOfEntries.filter((otherEntry) => otherEntry.date == entry.date);
+}
+
 function fetchEntries() {
   // get data and where to display it
   const entries = getData();
@@ -159,33 +165,19 @@ function fetchEntries() {
 
   // prepare and display entries
   for (let i = entries.length - 1; i >= 0; i--) {
-    const entry = entries[i];
-    // get values from storage
-    let title = entry.title,
-      note = entry.note,
-      date = entry.dayNMonth,
-      year = entry.year,
-      time = entry.hourNMinute,
-      count = entry.count,
-      id = entry.id;
-
-    // get other entries with same date
-    let otherEntriesWSameDate = entries.filter(
-      // todo: check year too
-      (otherEntry) => otherEntry.date == entry.date
-    );
-
-    const isOm = otherEntriesWSameDate.length > 1;
+    const entry = entries[i],
+      otherEntriesWSameDate = getOtherEntriesWSameDate(entry, entries),
+      isOm = otherEntriesWSameDate.length > 1;
 
     // add date only before last entry in the day
-    if (count == otherEntriesWSameDate.length) {
+    if (entry.count == otherEntriesWSameDate.length) {
       theEntries.innerHTML += '<div class="day-info"></div>';
       // select the last day-info and add it to the totalDays count
       const dayInfo = theEntries.querySelectorAll(".day-info")[totalDays];
       totalDays++;
 
       dayInfo.innerHTML += `
-        <div class="date">${date}<span class="year">/${year}</span></div>`;
+        <div class="date">${entry.date}<span class="year">/${entry.year}</span></div>`;
 
       // add om symbol when there is more than one entry in this day
       if (isOm) {
@@ -198,7 +190,7 @@ function fetchEntries() {
       "beforeend",
       `<div class="entry">
         <div class="entry-header">
-          <div class="entry-title">${title}</div>
+          <div class="entry-title">${entry.title}</div>
 
           <div class="entry-buttons">
             <button class="edit-btn">
@@ -210,12 +202,12 @@ function fetchEntries() {
           </div>
         </div>
         
-        <div class="entry-text">${note}</div>
+        <div class="entry-text">${entry.note}</div>
 
         <div class="entry-infos">
-          <div class="hour">${time}</div>
+          <div class="hour">${entry.time}</div>
 
-          <div class="number-in-the-day">${count}</div>
+          <div class="number-in-the-day">${entry.count}</div>
         </div>
      </div>`
     );
