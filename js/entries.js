@@ -12,142 +12,18 @@ const titleInput = document.querySelector("#add-entry-title"),
 let isFormOpen = false,
   editingEntry = "";
 
-function toggleFormOpen() {
-  isFormOpen = !isFormOpen;
-
-  // display form
-  if (isFormOpen) {
-    addBtn.innerHTML = '<i class="ri-close-line"></i>';
-    form.classList.add("shown");
-    titleInput.focus();
-  } else {
-    addBtn.innerHTML = '<i class="ri-add-line"></i>';
-    form.classList.remove("shown");
-  }
-}
-
-function realDay(date) {
-  // get day number and add 0 in front if less than 10
-  return date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-}
-
-function realMonth(date) {
-  // get month number and add 0 in front if less than 10
-  // the +1 is because getMonth() is zero-based
-  return date.getMonth() + 1 < 10
-    ? "0" + (date.getMonth() + 1)
-    : date.getMonth() + 1;
-}
-
-function realHour(date) {
-  // get hour number and add 0 in front if less than 10
-  return date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-}
-
-function realMinute(date) {
-  // get minute number and add 0 in front if less than 10
-  return date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-}
-
-function getCurrentDateTime() {
-  const currentDate = new Date();
-
-  const dateTime = {
-    day: realDay(currentDate),
-    month: realMonth(currentDate),
-    dayNMonth: day + "/" + month,
-    year: currentDate.getFullYear(),
-    hour: realHour(currentDate),
-    minute: realMinute(currentDate),
-    hourNMinute: hour + ":" + minute,
-  };
-
-  return dateTime;
-}
-
-function getFormValues() {
-  const formValues = {
-    title: titleInput.value,
-    note: notesInput.value,
-  };
-
-  return formValues;
-}
-
-function setEntrysCountInDay(dayAndMonth) {
-  let numberInDay = 1;
-
-  if (localStorage.getItem("entries") != null) {
-    const entries = getData();
-    entries.forEach((entry) => {
-      if (entry.dayAndMonth == dayAndMonth) {
-        numberInDay++;
-      }
-    });
-  }
-
-  return numberInDay;
-}
-
-function saveEntry(entry) {
-  if (entry.title != "" || entry.note != "") {
-    // if at least one of the form fields are not empty
-    entries = getData();
-    entries.push(entry);
-    localStorage.setItem("entries", JSON.stringify(entries));
-  } else {
-    // if both form fields are empty
-    alert("Por favor insira informação. O vazio não pode ser gravado.");
-  }
-}
-
-function addEntry(e) {
-  const entryText = getFormValues(),
-    entryTime = getCurrentDateTime(),
-    entryCount = setEntrysCountInDay(entryTime.dayNMonth);
-
-  // add entry id
-  let entryId = chance.guid();
-
-  // create entry obj
-  let entry = {
-    title: entryText.title,
-    note: entryText.note,
-    day: entryTime.day,
-    month: entryTime.month,
-    dayNMonth: entryTime.dayNMonth,
-    year: entryTime.year,
-    hour: entryTime.hour,
-    minute: entryTime.minute,
-    hourNMinute: entryTime.hourNMinute,
-    count: entryCount,
-    id: entryId,
-  };
-
-  saveEntry(entry);
-
-  // console.log("addEntry - entry: " + entry);
-
-  e.preventDefault();
-  form.reset();
-  toggleFormOpen();
-  fetchEntries();
-}
-
-function editEntry(e) {
-  // copy data and modify given entry
+function fetchEntries() {
+  // get data and where to display it
   const entries = getData();
-  entries.forEach((entry) => {
-    if (entry.id == editingEntry.id) {
-      entry.title = titleInput.value;
-      entry.text = notesInput.value;
-    }
-  });
-  // overwrite data
-  localStorage.setItem("entries", JSON.stringify(entries));
+  theEntries.innerHTML = "";
 
-  fetchEntries();
-  editingEntry = "";
+  prepareAndDisplay(entries);
+
+  insertOmTooltip();
+
+  setHabitStats();
+  setOmTooltip();
+  checkNoEntriesMessage();
 }
 
 function getOtherEntriesWSameDate(entry, arrayOfEntries) {
@@ -196,14 +72,18 @@ function injectEntryHTML(entry) {
   );
 }
 
-function fetchEntries() {
-  // get data and where to display it
-  const entries = getData();
-  theEntries.innerHTML = "";
+function insertOmTooltip() {
+  theEntries.insertAdjacentHTML(
+    "beforeend",
+    `<div id="om-tooltip">
+        O símbolo Om é adquirido nos dias em que você medita 2 vezes ou mais.
+    </div>`
+  );
+}
 
+function prepareAndDisplay(entries) {
   let totalDays = 0; // number of days in which entries were made
 
-  // prepare and display entries
   for (let i = entries.length - 1; i >= 0; i--) {
     const entry = entries[i],
       otherEntriesWSameDate = getOtherEntriesWSameDate(entry, entries),
@@ -222,18 +102,6 @@ function fetchEntries() {
     setDelete(entry);
     setEdit(entry);
   }
-
-  // insert Om tooltip
-  theEntries.insertAdjacentHTML(
-    "beforeend",
-    `<div id="om-tooltip">
-        O símbolo Om é adquirido nos dias em que você medita 2 vezes ou mais.
-    </div>`
-  );
-
-  setHabitStats();
-  setOmTooltip();
-  checkNoEntriesMessage();
 }
 
 function setDelete(entry) {
@@ -295,6 +163,144 @@ function setEdit(entry) {
       }
     }
   });
+}
+
+function addEntry(e) {
+  const entryText = getFormValues(),
+    entryTime = getCurrentDateTime(),
+    entryCount = setEntrysCountInDay(entryTime.dayNMonth);
+
+  // add entry id
+  let entryId = chance.guid();
+
+  // create entry obj
+  let entry = {
+    title: entryText.title,
+    note: entryText.note,
+    day: entryTime.day,
+    month: entryTime.month,
+    dayNMonth: entryTime.dayNMonth,
+    year: entryTime.year,
+    hour: entryTime.hour,
+    minute: entryTime.minute,
+    hourNMinute: entryTime.hourNMinute,
+    count: entryCount,
+    id: entryId,
+  };
+
+  saveEntry(entry);
+
+  // console.log("addEntry - entry: " + entry);
+
+  e.preventDefault();
+  form.reset();
+  toggleFormOpen();
+  fetchEntries();
+}
+
+function setEntrysCountInDay(dayAndMonth) {
+  let numberInDay = 1;
+
+  if (localStorage.getItem("entries") != null) {
+    const entries = getData();
+    entries.forEach((entry) => {
+      if (entry.dayAndMonth == dayAndMonth) {
+        numberInDay++;
+      }
+    });
+  }
+
+  return numberInDay;
+}
+
+function getFormValues() {
+  const formValues = {
+    title: titleInput.value,
+    note: notesInput.value,
+  };
+
+  return formValues;
+}
+
+function getCurrentDateTime() {
+  const currentDate = new Date();
+
+  const dateTime = {
+    day: realDay(currentDate),
+    month: realMonth(currentDate),
+    dayNMonth: day + "/" + month,
+    year: currentDate.getFullYear(),
+    hour: realHour(currentDate),
+    minute: realMinute(currentDate),
+    hourNMinute: hour + ":" + minute,
+  };
+
+  return dateTime;
+}
+
+function toggleFormOpen() {
+  isFormOpen = !isFormOpen;
+
+  // display form
+  if (isFormOpen) {
+    addBtn.innerHTML = '<i class="ri-close-line"></i>';
+    form.classList.add("shown");
+    titleInput.focus();
+  } else {
+    addBtn.innerHTML = '<i class="ri-add-line"></i>';
+    form.classList.remove("shown");
+  }
+}
+
+function realDay(date) {
+  // get day number and add 0 in front if less than 10
+  return date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+}
+
+function realMonth(date) {
+  // get month number and add 0 in front if less than 10
+  // the +1 is because getMonth() is zero-based
+  return date.getMonth() + 1 < 10
+    ? "0" + (date.getMonth() + 1)
+    : date.getMonth() + 1;
+}
+
+function realHour(date) {
+  // get hour number and add 0 in front if less than 10
+  return date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+}
+
+function realMinute(date) {
+  // get minute number and add 0 in front if less than 10
+  return date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+}
+
+function saveEntry(entry) {
+  if (entry.title != "" || entry.note != "") {
+    // if at least one of the form fields are not empty
+    entries = getData();
+    entries.push(entry);
+    localStorage.setItem("entries", JSON.stringify(entries));
+  } else {
+    // if both form fields are empty
+    alert("Por favor insira informação. O vazio não pode ser gravado.");
+  }
+}
+
+function editEntry(e) {
+  // copy data and modify given entry
+  const entries = getData();
+  entries.forEach((entry) => {
+    if (entry.id == editingEntry.id) {
+      entry.title = titleInput.value;
+      entry.text = notesInput.value;
+    }
+  });
+  // overwrite data
+  localStorage.setItem("entries", JSON.stringify(entries));
+
+  fetchEntries();
+  editingEntry = "";
 }
 
 function overwriteForm(entry) {
