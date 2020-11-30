@@ -26,72 +26,111 @@ function toggleFormOpen() {
   }
 }
 
-function addEntry(e) {
-  // get values from form
-  const entryTitle = titleInput.value,
-    entryText = notesInput.value,
-    // get date info
-    date = new Date(),
-    // add '0' in front of day
-    entryDay = date.getDate() < 10 ? "0" + date.getDate() : date.getDate(),
-    // add '0' in front of month
-    entryMonth =
-      date.getMonth() + 1 < 10
-        ? "0" + (date.getMonth() + 1)
-        : date.getMonth() + 1,
-    entryDate = entryDay + "/" + entryMonth,
-    entryYear = date.getFullYear(),
-    // get time info // add '0's
-    entryHour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours(),
-    entryMinute =
-      date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes(),
-    entryTime = entryHour + ":" + entryMinute;
-  // count in the day
-  let entryDayCount = 1;
+function realDay(date) {
+  // get day number and add 0 in front if less than 10
+  return date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+}
+
+function realMonth(date) {
+  // get month number and add 0 in front if less than 10
+  // the +1 is because getMonth() is zero-based
+  return date.getMonth() + 1 < 10
+    ? "0" + (date.getMonth() + 1)
+    : date.getMonth() + 1;
+}
+
+function realHour(date) {
+  // get hour number and add 0 in front if less than 10
+  return date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+}
+
+function realMinute(date) {
+  // get minute number and add 0 in front if less than 10
+  return date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+}
+
+function getCurrentDateTime() {
+  const currentDate = new Date();
+
+  const dateTime = {
+    day: realDay(currentDate),
+    month: realMonth(currentDate),
+    dayNMonth: day + "/" + month,
+    year: currentDate.getFullYear(),
+    hour: realHour(currentDate),
+    minute: realMinute(currentDate),
+    hourNMinute: hour + ":" + minute,
+  };
+
+  return dateTime;
+}
+
+function getFormValues() {
+  const formValues = {
+    title: titleInput.value,
+    note: notesInput.value,
+  };
+
+  return formValues;
+}
+
+function setEntrysCountInDay(dayAndMonth) {
+  let numberInDay = 1;
+
   if (localStorage.getItem("entries") != null) {
     const entries = getData();
     entries.forEach((entry) => {
-      if (entry.date == entryDate) {
-        entryDayCount++;
+      if (entry.dayAndMonth == dayAndMonth) {
+        numberInDay++;
       }
     });
   }
+
+  return numberInDay;
+}
+
+function saveEntry(entry) {
+  if (entry.title != "" || entry.note != "") {
+    // if at least one of the form fields are not empty
+    entries = getData();
+    entries.push(entry);
+    localStorage.setItem("entries", JSON.stringify(entries));
+  } else {
+    // if both form fields are empty
+    alert("Por favor insira informação. O vazio não pode ser gravado.");
+  }
+}
+
+function addEntry(e) {
+  const entryText = getFormValues(),
+    entryTime = getCurrentDateTime(),
+    entryCount = setEntrysCountInDay(entryTime.dayNMonth);
+
   // add entry id
   let entryId = chance.guid();
 
   // create entry obj
   let entry = {
-    title: entryTitle,
-    text: entryText,
-    date: entryDate,
-    year: entryYear,
-    time: entryTime,
-    count: entryDayCount,
+    title: entryText.title,
+    note: entryText.note,
+    day: entryTime.day,
+    month: entryTime.month,
+    dayNMonth: entryTime.dayNMonth,
+    year: entryTime.year,
+    hour: entryTime.hour,
+    minute: entryTime.minute,
+    hourNMinute: entryTime.hourNMinute,
+    count: entryCount,
     id: entryId,
   };
 
-  // save
-  // if form is not empty
-  if (entryTitle != "" || entryText != "") {
-    // if storage has no entries
-    if (localStorage.getItem("entries") == null) {
-      let entries = [];
-      entries.push(entry);
-      localStorage.setItem("entries", JSON.stringify(entries));
-    } else {
-      let entries = JSON.parse(localStorage.getItem("entries"));
-      entries.push(entry);
-      localStorage.setItem("entries", JSON.stringify(entries));
-    }
-  } else {
-    alert("Por favor insira informação. Silêncio não pode ser gravado.");
-  }
+  saveEntry(entry);
+
+  // console.log("addEntry - entry: " + entry);
 
   e.preventDefault();
-
   form.reset();
   toggleFormOpen();
-
   fetchEntries();
 }
 
@@ -123,22 +162,23 @@ function fetchEntries() {
     const entry = entries[i];
     // get values from storage
     let title = entry.title,
-      text = entry.text,
-      date = entry.date,
+      note = entry.note,
+      date = entry.dayNMonth,
       year = entry.year,
-      time = entry.time,
+      time = entry.hourNMinute,
       count = entry.count,
       id = entry.id;
 
     // get other entries with same date
-    let entriesInDay = entries.filter(
+    let otherEntriesWSameDate = entries.filter(
+      // todo: check year too
       (otherEntry) => otherEntry.date == entry.date
     );
 
-    const isOm = entriesInDay.length > 1;
+    const isOm = otherEntriesWSameDate.length > 1;
 
     // add date only before last entry in the day
-    if (count == entriesInDay.length) {
+    if (count == otherEntriesWSameDate.length) {
       theEntries.innerHTML += '<div class="day-info"></div>';
       // select the last day-info and add it to the totalDays count
       const dayInfo = theEntries.querySelectorAll(".day-info")[totalDays];
@@ -170,7 +210,7 @@ function fetchEntries() {
           </div>
         </div>
         
-        <div class="entry-text">${text}</div>
+        <div class="entry-text">${note}</div>
 
         <div class="entry-infos">
           <div class="hour">${time}</div>

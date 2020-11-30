@@ -52,7 +52,9 @@ function setHabitStats() {
 
   // day strike
   stat = calculateDayStrike(stat);
-
+  // todo: double day strike
+  // stat = calculateDoubleDayStrike(stat);
+  // check strikes fail
   stat = checkStrikesFail(stat);
 
   displayStats(stat);
@@ -164,6 +166,8 @@ function calculateDayStrike(stat) {
 
   return stat;
 }
+
+// function calculateDoubleDayStrike(stat) {}
 
 function checkStrikesFail(stat) {
   //* fail the strikes if there's no entry for more than a day
