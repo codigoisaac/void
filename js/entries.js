@@ -156,6 +156,46 @@ function getOtherEntriesWSameDate(entry, arrayOfEntries) {
   return arrayOfEntries.filter((otherEntry) => otherEntry.date == entry.date);
 }
 
+function addDayHeader(entry, isOm, totalDays) {
+  theEntries.innerHTML += '<div class="day-info"></div>';
+  const dayInfo = theEntries.querySelectorAll(".day-info")[totalDays];
+  dayInfo.innerHTML += `
+        <div class="date">${entry.date}<span class="year">/${entry.year}</span></div>`;
+
+  // add om symbol when there is more than one entry in this day
+  if (isOm) {
+    dayInfo.innerHTML += '<div class="om"><i class="fas fa-om"></i></div>';
+  }
+}
+
+function injectEntryHTML(entry) {
+  theEntries.insertAdjacentHTML(
+    "beforeend",
+    `<div class="entry">
+      <div class="entry-header">
+        <div class="entry-title">${entry.title}</div>
+
+        <div class="entry-buttons">
+          <button class="edit-btn">
+            <i class="ri-pencil-line"></i>
+          </button>
+          <button class="delete-btn">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="entry-text">${entry.note}</div>
+
+      <div class="entry-infos">
+        <div class="hour">${entry.time}</div>
+
+        <div class="number-in-the-day">${entry.count}</div>
+      </div>
+   </div>`
+  );
+}
+
 function fetchEntries() {
   // get data and where to display it
   const entries = getData();
@@ -169,48 +209,14 @@ function fetchEntries() {
       otherEntriesWSameDate = getOtherEntriesWSameDate(entry, entries),
       isOm = otherEntriesWSameDate.length > 1;
 
-    // add date only before last entry in the day
+    // add header only before last entry in a day
     if (entry.count == otherEntriesWSameDate.length) {
-      theEntries.innerHTML += '<div class="day-info"></div>';
-      // select the last day-info and add it to the totalDays count
-      const dayInfo = theEntries.querySelectorAll(".day-info")[totalDays];
+      // if it is the last entry in it's day
+      addDayHeader(entry, isOm, totalDays);
       totalDays++;
-
-      dayInfo.innerHTML += `
-        <div class="date">${entry.date}<span class="year">/${entry.year}</span></div>`;
-
-      // add om symbol when there is more than one entry in this day
-      if (isOm) {
-        dayInfo.innerHTML += '<div class="om"><i class="fas fa-om"></i></div>';
-      }
     }
 
-    // inject HTML
-    theEntries.insertAdjacentHTML(
-      "beforeend",
-      `<div class="entry">
-        <div class="entry-header">
-          <div class="entry-title">${entry.title}</div>
-
-          <div class="entry-buttons">
-            <button class="edit-btn">
-              <i class="ri-pencil-line"></i>
-            </button>
-            <button class="delete-btn">
-              <i class="ri-close-line"></i>
-            </button>
-          </div>
-        </div>
-        
-        <div class="entry-text">${entry.note}</div>
-
-        <div class="entry-infos">
-          <div class="hour">${entry.time}</div>
-
-          <div class="number-in-the-day">${entry.count}</div>
-        </div>
-     </div>`
-    );
+    injectEntryHTML(entry);
 
     // set buttons
     setDelete(entry);
