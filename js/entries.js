@@ -35,6 +35,8 @@ function prepareAndDisplay(entries) {
       otherEntriesWSameDate = getOtherEntriesWSameDate(entry, entries),
       isOm = otherEntriesWSameDate.length > 1;
 
+    console.log(otherEntriesWSameDate);
+
     // add header only before last entry in a day
     if (entry.count == otherEntriesWSameDate.length) {
       // if it is the last entry in it's day
@@ -62,7 +64,21 @@ function insertOmTooltip() {
 function getOtherEntriesWSameDate(entry, arrayOfEntries) {
   // todo: check year too
 
-  return arrayOfEntries.filter((otherEntry) => otherEntry.date == entry.date);
+  return arrayOfEntries.filter(
+    (otherEntry) => otherEntry.dayNMonth == entry.dayNMonth
+  );
+}
+
+function addDayHeader(entry, isOm, totalDays) {
+  theEntries.innerHTML += '<div class="day-info"></div>';
+  const dayInfo = theEntries.querySelectorAll(".day-info")[totalDays];
+  dayInfo.innerHTML += `
+    <div class="date">${entry.dayNMonth}<span class="year">/${entry.year}</span></div>`;
+
+  // add om symbol when there is more than one entry in this day
+  if (isOm) {
+    dayInfo.innerHTML += '<div class="om"><i class="fas fa-om"></i></div>';
+  }
 }
 
 function injectEntryHTML(entry) {
@@ -154,22 +170,10 @@ function setEdit(entry) {
   });
 }
 
-function addDayHeader(entry, isOm, totalDays) {
-  theEntries.innerHTML += '<div class="day-info"></div>';
-  const dayInfo = theEntries.querySelectorAll(".day-info")[totalDays];
-  dayInfo.innerHTML += `
-        <div class="date">${entry.dayNMonth}<span class="year">/${entry.year}</span></div>`;
-
-  // add om symbol when there is more than one entry in this day
-  if (isOm) {
-    dayInfo.innerHTML += '<div class="om"><i class="fas fa-om"></i></div>';
-  }
-}
-
 function addEntry() {
   const entryText = getFormValues(),
     entryTime = getCurrentDateTime(),
-    entryCount = setEntrysCountInDay(entryTime.dayNMonth);
+    entryCount = setEntrysCountInDay(entryTime.totalDate);
 
   // add entry id
   let entryId = chance.guid();
@@ -182,6 +186,7 @@ function addEntry() {
     month: entryTime.month,
     dayNMonth: entryTime.dayNMonth,
     year: entryTime.year,
+    totalDate: entryTime.totalDate,
     hour: entryTime.hour,
     minute: entryTime.minute,
     hourNMinute: entryTime.hourNMinute,
@@ -215,18 +220,20 @@ function getCurrentDateTime() {
     minute: realMinute(currentDate),
   };
   dateTime.dayNMonth = dateTime.day + "/" + dateTime.month;
+  dateTime.totalDate =
+    dateTime.day + "/" + dateTime.month + "/" + dateTime.year;
   dateTime.hourNMinute = dateTime.hour + ":" + dateTime.minute;
 
   return dateTime;
 }
 
-function setEntrysCountInDay(dayAndMonth) {
+function setEntrysCountInDay(totalDate) {
   let numberInDay = 1;
 
-  if (localStorage.getItem("entries") != null) {
-    const entries = getData();
+  const entries = getData();
+  if (entries.length > 0) {
     entries.forEach((entry) => {
-      if (entry.dayAndMonth == dayAndMonth) {
+      if (entry.totalDate == totalDate) {
         numberInDay++;
       }
     });
