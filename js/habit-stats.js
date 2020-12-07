@@ -36,24 +36,23 @@ function stat_DaysMeditated() {
 }
 
 function stat_DaysMeditatedStrike() {
-  let previousEntryDay = 0,
-    previousEntryMonth = 0,
-    previousEntryYear = 0,
-    strike = 1;
+  let strike = 1;
 
-  getData().forEach((entry) => {
-    const currentEntryDay = entry.day,
-      currentEntryMonth = entry.month,
-      currentEntryYear = entry.year;
+  let previousEntry = {
+    day: 0,
+    month: 0,
+    year: 0,
+  };
 
+  getData().forEach((currentEntry) => {
     //* calculation
-    if (currentEntryDay != previousEntryDay) {
+    if (currentEntry.day != previousEntry.day) {
       // different day
-      if (currentEntryMonth == previousEntryMonth) {
+      if (currentEntry.month == previousEntry.month) {
         // same month
-        if (currentEntryYear == previousEntryYear) {
+        if (currentEntry.year == previousEntry.year) {
           // same year
-          if (previousEntryDay + 1 == currentEntryDay) {
+          if (previousEntry.day + 1 == currentEntry.day) {
             // 1 day difference
             strike++; // increase strike
           } else {
@@ -68,19 +67,19 @@ function stat_DaysMeditatedStrike() {
       } else {
         // different day and
         // different month
-        if (currentEntryYear == previousEntryYear) {
+        if (currentEntry.year == previousEntry.year) {
           // same year
-          if (currentEntryMonth == previousEntryMonth + 1) {
+          if (currentEntry.month == previousEntry.month + 1) {
             // 1 month difference
 
             // get number of days in previuous entry's month
             const daysInPrevEntrysMonth = daysInMonth(
-              previousEntryMonth,
-              previousEntryYear
+              previousEntry.month,
+              previousEntry.year
             );
             if (
-              previousEntryDay == daysInPrevEntrysMonth &&
-              currentEntryDay == 1
+              previousEntry.day == daysInPrevEntrysMonth &&
+              currentEntry.day == 1
             ) {
               // previous entry is in last day of its month and
               // current entry is in first day of its month
@@ -96,17 +95,17 @@ function stat_DaysMeditatedStrike() {
           // different day,
           // different month and
           // different year
-          if (previousEntryMonth == 12 && currentEntryMonth == 1) {
+          if (previousEntry.month == 12 && currentEntry.month == 1) {
             // from December to January
 
             // get number of days in previuous entry's month
             const daysInPrevEntrysMonth = daysInMonth(
-              previousEntryMonth,
-              previousEntryYear
+              previousEntry.month,
+              previousEntry.year
             );
             if (
-              previousEntryDay == daysInPrevEntrysMonth &&
-              currentEntryDay == 1
+              previousEntry.day == daysInPrevEntrysMonth &&
+              currentEntry.day == 1
             ) {
               // previous entry is in last day of December and
               // current entry is in first day of January
@@ -123,8 +122,8 @@ function stat_DaysMeditatedStrike() {
     } else {
       // same day number
       if (
-        currentEntryMonth != previousEntryMonth ||
-        currentEntryYear != previousEntryYear
+        currentEntry.month != previousEntry.month ||
+        currentEntry.year != previousEntry.year
       ) {
         // different month or
         // different year
@@ -132,9 +131,9 @@ function stat_DaysMeditatedStrike() {
       }
     }
 
-    previousEntryDay = currentEntryDay;
-    previousEntryMonth = currentEntryMonth;
-    previousEntryYear = currentEntryYear;
+    previousEntry.day = currentEntry.day;
+    previousEntry.month = currentEntry.month;
+    previousEntry.year = currentEntry.year;
     stat.dayStrike = strike;
   });
 }
