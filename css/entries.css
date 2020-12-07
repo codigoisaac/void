@@ -90,6 +90,7 @@
 #add-entry-text {
   align-self: stretch;
   resize: vertical; /* for textarea only */
+  font-family: "Ubuntu", sans-serif;
 }
 #open-form-btn {
   background-color: var(--white);
