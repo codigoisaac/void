@@ -13,6 +13,7 @@ function setHabitStats() {
   entries.forEach((entry) => {
     statMeditations();
     statDaysMeditated(entry);
+    statDaysMeditatedStrike(entry);
     statDaysMeditatedTwice(entry);
     statDaysMeditatedTwiceStrike(entry, entries);
   });
@@ -20,7 +21,6 @@ function setHabitStats() {
   // day strike
   stat = calculateDayStrike(stat);
   // todo: double day strike
-  // stat = calculateDoubleDayStrike(stat);
   // check strikes fail
   stat = checkStrikesFail(stat);
 
@@ -35,6 +35,10 @@ function statDaysMeditated(entry) {
   if (entry.count == 1) {
     stat.days++;
   }
+}
+
+function statDaysMeditatedStrike(entry) {
+  //* in here will come calculateDayStrike()
 }
 
 function statDaysMeditatedTwice(entry) {

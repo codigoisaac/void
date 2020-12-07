@@ -18,7 +18,7 @@ function fetchEntries() {
   theEntries.innerHTML = "";
 
   if (entries.length > 0) {
-    prepareAndDisplay(entries);
+    prepareAndDisplayEntries(entries);
     insertOmTooltip();
     setHabitStats();
     setOmTooltip();
@@ -27,7 +27,7 @@ function fetchEntries() {
   checkNoEntriesMessage();
 }
 
-function prepareAndDisplay(entries) {
+function prepareAndDisplayEntries(entries) {
   let totalDays = 0; // number of days in which entries were made
 
   for (let i = entries.length - 1; i >= 0; i--) {
@@ -60,10 +60,8 @@ function insertOmTooltip() {
 }
 
 function getOtherEntriesWSameDate(entry, arrayOfEntries) {
-  // todo: check year too
-
   return arrayOfEntries.filter(
-    (otherEntry) => otherEntry.dayNMonth == entry.dayNMonth
+    (otherEntry) => otherEntry.totalDate == entry.totalDate
   );
 }
 
