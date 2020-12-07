@@ -8,14 +8,15 @@ let stat = {
   had2PlusYesterday = false;
 
 function setHabitStats() {
+  // set stats
   stat_Meditations();
   stat_DaysMeditated();
   stat_DaysMeditatedStrike();
   stat_DaysMeditatedTwice();
   stat_DaysMeditatedTwiceStrike();
 
-  // check strikes fail
-  stat = checkStrikesFail(stat);
+  // check strikes fail - according to current date
+  checkStrikesFail();
 
   displayStats();
 }
@@ -157,12 +158,12 @@ function stat_DaysMeditatedTwiceStrike() {
       } else {
         // turn it true for tomorrow
         had2PlusYesterday = true;
-        stat.doubleStrike = 1; // fail strike
+        stat.doubleStrike = 1; // start/restart strike
       }
     } else if (entry.count == 1) {
       // first entry in a day
       if (entries.indexOf(entry) != entries.length - 1) {
-        // if there is a next entry
+        // if this is not the last entry in the array - there is a next entry
         let nextEntry = entries[entries.indexOf(entry) + 1];
         if (nextEntry.count != 2) {
           // ...and the next entry is not today
@@ -174,9 +175,7 @@ function stat_DaysMeditatedTwiceStrike() {
   });
 }
 
-// function calculateDoubleDayStrike(stat) {}
-
-function checkStrikesFail(stat) {
+function checkStrikesFail() {
   //* fail the strikes if there's no entry for more than a day
   // get current date
   const date = new Date(),
@@ -241,8 +240,6 @@ function checkStrikesFail(stat) {
       }
     }
   }
-
-  return stat;
 }
 
 function displayStats() {
@@ -252,17 +249,16 @@ function displayStats() {
     dayStrikeDisplay = document.querySelector("#day-strike > .stat"),
     doubleStrikeDisplay = document.querySelector("#twice-day-strike > .stat");
 
-  console.log(stat);
-
   // 2x day strike
   doubleStrikeDisplay.textContent = stat.doubleStrike;
   // day strike
   dayStrikeDisplay.textContent = stat.dayStrike;
-  // entries
+
+  // meditations
   entriesDisplay.textContent = stat.entries;
-  // days 2x
+  // days meditated 2x
   doubleDaysDisplay.textContent = stat.doubleDays;
-  // days
+  // days meditated
   daysDisplay.textContent = stat.days;
 }
 
