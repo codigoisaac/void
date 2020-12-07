@@ -28,8 +28,6 @@ function fetchEntries() {
 }
 
 function prepareAndDisplayEntries(entries) {
-  let totalDays = 0; // number of days in which entries were made
-
   for (let i = entries.length - 1; i >= 0; i--) {
     const entry = entries[i],
       otherEntriesWSameDate = getOtherEntriesWSameDate(entry, entries),
@@ -38,8 +36,7 @@ function prepareAndDisplayEntries(entries) {
     // add header only before last entry in a day
     if (entry.count == otherEntriesWSameDate.length) {
       // if it is the last entry in it's day
-      addDayHeader(entry, isOm, totalDays);
-      totalDays++;
+      addDayHeader(entry, isOm);
     }
 
     injectEntryHTML(entry);
@@ -65,9 +62,10 @@ function getOtherEntriesWSameDate(entry, arrayOfEntries) {
   );
 }
 
-function addDayHeader(entry, isOm, totalDays) {
+function addDayHeader(entry, isOm) {
   theEntries.innerHTML += '<div class="day-info"></div>';
-  const dayInfo = theEntries.querySelectorAll(".day-info")[totalDays];
+  const allDayInfos = theEntries.querySelectorAll(".day-info"),
+    dayInfo = allDayInfos[allDayInfos.length - 1];
   dayInfo.innerHTML += `
     <div class="date">${entry.dayNMonth}<span class="year">/${entry.year}</span></div>`;
 
