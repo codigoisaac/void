@@ -21,8 +21,7 @@ function setHabitStats() {
 }
 
 function stat_Meditations() {
-  entries = getData();
-  entries.forEach((entry) => {
+  getData().forEach((entry) => {
     stat.entries++;
   });
 }
@@ -148,7 +147,8 @@ function stat_DaysMeditatedTwice() {
 }
 
 function stat_DaysMeditatedTwiceStrike() {
-  getData().forEach((entry) => {
+  let entries = getData();
+  entries.forEach((entry) => {
     if (entry.count == 2) {
       // this day is a 2x day
       if (had2PlusYesterday) {
@@ -161,9 +161,9 @@ function stat_DaysMeditatedTwiceStrike() {
       }
     } else if (entry.count == 1) {
       // first entry in a day
-      if (getData().indexOf(entry) != getData().length - 1) {
+      if (entries.indexOf(entry) != entries.length - 1) {
         // if there is a next entry
-        let nextEntry = getData()[getData().indexOf(entry) + 1];
+        let nextEntry = entries[entries.indexOf(entry) + 1];
         if (nextEntry.count != 2) {
           // ...and the next entry is not today
           stat.doubleStrike = 0; // fail strike
