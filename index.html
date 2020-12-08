@@ -115,7 +115,32 @@
             rows="10"
           ></textarea>
           <!-- Date  -->
-          <input type="date" name="date" id="add-entry-date" />
+          <div id="date-inputs">
+            <input
+              type="number"
+              name="day-input"
+              id="day-input"
+              placeholder="Dia"
+              class="date-input"
+            />
+            /
+            <input
+              type="number"
+              name="month-input"
+              id="month-input"
+              placeholder="Mês"
+              class="date-input"
+            />
+            /
+            <input
+              type="number"
+              name="year-input"
+              id="year-input"
+              placeholder="Ano"
+              class="date-input"
+            />
+          </div>
+          <!-- Submit  -->
           <button type="submit">+ Adicionar</button>
         </form>
 

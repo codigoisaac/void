@@ -109,6 +109,12 @@
   justify-content: center;
   align-items: center;
 }
+#date-inputs {
+  padding: 0;
+}
+.date-input {
+  max-width: 4rem;
+}
 
 /* the entries  */
 #the-entries {
