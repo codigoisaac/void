@@ -6,8 +6,15 @@ form.addEventListener("submit", () => {
   editingEntry == "" ? addEntry() : editEntry();
 });
 
-const titleInput = document.querySelector("#add-entry-title"),
-  notesInput = document.querySelector("#add-entry-text");
+const inputs = {
+  title: document.querySelector("#add-entry-title"),
+  note: document.querySelector("#add-entry-text"),
+  day: document.querySelector("#day-input"),
+  month: document.querySelector("#month-input"),
+  year: document.querySelector("#year-input"),
+  hour: document.querySelector("#hour-input"),
+  minute: document.querySelector("#minute-input"),
+};
 
 let isFormOpen = false,
   editingEntry = "";
@@ -67,7 +74,7 @@ function addDayHeader(entry, isOm) {
   const allDayInfos = theEntries.querySelectorAll(".day-info"),
     dayInfo = allDayInfos[allDayInfos.length - 1];
   dayInfo.innerHTML += `
-    <div class="date">${entry.dayNMonth}<span class="year">/${entry.year}</span></div>`;
+    <div class="date">${entry.dayAndMonth}<span class="year">/${entry.year}</span></div>`;
 
   // add om symbol when there is more than one entry in this day
   if (isOm) {
@@ -95,7 +102,7 @@ function injectEntryHTML(entry) {
       <div class="entry-text">${entry.note}</div>
 
       <div class="entry-infos">
-        <div class="hour">${entry.hourNMinute}</div>
+        <div class="hour">${entry.hourAndMinute}</div>
 
         <div class="number-in-the-day">${entry.count}</div>
       </div>
@@ -146,8 +153,8 @@ function setEdit(entry) {
     isFormOpen ? null : toggleFormOpen();
     // overwrite values only if form is empty or equal to entry
     if (
-      (titleInput.value == "" && notesInput.value == "") ||
-      (titleInput.value == entry.title && notesInput.value == entry.text)
+      (inputs.title.value == "" && inputs.note.value == "") ||
+      (inputs.title.value == entry.title && inputs.note.value == entry.note)
     ) {
       overwriteForm(entry);
     }
@@ -165,25 +172,25 @@ function setEdit(entry) {
 }
 
 function addEntry() {
-  const entryText = getFormValues(),
-    entryTime = getCurrentDateTime(),
-    entryCount = setEntrysCountInDay(entryTime.totalDate);
+  const enteredValues = getFormValues(),
+    extraValues = setExtraEntryValues(enteredValues),
+    entryCount = setEntrysCountInDay(enteredValues.totalDate);
 
   // add entry id
   let entryId = chance.guid();
 
   // create entry obj
   let entry = {
-    title: entryText.title,
-    note: entryText.note,
-    day: entryTime.day,
-    month: entryTime.month,
-    dayNMonth: entryTime.dayNMonth,
-    year: entryTime.year,
-    totalDate: entryTime.totalDate,
-    hour: entryTime.hour,
-    minute: entryTime.minute,
-    hourNMinute: entryTime.hourNMinute,
+    title: enteredValues.title,
+    note: enteredValues.note,
+    day: enteredValues.day,
+    month: enteredValues.month,
+    dayAndMonth: extraValues.dayAndMonth,
+    year: enteredValues.year,
+    totalDate: extraValues.totalDate,
+    hour: enteredValues.hour,
+    minute: enteredValues.minute,
+    hourAndMinute: extraValues.hourAndMinute,
     count: entryCount,
     id: entryId,
   };
@@ -196,11 +203,26 @@ function addEntry() {
 
 function getFormValues() {
   const formValues = {
-    title: titleInput.value,
-    note: notesInput.value,
+    title: inputs.title.value,
+    note: inputs.note.value,
+    day: inputs.day.value,
+    month: inputs.month.value,
+    year: inputs.year.value,
+    hour: inputs.hour.value,
+    minute: inputs.minute.value,
   };
 
   return formValues;
+}
+
+function setExtraEntryValues(values) {
+  const extraValues = {
+    dayAndMonth: values.day + "/" + values.month,
+    totalDate: values.day + "/" + values.month + "/" + values.year,
+    hourAndMinute: values.hour + ":" + values.minute,
+  };
+
+  return extraValues;
 }
 
 function getCurrentDateTime() {
@@ -255,7 +277,9 @@ function toggleFormOpen() {
   if (isFormOpen) {
     addBtn.innerHTML = '<i class="ri-close-line"></i>';
     form.classList.add("shown");
-    titleInput.focus();
+    inputs.title.focus();
+
+    getDateTimeIntoInputs();
   } else {
     addBtn.innerHTML = '<i class="ri-add-line"></i>';
     form.classList.remove("shown");
@@ -285,13 +309,22 @@ function realMinute(date) {
   return date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
 }
 
+function getDateTimeIntoInputs() {
+  const dateTime = getCurrentDateTime();
+  document.querySelector("#day-input").value = dateTime.day;
+  document.querySelector("#month-input").value = dateTime.month;
+  document.querySelector("#year-input").value = dateTime.year;
+  document.querySelector("#hour-input").value = dateTime.hour;
+  document.querySelector("#minute-input").value = dateTime.minute;
+}
+
 function editEntry() {
   // copy data and modify given entry
   const entries = getData();
   entries.forEach((entry) => {
     if (entry.id == editingEntry.id) {
-      entry.title = titleInput.value;
-      entry.text = notesInput.value;
+      entry.title = inputs.title.value;
+      entry.note = inputs.note.value;
     }
   });
   // overwrite data
@@ -302,8 +335,8 @@ function editEntry() {
 }
 
 function overwriteForm(entry) {
-  titleInput.value = entry.title;
-  notesInput.value = entry.text;
+  inputs.title.value = entry.title;
+  inputs.note.value = entry.note;
   editingEntry = entry;
 }
 
