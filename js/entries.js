@@ -172,8 +172,8 @@ function setEdit(entry) {
 }
 
 function addEntry() {
-  const enteredValues = getFormValues(),
-    extraValues = setExtraEntryValues(enteredValues),
+  const formValues = getFormValues(),
+    extraValues = setExtraEntryValues(formValues),
     entryCount = setEntrysCountInDay(extraValues.totalDate);
 
   // add entry id
@@ -181,15 +181,15 @@ function addEntry() {
 
   // create entry obj
   let entry = {
-    title: enteredValues.title,
-    note: enteredValues.note,
-    day: enteredValues.day,
-    month: enteredValues.month,
+    title: formValues.title,
+    note: formValues.note,
+    day: formValues.day,
+    month: formValues.month,
     dayAndMonth: extraValues.dayAndMonth,
-    year: enteredValues.year,
+    year: formValues.year,
     totalDate: extraValues.totalDate,
-    hour: enteredValues.hour,
-    minute: enteredValues.minute,
+    hour: formValues.hour,
+    minute: formValues.minute,
     hourAndMinute: extraValues.hourAndMinute,
     count: entryCount,
     id: entryId,
@@ -219,24 +219,6 @@ function setExtraEntryValues(values) {
     totalDate: values.day + "/" + values.month + "/" + values.year,
     hourAndMinute: values.hour + ":" + values.minute,
   };
-}
-
-function getCurrentDateTime() {
-  const currentDate = new Date();
-
-  const dateTime = {
-    day: realDay(currentDate),
-    month: realMonth(currentDate),
-    year: currentDate.getFullYear(),
-    hour: realHour(currentDate),
-    minute: realMinute(currentDate),
-  };
-  dateTime.dayNMonth = dateTime.day + "/" + dateTime.month;
-  dateTime.totalDate =
-    dateTime.day + "/" + dateTime.month + "/" + dateTime.year;
-  dateTime.hourNMinute = dateTime.hour + ":" + dateTime.minute;
-
-  return dateTime;
 }
 
 function setEntrysCountInDay(totalDate) {
@@ -282,6 +264,29 @@ function toggleFormOpen() {
   }
 }
 
+function getDateTimeIntoInputs() {
+  const dateTime = getCurrentDateTime();
+  document.querySelector("#day-input").value = dateTime.day;
+  document.querySelector("#month-input").value = dateTime.month;
+  document.querySelector("#year-input").value = dateTime.year;
+  document.querySelector("#hour-input").value = dateTime.hour;
+  document.querySelector("#minute-input").value = dateTime.minute;
+}
+
+function getCurrentDateTime() {
+  const currentDate = new Date();
+
+  const dateTime = {
+    day: realDay(currentDate),
+    month: realMonth(currentDate),
+    year: currentDate.getFullYear(),
+    hour: realHour(currentDate),
+    minute: realMinute(currentDate),
+  };
+
+  return dateTime;
+}
+
 function realDay(date) {
   // get day number and add 0 in front if less than 10
   return date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
@@ -303,15 +308,6 @@ function realHour(date) {
 function realMinute(date) {
   // get minute number and add 0 in front if less than 10
   return date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-}
-
-function getDateTimeIntoInputs() {
-  const dateTime = getCurrentDateTime();
-  document.querySelector("#day-input").value = dateTime.day;
-  document.querySelector("#month-input").value = dateTime.month;
-  document.querySelector("#year-input").value = dateTime.year;
-  document.querySelector("#hour-input").value = dateTime.hour;
-  document.querySelector("#minute-input").value = dateTime.minute;
 }
 
 function editEntry() {
