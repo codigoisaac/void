@@ -202,7 +202,7 @@ function addEntry() {
 }
 
 function getFormValues() {
-  const formValues = {
+  return {
     title: inputs.title.value,
     note: inputs.note.value,
     day: inputs.day.value,
@@ -211,18 +211,14 @@ function getFormValues() {
     hour: inputs.hour.value,
     minute: inputs.minute.value,
   };
-
-  return formValues;
 }
 
 function setExtraEntryValues(values) {
-  const extraValues = {
+  return {
     dayAndMonth: values.day + "/" + values.month,
     totalDate: values.day + "/" + values.month + "/" + values.year,
     hourAndMinute: values.hour + ":" + values.minute,
   };
-
-  return extraValues;
 }
 
 function getCurrentDateTime() {
