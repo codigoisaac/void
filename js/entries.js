@@ -54,18 +54,18 @@ function prepareAndDisplayEntries(entries) {
   }
 }
 
+function getOtherEntriesWSameDate(entry, arrayOfEntries) {
+  return arrayOfEntries.filter(
+    (otherEntry) => otherEntry.totalDate == entry.totalDate
+  );
+}
+
 function insertOmTooltip() {
   theEntries.insertAdjacentHTML(
     "beforeend",
     `<div id="om-tooltip">
         O símbolo Om é adquirido nos dias em que você medita 2 vezes ou mais.
     </div>`
-  );
-}
-
-function getOtherEntriesWSameDate(entry, arrayOfEntries) {
-  return arrayOfEntries.filter(
-    (otherEntry) => otherEntry.totalDate == entry.totalDate
   );
 }
 
@@ -174,7 +174,7 @@ function setEdit(entry) {
 function addEntry() {
   const enteredValues = getFormValues(),
     extraValues = setExtraEntryValues(enteredValues),
-    entryCount = setEntrysCountInDay(enteredValues.totalDate);
+    entryCount = setEntrysCountInDay(extraValues.totalDate);
 
   // add entry id
   let entryId = chance.guid();
