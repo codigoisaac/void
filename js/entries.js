@@ -21,10 +21,11 @@ let isFormOpen = false,
 
 function fetchEntries() {
   // get data and where to display it
-  const entries = getData();
+  let entries = getData();
   theEntries.innerHTML = "";
 
   if (entries.length > 0) {
+    entries = sortEntries(entries);
     prepareAndDisplayEntries(entries);
     insertOmTooltip();
     setHabitStats();
@@ -32,6 +33,16 @@ function fetchEntries() {
   }
 
   checkNoEntriesMessage();
+}
+
+function sortEntries(entries) {
+  return entries.sort((a, b) => {
+    const aDate = new Date(a.year, a.month, a.day, a.hour, a.minute),
+      bDate = new Date(b.year, b.month, b.day, b.hour, b.minute);
+    if (aDate > bDate) return 1;
+    if (aDate < bDate) return -1;
+    return 0;
+  });
 }
 
 function prepareAndDisplayEntries(entries) {
