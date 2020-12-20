@@ -50,6 +50,7 @@ function setEntriesCount(entries) {
   // entries are already sorted by time
   // in here we have to enumerate them
   // adding their number in the day
+  // todo
   let previousEntryDate = undefined,
     sameDayStrike = 1;
   for (let i = entries.length - 1; i >= 0; i--) {
