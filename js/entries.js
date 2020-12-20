@@ -26,6 +26,7 @@ function fetchEntries() {
 
   if (entries.length > 0) {
     entries = sortEntries(entries);
+    setEntriesCount(entries);
     prepareAndDisplayEntries(entries);
     insertOmTooltip();
     setHabitStats();
@@ -43,6 +44,25 @@ function sortEntries(entries) {
     if (aDate < bDate) return -1;
     return 0;
   });
+}
+
+function setEntriesCount(entries) {
+  // entries are already sorted by time
+  // in here we have to enumerate them
+  // adding their number in the day
+  let previousEntryDate = undefined,
+    sameDayStrike = 1;
+  for (let i = entries.length - 1; i >= 0; i--) {
+    const entry = entries[i];
+    if (entry.totalDate == previousEntryDate) {
+      entry.count = sameDayStrike;
+      sameDayStrike++;
+    } else {
+      previousEntryDate = entry.totalDate;
+      sameDayStrike = 1;
+      entry.count = 1;
+    }
+  }
 }
 
 function prepareAndDisplayEntries(entries) {
@@ -184,8 +204,7 @@ function setEdit(entry) {
 
 function addEntry() {
   const formValues = getFormValues(),
-    extraValues = setExtraEntryValues(formValues),
-    entryCount = setEntrysCountInDay(extraValues.totalDate);
+    extraValues = setExtraEntryValues(formValues);
 
   // add entry id
   let entryId = chance.guid();
@@ -202,7 +221,7 @@ function addEntry() {
     hour: formValues.hour,
     minute: formValues.minute,
     hourAndMinute: extraValues.hourAndMinute,
-    count: entryCount,
+    count: 1,
     id: entryId,
   };
 
@@ -249,7 +268,7 @@ function setEntrysCountInDay(totalDate) {
 
 function saveEntry(entry) {
   if (entry.title != "" || entry.note != "") {
-    // if at least one of the form fields are not empty
+    // if at least one of the form fields are filled
     entries = getData();
     entries.push(entry);
     localStorage.setItem("entries", JSON.stringify(entries));
