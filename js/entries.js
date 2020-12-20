@@ -25,8 +25,6 @@ function fetchEntries() {
   theEntries.innerHTML = "";
 
   if (entries.length > 0) {
-    entries = sortEntries(entries);
-    setEntriesCount(entries);
     prepareAndDisplayEntries(entries);
     insertOmTooltip();
     setHabitStats();
@@ -36,40 +34,9 @@ function fetchEntries() {
   checkNoEntriesMessage();
 }
 
-function sortEntries(entries) {
-  return entries.sort((a, b) => {
-    const aDate = new Date(a.year, a.month, a.day, a.hour, a.minute),
-      bDate = new Date(b.year, b.month, b.day, b.hour, b.minute);
-    if (aDate > bDate) return 1;
-    if (aDate < bDate) return -1;
-    return 0;
-  });
-}
-
-function setEntriesCount(entries) {
-  // entries are already sorted by time
-  // in here we have to enumerate them
-  // adding their number in the day
-  // todo
-  let previousEntryDate = undefined,
-    sameDayStrike = 1;
-  for (let i = entries.length - 1; i >= 0; i--) {
-    const entry = entries[i];
-    if (entry.totalDate == previousEntryDate) {
-      entry.count = sameDayStrike;
-      sameDayStrike++;
-    } else {
-      previousEntryDate = entry.totalDate;
-      sameDayStrike = 1;
-      entry.count = 1;
-    }
-  }
-}
-
 function prepareAndDisplayEntries(entries) {
-  for (let i = entries.length - 1; i >= 0; i--) {
-    const entry = entries[i],
-      otherEntriesWSameDate = getOtherEntriesWSameDate(entry, entries),
+  entries.forEach((entry) => {
+    const otherEntriesWSameDate = getOtherEntriesWSameDate(entry, entries),
       isOm = otherEntriesWSameDate.length > 1;
 
     // add header only before last entry in a day
@@ -83,7 +50,7 @@ function prepareAndDisplayEntries(entries) {
     // set buttons
     setDelete(entry);
     setEdit(entry);
-  }
+  });
 }
 
 function getOtherEntriesWSameDate(entry, arrayOfEntries) {
@@ -222,7 +189,7 @@ function addEntry() {
     hour: formValues.hour,
     minute: formValues.minute,
     hourAndMinute: extraValues.hourAndMinute,
-    count: 1,
+    count: null,
     id: entryId,
   };
 
@@ -271,12 +238,46 @@ function saveEntry(entry) {
   if (entry.title != "" || entry.note != "") {
     // if at least one of the form fields are filled
     entries = getData();
-    entries.push(entry);
+    entries.unshift(entry);
+    entries = sortEntries(entries);
+    entries = setEntriesCount(entries);
     localStorage.setItem("entries", JSON.stringify(entries));
   } else {
     // if both form fields are empty
     alert("Por favor insira alguma informação. O vazio não pode ser gravado.");
   }
+}
+
+function sortEntries(entries) {
+  return entries.sort((a, b) => {
+    const aDate = new Date(a.year, a.month, a.day, a.hour, a.minute),
+      bDate = new Date(b.year, b.month, b.day, b.hour, b.minute);
+    if (aDate > bDate) return -1;
+    if (aDate < bDate) return 1;
+    return 0;
+  });
+}
+
+function setEntriesCount(entries) {
+  // entries are already sorted by time
+  // in here we have to enumerate them
+  // adding their number in the day
+  // todo
+  let previousEntryDate = undefined,
+    sameDayStrike = 1;
+  for (let i = entries.length - 1; i >= 0; i--) {
+    const entry = entries[i];
+    if (entry.totalDate == previousEntryDate) {
+      entry.count = sameDayStrike;
+      sameDayStrike++;
+    } else {
+      previousEntryDate = entry.totalDate;
+      sameDayStrike = 1;
+      entry.count = 1;
+    }
+  }
+
+  return entries;
 }
 
 function toggleFormOpen() {
