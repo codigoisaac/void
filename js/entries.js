@@ -259,7 +259,6 @@ function sortEntries(entries) {
 }
 
 function setEntriesCount(entries) {
-  // todo
   let previousEntryDate = null,
     sameDayStrike = 1;
   for (let i = entries.length - 1; i >= 0; i--) {

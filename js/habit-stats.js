@@ -22,12 +22,14 @@ function setHabitStats() {
 }
 
 function stat_Meditations() {
+  stat.entries = 0;
   getData().forEach((entry) => {
     stat.entries++;
   });
 }
 
 function stat_DaysMeditated() {
+  stat.days = 0;
   getData().forEach((entry) => {
     if (entry.count == 1) {
       stat.days++;
@@ -139,6 +141,7 @@ function stat_DaysMeditatedStrike() {
 }
 
 function stat_DaysMeditatedTwice() {
+  stat.doubleDays = 0;
   getData().forEach((entry) => {
     if (entry.count == 2) {
       stat.doubleDays++;
