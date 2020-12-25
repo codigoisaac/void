@@ -46,7 +46,10 @@ function stat_DaysMeditatedStrike() {
     year: 0,
   };
 
-  getData().forEach((currentEntry) => {
+  const entries = getData();
+  for (let i = entries.length - 1; i >= 0; i--) {
+    const currentEntry = entries[i];
+
     //* calculation
     if (currentEntry.day != previousEntry.day) {
       // different day
@@ -54,7 +57,7 @@ function stat_DaysMeditatedStrike() {
         // same month
         if (currentEntry.year == previousEntry.year) {
           // same year
-          if (previousEntry.day + 1 == currentEntry.day) {
+          if (parseInt(currentEntry.day) == parseInt(previousEntry.day) + 1) {
             // 1 day difference
             strike++; // increase strike
           } else {
@@ -137,7 +140,7 @@ function stat_DaysMeditatedStrike() {
     previousEntry.month = currentEntry.month;
     previousEntry.year = currentEntry.year;
     stat.dayStrike = strike;
-  });
+  }
 }
 
 function stat_DaysMeditatedTwice() {
