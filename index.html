@@ -116,22 +116,27 @@
           ></textarea>
           <!-- Date  -->
           <div id="date-inputs">
+            <!-- Day  -->
             <input
               type="number"
               name="day-input"
               id="day-input"
               placeholder="Dia"
               class="date-input"
+              onchange="checkZeroInDay()"
             />
             /
+            <!-- Month  -->
             <input
               type="number"
               name="month-input"
               id="month-input"
               placeholder="Mês"
               class="date-input"
+              onchange="checkZeroInMonth()"
             />
             /
+            <!-- Year  -->
             <input
               type="number"
               name="year-input"

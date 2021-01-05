@@ -170,6 +170,7 @@ function setEdit(entry) {
   });
 }
 
+// * Add Entry
 function addEntry() {
   const formValues = getFormValues(),
     extraValues = setExtraEntryValues(formValues);
@@ -304,40 +305,43 @@ function getDateTimeIntoInputs() {
 function getCurrentDateTime() {
   const currentDate = new Date();
 
+  // Add Zeros in front of numbers less than 10
   const dateTime = {
-    day: realDay(currentDate),
-    month: realMonth(currentDate),
+    day:
+      currentDate.getDate() < 10
+        ? "0" + currentDate.getDate()
+        : currentDate.getDate(),
+    month:
+      currentDate.getMonth() + 1 < 10
+        ? "0" + (currentDate.getMonth() + 1)
+        : currentDate.getMonth() + 1,
     year: currentDate.getFullYear(),
-    hour: realHour(currentDate),
-    minute: realMinute(currentDate),
+    hour:
+      currentDate.getHours() < 10
+        ? "0" + currentDate.getHours()
+        : currentDate.getHours(),
+    minute:
+      currentDate.getMinutes() < 10
+        ? "0" + currentDate.getMinutes()
+        : currentDate.getMinutes(),
   };
 
   return dateTime;
 }
 
-function realDay(date) {
-  // get day number and add 0 in front if less than 10
-  return date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+// Add zero to day and month
+function checkZeroInDay() {
+  if (inputs.day.value < 10) {
+    inputs.day.value = "0" + inputs.day.value;
+  }
+}
+function checkZeroInMonth() {
+  if (inputs.month.value < 10) {
+    inputs.month.value = "0" + inputs.month.value;
+  }
 }
 
-function realMonth(date) {
-  // get month number and add 0 in front if less than 10
-  // the +1 is because getMonth() is zero-based
-  return date.getMonth() + 1 < 10
-    ? "0" + (date.getMonth() + 1)
-    : date.getMonth() + 1;
-}
-
-function realHour(date) {
-  // get hour number and add 0 in front if less than 10
-  return date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-}
-
-function realMinute(date) {
-  // get minute number and add 0 in front if less than 10
-  return date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-}
-
+// * Edit Entry
 function editEntry() {
   // copy data and modify given entry
   const entries = getData();
