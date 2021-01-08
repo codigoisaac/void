@@ -124,6 +124,9 @@
               placeholder="Dia"
               class="date-input"
               onchange="checkZeroInDay()"
+              min="01"
+              max="31"
+              required
             />
             /
             <!-- Month  -->
@@ -134,6 +137,9 @@
               placeholder="Mês"
               class="date-input"
               onchange="checkZeroInMonth()"
+              min="01"
+              max="12"
+              required
             />
             /
             <!-- Year  -->
@@ -143,6 +149,7 @@
               id="year-input"
               placeholder="Ano"
               class="date-input"
+              required
             />
           </div>
           <!-- Time  -->
@@ -153,6 +160,7 @@
               id="hour-input"
               placeholder="Hora"
               class="time-input"
+              required
             />
             :
             <input
@@ -161,6 +169,7 @@
               id="minute-input"
               placeholder="Min."
               class="time-input"
+              required
             />
           </div>
           <!-- Submit  -->

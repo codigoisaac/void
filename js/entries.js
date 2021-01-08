@@ -170,7 +170,7 @@ function setEdit(entry) {
   });
 }
 
-// * Add Entry
+//* Add Entry
 function addEntry() {
   const formValues = getFormValues(),
     extraValues = setExtraEntryValues(formValues);
@@ -329,19 +329,19 @@ function getCurrentDateTime() {
   return dateTime;
 }
 
-// Add zero to day and month
+//* Add zero to day and month
 function checkZeroInDay() {
-  if (inputs.day.value < 10) {
-    inputs.day.value = "0" + inputs.day.value;
+  if (parseInt(inputs.day.value) < 10) {
+    inputs.day.value = "0" + parseInt(inputs.day.value);
   }
 }
 function checkZeroInMonth() {
-  if (inputs.month.value < 10) {
-    inputs.month.value = "0" + inputs.month.value;
+  if (parseInt(inputs.month.value) < 10) {
+    inputs.month.value = "0" + parseInt(inputs.month.value);
   }
 }
 
-// * Edit Entry
+//* Edit Entry
 function editEntry() {
   // copy data and modify given entry
   const entries = getData();
