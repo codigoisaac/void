@@ -329,15 +329,31 @@ function getCurrentDateTime() {
   return dateTime;
 }
 
-//* Add zero to day and month
+//* Date inputs
+// add zero to day
 function checkZeroInDay() {
   if (parseInt(inputs.day.value) < 10) {
     inputs.day.value = "0" + parseInt(inputs.day.value);
   }
 }
+// add zero to month
 function checkZeroInMonth() {
   if (parseInt(inputs.month.value) < 10) {
     inputs.month.value = "0" + parseInt(inputs.month.value);
+  }
+}
+// year
+function checkYearRange() {
+  let date = new Date(),
+    value = inputs.year.value;
+  // future
+  if (parseInt(value) > date.getFullYear()) {
+    inputs.year.value = date.getFullYear();
+  }
+  // past
+  let minYear = 1985;
+  if (parseInt(value) < minYear) {
+    inputs.year.value = minYear;
   }
 }
 
