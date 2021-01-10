@@ -1,3 +1,7 @@
+document
+  .querySelector("body")
+  .addEventListener("load", fetchEntries(), eraseTip());
+
 const addBtn = document.querySelector("#open-form-btn");
 addBtn.addEventListener("click", toggleFormOpen);
 const form = document.querySelector("#add-entry-form");
@@ -19,6 +23,7 @@ const inputs = {
 let isFormOpen = false,
   editingEntry = "";
 
+import { setHabitStats } from "./habit-stats.js";
 function fetchEntries() {
   // get data and where to display it
   let entries = getData();
@@ -220,21 +225,6 @@ function setExtraEntryValues(values) {
   };
 }
 
-function setEntrysCountInDay(totalDate) {
-  let numberInDay = 1;
-
-  const entries = getData();
-  if (entries.length > 0) {
-    entries.forEach((entry) => {
-      if (entry.totalDate == totalDate) {
-        numberInDay++;
-      }
-    });
-  }
-
-  return numberInDay;
-}
-
 function saveEntry(entry) {
   if (entry.title != "" || entry.note != "") {
     // if at least one of the form fields are filled
@@ -330,20 +320,33 @@ function getCurrentDateTime() {
 }
 
 //* Date inputs
-// add zero to day
-function checkZeroInDay() {
+inputs.day.addEventListener("change", handleDayChange);
+inputs.month.addEventListener("change", handleMonthChange);
+inputs.year.addEventListener("change", handleYearChange);
+
+import { daysInMonth } from "./habit-stats.js";
+
+// day
+function handleDayChange() {
+  // add zero
   if (parseInt(inputs.day.value) < 10) {
     inputs.day.value = "0" + parseInt(inputs.day.value);
   }
+
+  checkMaxDay();
 }
-// add zero to month
-function checkZeroInMonth() {
+
+// month
+function handleMonthChange() {
   if (parseInt(inputs.month.value) < 10) {
     inputs.month.value = "0" + parseInt(inputs.month.value);
   }
+
+  checkMaxDay();
 }
+
 // year
-function checkYearRange() {
+function handleYearChange() {
   let date = new Date(),
     value = inputs.year.value;
   // too far in the future
@@ -360,6 +363,16 @@ function checkYearRange() {
     alert(
       "Uau. Eu não sabia que as pessoas podiam viver mais de 125 anos! Você é um viajante do tempo? Um imortal? Alguém que se lembra de vidas passadas? Ou apenas muito velho? Ensine-me suas técnicas e posso desbloquear para você a funcionalidade de inserir meditações muito antigas. - Desenvolvedor"
     );
+  }
+
+  checkMaxDay();
+}
+
+// check max day
+function checkMaxDay() {
+  let daysInSelectedMonth = daysInMonth(inputs.month.value, inputs.year.value);
+  if (parseInt(inputs.day.value) > daysInSelectedMonth) {
+    inputs.day.value = daysInSelectedMonth;
   }
 }
 

@@ -19,7 +19,7 @@
       rel="stylesheet"
     />
   </head>
-  <body onload="fetchEntries(), eraseTip(), animateLogo()">
+  <body onload="animateLogo()">
     <section id="home">
       <!-- Logo  -->
       <div id="logo" class="below-popup">
@@ -123,9 +123,7 @@
               id="day-input"
               placeholder="Dia"
               class="date-input"
-              onchange="checkZeroInDay()"
               min="01"
-              max="31"
               required
             />
             /
@@ -136,7 +134,6 @@
               id="month-input"
               placeholder="Mês"
               class="date-input"
-              onchange="checkZeroInMonth()"
               min="01"
               max="12"
               required
@@ -149,7 +146,6 @@
               id="year-input"
               placeholder="Ano"
               class="date-input"
-              onchange="checkYearRange()"
               required
             />
           </div>
@@ -398,8 +394,8 @@
     <!-- Scripts -->
     <script src="js/general.js"></script>
     <script src="js/popup.js"></script>
-    <script src="js/habit-stats.js"></script>
-    <script src="js/entries.js"></script>
+    <script type="module" src="js/habit-stats.js"></script>
+    <script type="module" src="js/entries.js"></script>
     <script src="js/timer.js"></script>
     <script src="js/sound.js"></script>
     <script src="js/thevoid.js"></script>
