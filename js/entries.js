@@ -346,14 +346,20 @@ function checkZeroInMonth() {
 function checkYearRange() {
   let date = new Date(),
     value = inputs.year.value;
-  // future
+  // too far in the future
   if (parseInt(value) > date.getFullYear()) {
     inputs.year.value = date.getFullYear();
+    alert(
+      "Oh, você é um viajante do tempo! Por favor, entre em contato explicando como visitar o futuro e voltar, e se você puder me ensinar, desbloquearei para você a funcionalidade de adicionar meditações futuras. - Desenvolvedor"
+    );
   }
-  // past
+  // too far in the past
   let minYear = 1985;
   if (parseInt(value) < minYear) {
     inputs.year.value = minYear;
+    alert(
+      "Uau. Eu não sabia que as pessoas podiam viver mais de 125 anos! Você é um viajante do tempo? Um imortal? Alguém que se lembra de vidas passadas? Ou apenas muito velho? Ensine-me suas técnicas e posso desbloquear para você a funcionalidade de inserir meditações muito antigas. - Desenvolvedor"
+    );
   }
 }
 
