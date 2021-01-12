@@ -53,46 +53,28 @@ function stat_DayStrike() {
 
     //* calculation
     if (currentEntry.day != previousEntry.day) {
-      // console.log(`"${currentEntry.title}" has a diff day than it's previous.`); // working fine
       // different day
       if (currentEntry.month == previousEntry.month) {
-        // console.log(`"${currentEntry.title}" : diff day && same month.`); // working fine
         // same month
         if (currentEntry.year == previousEntry.year) {
-          // console.log(
-          //   `"${currentEntry.title}" : diff day && same month && same year.`
-          // ); // working fine
           // same year
           if (parseInt(currentEntry.day) == parseInt(previousEntry.day) + 1) {
-            // console.log(
-            //   `"${currentEntry.title}" : diff day && same month && same year && 1 day diff.`
-            // ); // working fine
             // 1 day difference
             strike++; // increase strike
-            // console.log(strike); // working fine
           } else {
             // more than 1 day difference
             strike = 1; // fail strike
-            // console.log(
-            //   `"${currentEntry.title}" : more than 1 day difference.`
-            // ); // working fine
-            // console.log(`"${currentEntry.title}" : fail strike`); // working fine
           }
         } else {
           // same month and
           // different year
           strike = 1; // fail strike
-          // console.log(`"${currentEntry.title}" : same month && diff year.`); // working fine
         }
       } else {
         // different day and
         // different month
-        // console.log(`"${currentEntry.title}" : diff day && diff month.`); // working fine
         if (currentEntry.year == previousEntry.year) {
           // same year
-          // console.log(
-          //   `"${currentEntry.title}" : diff day && diff month && same year.`
-          // ); // working fine
           if (currentEntry.month == parseInt(previousEntry.month) + 1) {
             // 1 month difference
             console.log(
