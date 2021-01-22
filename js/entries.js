@@ -228,7 +228,7 @@ function setExtraEntryValues(values) {
 function saveEntry(entry) {
   if (entry.title != "" || entry.note != "") {
     // if at least one of the form fields are filled
-    entries = getData();
+    let entries = getData();
     entries.unshift(entry);
     entries = sortEntries(entries);
     entries = setEntriesCount(entries);
@@ -328,9 +328,23 @@ import { daysInMonth } from "./habit-stats.js";
 
 // day
 function handleDayChange() {
+  let date = new Date(),
+    day = inputs.day.value,
+    month = inputs.month.value,
+    year = inputs.year.value;
+  // too far in the future
+  if (
+    parseInt(day) > date.getDate() &&
+    year == date.getFullYear() &&
+    month == date.getMonth() + 1
+  ) {
+    // if you select a day in the future
+    outOfTime("future");
+    inputs.day.value = date.getDate();
+  }
   // add zero
-  if (parseInt(inputs.day.value) < 10) {
-    inputs.day.value = "0" + parseInt(inputs.day.value);
+  if (parseInt(day) < 10) {
+    inputs.day.value = "0" + parseInt(day);
   }
 
   checkMaxDay();
@@ -338,6 +352,15 @@ function handleDayChange() {
 
 // month
 function handleMonthChange() {
+  let date = new Date(),
+    month = inputs.month.value,
+    year = inputs.year.value;
+  // too far in the future
+  if (month > date.getMonth() + 1 && year == date.getFullYear()) {
+    outOfTime("future");
+    inputs.month.value = date.getMonth() + 1;
+  }
+  // add zero
   if (parseInt(inputs.month.value) < 10) {
     inputs.month.value = "0" + parseInt(inputs.month.value);
   }
@@ -351,25 +374,39 @@ function handleYearChange() {
     value = inputs.year.value;
   // too far in the future
   if (parseInt(value) > date.getFullYear()) {
+    outOfTime("future");
     inputs.year.value = date.getFullYear();
-    alert(
-      "Oh, você é um viajante do tempo! Por favor, entre em contato explicando como visitar o futuro e voltar, e se você puder me ensinar, desbloquearei para você a funcionalidade de adicionar meditações futuras. - Desenvolvedor"
-    );
   }
   // too far in the past
   let minYear = 1985;
   if (parseInt(value) < minYear) {
+    outOfTime("past");
     inputs.year.value = minYear;
-    alert(
-      "Uau. Eu não sabia que as pessoas podiam viver mais de 125 anos! Você é um viajante do tempo? Um imortal? Alguém que se lembra de vidas passadas? Ou apenas muito velho? Ensine-me suas técnicas e posso desbloquear para você a funcionalidade de inserir meditações muito antigas. - Desenvolvedor"
-    );
   }
 
   checkMaxDay();
 }
 
+function outOfTime(time) {
+  switch (time) {
+    case "future":
+      alert(
+        "Oh, você é um viajante do tempo! Por favor me ensine e eu desbloquearei para você a funcionalidade de adicionar meditações futuras. - códigoisaac"
+      );
+      break;
+
+    case "past":
+      alert(
+        "Uau. Eu não sabia que as pessoas podiam viver mais de 125 anos! Você é um viajante do tempo? Um imortal? Alguém que se lembra de vidas passadas? Ou apenas muito velho? Ensine-me suas técnicas e vou desbloquear para você a funcionalidade de inserir meditações muito antigas. - códigoisaac"
+      );
+      break;
+  }
+}
+
 // check max day
 function checkMaxDay() {
+  // check if the selected day fits in the selected month
+  // of the selected year
   let daysInSelectedMonth = daysInMonth(inputs.month.value, inputs.year.value);
   if (parseInt(inputs.day.value) > daysInSelectedMonth) {
     inputs.day.value = daysInSelectedMonth;
