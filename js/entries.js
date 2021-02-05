@@ -225,6 +225,7 @@ function setExtraEntryValues(values) {
   };
 }
 
+//* Save entry
 function saveEntry(entry) {
   if (entry.title != "" || entry.note != "") {
     // if at least one of the form fields are filled

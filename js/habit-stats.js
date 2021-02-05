@@ -12,15 +12,16 @@ function setHabitStats() {
   stat_Meditations();
   stat_DaysMeditated();
   stat_DayStrike();
-  stat_DaysTwiceStrike();
+  stat_DaysMeditatedTwice();
   stat_DaysMeditatedTwiceStrike();
 
   // check strikes fail - according to current date
-  checkStrikesFail();
+  // checkStrikesFail();
 
   displayStats();
 }
 
+// meditações
 function stat_Meditations() {
   stat.entries = 0;
   getData().forEach((entry) => {
@@ -28,6 +29,17 @@ function stat_Meditations() {
   });
 }
 
+// dias meditados 2x
+function stat_DaysMeditatedTwice() {
+  stat.doubleDays = 0;
+  getData().forEach((entry) => {
+    if (entry.count == 2) {
+      stat.doubleDays++;
+    }
+  });
+}
+
+// dias meditados
 function stat_DaysMeditated() {
   stat.days = 0;
   getData().forEach((entry) => {
@@ -37,128 +49,58 @@ function stat_DaysMeditated() {
   });
 }
 
+// dias meditados em seguida
 function stat_DayStrike() {
   let strike = 1;
 
-  let previousEntry = {
+  const firsts = getData().filter((e) => e.count == 1);
+
+  let prev = {
+    // previous entry
     day: 0,
     month: 0,
     year: 0,
   };
 
-  const entries = getData();
+  //* calculate day strike
+  for (let i = firsts.length - 1; i >= 0; i--) {
+    const cur = firsts[i]; // current entry
 
-  for (let i = entries.length - 1; i >= 0; i--) {
-    const currentEntry = entries[i];
-
-    //* calculation
-    if (currentEntry.day != previousEntry.day) {
-      // different day
-      if (currentEntry.month == previousEntry.month) {
-        // same month
-        if (currentEntry.year == previousEntry.year) {
-          // same year
-          if (parseInt(currentEntry.day) == parseInt(previousEntry.day) + 1) {
-            // 1 day difference
-            strike++; // increase strike
-          } else {
-            // more than 1 day difference
-            strike = 1; // fail strike
-          }
-        } else {
-          // same month and
-          // different year
-          strike = 1; // fail strike
-        }
-      } else {
-        // different day and
-        // different month
-        if (currentEntry.year == previousEntry.year) {
-          // same year
-          if (currentEntry.month == parseInt(previousEntry.month) + 1) {
-            // 1 month difference
-            console.log(
-              `"${currentEntry.title}" : diff day && diff month && same year && 1 month diff.`
-            ); // working fine
-            // get number of days in previuous entry's month
-            const daysInPrevEntrysMonth = daysInMonth(
-              previousEntry.month,
-              previousEntry.year
-            );
-            console.log(previousEntry.day, daysInPrevEntrysMonth);
-            if (
-              parseInt(previousEntry.day) == daysInPrevEntrysMonth &&
-              parseInt(currentEntry.day) == 1
-            ) {
-              // previous entry is in last day of its month and
-              // current entry is in first day of its month
-              console.log(
-                `"${currentEntry.title}" : diff day && diff month && same year && 1 month diff && last to first day.`
-              ); // working fine
-              strike++; // increase strike
-            } else {
-              strike = 1; // fail strike
-            }
-          } else {
-            // more than 1 month difference
-            strike = 1; // fail strike
-          }
-        } else {
-          // different day,
-          // different month and
-          // different year
-          if (previousEntry.month == 12 && currentEntry.month == 1) {
-            // from December to January
-
-            // get number of days in previuous entry's month
-            const daysInPrevEntrysMonth = daysInMonth(
-              previousEntry.month,
-              previousEntry.year
-            );
-            if (
-              previousEntry.day == daysInPrevEntrysMonth &&
-              currentEntry.day == 1
-            ) {
-              // previous entry is in last day of December and
-              // current entry is in first day of January
-              strike++; // increase strike
-            } else {
-              strike = 1; // fail strike
-            }
-          } else {
-            // not from December to January
-            strike = 1; // fail strike
-          }
-        }
-      }
-    } else {
-      // same day number
-      if (
-        currentEntry.month != previousEntry.month ||
-        currentEntry.year != previousEntry.year
+    if (prev.year == cur.year) {
+      if (prev.month == cur.month && prev.day == cur.day - 1) {
+        strike++;
+      } else if (
+        prev.month == cur.month - 1 &&
+        prev.day == daysInMonth(prev.month, prev.year) &&
+        cur.day == 1
       ) {
-        // different month or
-        // different year
-        strike = 1; // fail strike
+        strike++;
+      } else {
+        strike = 1;
       }
+    } else if (
+      prev.year == cur.year - 1 &&
+      prev.month == 12 &&
+      prev.day == daysInMonth(prev.month, prev.year) &&
+      cur.month == 1 &&
+      cur.day == 1
+    ) {
+      strike++;
+    } else {
+      strike = 1;
     }
 
-    previousEntry.day = currentEntry.day;
-    previousEntry.month = currentEntry.month;
-    previousEntry.year = currentEntry.year;
-    stat.dayStrike = strike;
+    //
+    prev.day = cur.day;
+    prev.month = cur.month;
+    prev.year = cur.year;
   }
+
+  stat.dayStrike = strike;
+  console.log(stat.dayStrike);
 }
 
-function stat_DaysTwiceStrike() {
-  stat.doubleDays = 0;
-  getData().forEach((entry) => {
-    if (entry.count == 2) {
-      stat.doubleDays++;
-    }
-  });
-}
-
+//todo: dias meditados 2x em seguida
 function stat_DaysMeditatedTwiceStrike() {
   let entries = getData();
   entries.forEach((entry) => {
@@ -187,6 +129,7 @@ function stat_DaysMeditatedTwiceStrike() {
   });
 }
 
+//todo: fix
 function checkStrikesFail() {
   //* fail the strikes if there's no entry for more than a day
   // get current date
