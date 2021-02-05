@@ -339,7 +339,7 @@ function handleDayChange() {
     month == date.getMonth() + 1
   ) {
     // if you select a day in the future
-    outOfTime("future");
+    timeMessage("future");
     inputs.day.value = date.getDate();
   }
   // add zero
@@ -357,7 +357,7 @@ function handleMonthChange() {
     year = inputs.year.value;
   // too far in the future
   if (month > date.getMonth() + 1 && year == date.getFullYear()) {
-    outOfTime("future");
+    timeMessage("future");
     inputs.month.value = date.getMonth() + 1;
   }
   // add zero
@@ -374,30 +374,30 @@ function handleYearChange() {
     value = inputs.year.value;
   // too far in the future
   if (parseInt(value) > date.getFullYear()) {
-    outOfTime("future");
+    timeMessage("future");
     inputs.year.value = date.getFullYear();
   }
   // too far in the past
   let minYear = 1985;
   if (parseInt(value) < minYear) {
-    outOfTime("past");
+    timeMessage("past");
     inputs.year.value = minYear;
   }
 
   checkMaxDay();
 }
 
-function outOfTime(time) {
+function timeMessage(time) {
   switch (time) {
     case "future":
       alert(
-        "Oh, você é um viajante do tempo! Por favor me ensine e eu desbloquearei para você a funcionalidade de adicionar meditações futuras. - códigoisaac"
+        "Oh, você é um viajante do tempo! Por favor me ensine suas técnicas e eu desbloquearei para você a funcionalidade de adicionar meditações futuras. \n - códigoisaac"
       );
       break;
 
     case "past":
       alert(
-        "Uau. Eu não sabia que as pessoas podiam viver mais de 125 anos! Você é um viajante do tempo? Um imortal? Alguém que se lembra de vidas passadas? Ou apenas muito velho? Ensine-me suas técnicas e vou desbloquear para você a funcionalidade de inserir meditações muito antigas. - códigoisaac"
+        "Uau. Eu não sabia que as pessoas podiam viver mais de 125 anos! Você é um viajante do tempo? Um imortal? Alguém que se lembra de vidas passadas? Ou apenas muito velho? Ensine-me suas técnicas e vou desbloquear para você a funcionalidade de inserir meditações muito antigas. \n - códigoisaac"
       );
       break;
   }
