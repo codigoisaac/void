@@ -126,3 +126,8 @@ aside {
   opacity: 0;
   display: none !important;
 }
+
+/* Others  */
+.marked {
+  font-size: 1.2rem;
+}
