@@ -1,9 +1,9 @@
+import { toggleFormOpen } from './entries.js';
+
 let countdown, countup;
 const timerDisplay = document.querySelector("#timer"),
   predefinedTimeOptions = [...document.querySelectorAll(".predefined-option")],
   timerMsg = document.querySelector("#time-message");
-
-console.log(predefinedTimeOptions);
 
 // play by clicking on time options
 predefinedTimeOptions.forEach((btn) => {
@@ -25,7 +25,7 @@ function startTimer(minutes) {
   // get now
   const now = Date.now(); // value in milliseconds
   // calculate when it will stop
-  const then = now + minutes * 60000; // converted to milliseconds
+  const then = now + (minutes * 60000); // converted to milliseconds
 
   displayTimeLeft(minutes * 60); // converted to seconds
 
@@ -44,7 +44,6 @@ function startTimer(minutes) {
 }
 
 function disableTimelessMeditation() {
-  // unselect timeless meditation
   if (isTimelessMeditating) {
     isTimelessMeditating = false;
     timeless.textContent = ">";
@@ -59,6 +58,7 @@ function encourageEntry() {
 function displayTimeLeft(seconds) {
   const minutes = Math.floor(seconds / 60),
     remainderSeconds = seconds % 60;
+    
   timerDisplay.textContent =
     (minutes < 10 ? "0" : "") +
     minutes +

@@ -104,9 +104,11 @@
           <button id="open-form-btn"><i class="ri-add-line"></i></button>
         </div>
 
-        <form id="add-entry-form" onsubmit="event.preventDefault()">
+        <form name="entriesForm" id="add-entry-form" onsubmit="event.preventDefault()">
+
           <!-- Title  -->
           <input type="text" id="add-entry-title" placeholder="Título" />
+
           <!-- Text  -->
           <textarea
             name="addEntryText"
@@ -115,6 +117,7 @@
             cols="30"
             rows="10"
           ></textarea>
+
           <!-- Date  -->
           <div id="date-inputs">
             <!-- Day  -->
@@ -150,6 +153,7 @@
               required
             />
           </div>
+
           <!-- Time  -->
           <div id="time-inputs">
             <input
@@ -170,8 +174,10 @@
               required
             />
           </div>
+
           <!-- Submit  -->
           <button type="submit">+ Adicionar</button>
+
         </form>
 
         <div id="the-entries"></div>
@@ -359,7 +365,7 @@
     <script src="js/popup.js"></script>
     <script type="module" src="js/habit-stats.js"></script>
     <script type="module" src="js/entries.js"></script>
-    <script src="js/timer.js"></script>
+    <script type="module" src="js/timer.js"></script>
     <script src="js/sound.js"></script>
     <script src="js/thevoid.js"></script>
     <!-- Chance.JS  -->

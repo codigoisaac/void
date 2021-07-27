@@ -268,7 +268,7 @@ function setEntriesCount(entries) {
   return entries;
 }
 
-function toggleFormOpen() {
+export function toggleFormOpen() {
   isFormOpen = !isFormOpen;
 
   // display form
