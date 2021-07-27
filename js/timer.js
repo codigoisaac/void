@@ -1,48 +1,27 @@
 let countdown, countup;
 const timerDisplay = document.querySelector("#timer"),
-  predefTimeOptions = [...document.querySelectorAll(".predefined-option")],
+  predefinedTimeOptions = [...document.querySelectorAll(".predefined-option")],
   timerMsg = document.querySelector("#time-message");
 
+console.log(predefinedTimeOptions);
+
 // play by clicking on time options
-predefTimeOptions.forEach((btn) => {
-  btn.addEventListener("click", startTimer);
+predefinedTimeOptions.forEach((btn) => {
+  btn.addEventListener("click", prepareNewTimer);
 });
 
-function startTimer(e) {
-  unselectTime();
-  unselectTimeless();
+function prepareNewTimer(e) {
+  disableTimelessMeditation();
 
   // initialize timer
-  timer(e.target.dataset.time);
+  startTimer(e.target.dataset.time);
 
-  // change background of selected time option
-  e.target.classList.add("selected");
-
-  setTimerMsg();
-
-  const timeInput = document.querySelector("#time-input");
+  setTimerMsg('predefined');
 }
 
-function unselectTime() {
-  // unselect any previously selected time option
-  predefTimeOptions.forEach((option) => {
-    option.classList.remove("selected");
-  });
-}
-
-function unselectTimeless() {
-  // unselect timeless meditation
-  if (isTimelessMeditating) {
-    isTimelessMeditating = false;
-    timeless.textContent = ">";
-  }
-}
-
-function timer(minutes) {
-  // clear any active timers
-  clearInterval(countdown);
-  clearInterval(countup);
-
+function startTimer(minutes) {
+  clearAllTimers();
+  
   // get now
   const now = Date.now(); // value in milliseconds
   // calculate when it will stop
@@ -64,8 +43,16 @@ function timer(minutes) {
   }, 1000);
 }
 
+function disableTimelessMeditation() {
+  // unselect timeless meditation
+  if (isTimelessMeditating) {
+    isTimelessMeditating = false;
+    timeless.textContent = ">";
+  }
+}
+
 function encourageEntry() {
-  setTimerMsg("write about");
+  setTimerMsg("end");
   toggleFormOpen();
 }
 
@@ -84,13 +71,12 @@ function displayTimeLeft(seconds) {
 document.timeForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const mins = this.minutesInput.value;
-  timer(mins);
+  startTimer(mins);
   this.reset();
   this.minutesInput.blur(); // unfocus from input
 
-  unselectTime();
-  unselectTimeless();
-  setTimerMsg();
+  disableTimelessMeditation();
+  setTimerMsg('predefined');
 });
 
 // meditate the time you want
@@ -99,11 +85,7 @@ timeless.addEventListener("click", timelessMeditation);
 let isTimelessMeditating = false;
 
 function timelessMeditation() {
-  unselectTime();
-
-  // clear any active timers
-  clearInterval(countdown);
-  clearInterval(countup);
+  clearAllTimers();
 
   // change the text in the button
   isTimelessMeditating = !isTimelessMeditating;
@@ -138,12 +120,21 @@ function displayTimeMeditated(start) {
     secsPassed;
 }
 
-function setTimerMsg(timeless = "") {
-  if (timeless == "timeless") {
-    timerMsg.textContent = "Tempo meditado:";
-  } else if (timeless == "write about") {
-    timerMsg.textContent = "Escreva sobre sua meditação";
-  } else {
-    timerMsg.textContent = "Tempo restante:";
+function setTimerMsg(timeless) {
+  switch (timeless) {
+    case 'predefined': timerMsg.textContent = "Tempo restante:";
+    break;
+
+    case 'timeless': timerMsg.textContent = "Tempo em meditação:";
+    break;
+    
+    case 'end': timerMsg.textContent = "Escreva sobre sua meditação";
+    break;
   }
+}
+
+function clearAllTimers() {
+  // clear any active timers
+  clearInterval(countdown);
+  clearInterval(countup);
 }

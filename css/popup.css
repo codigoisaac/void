@@ -77,14 +77,6 @@ aside {
   margin-bottom: 0.7rem;
 }
 
-/* About the Developer  */
-#contribution-options {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
-  row-gap: 0.5rem;
-}
-
 /* Bug Report  */
 #about-bug {
   display: flex;

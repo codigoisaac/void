@@ -68,6 +68,3 @@ input {
   font-weight: bold;
   font-size: 1rem;
 }
-.time.selected {
-  background-color: var(--white);
-}
