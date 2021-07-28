@@ -29,45 +29,36 @@
 
       <!-- Timer  -->
       <div id="time-div" class="below-popup">
+
         <!-- Time Options  -->
-        <div id="time-options" class="below-popup">
+        <div id="time-options">
+
           <div id="time-options-container">
+
             <div id="timer-info">
               <h1 id="time-message">Escolha o tempo para meditar:</h1>
               <!-- Timer Display  -->
-              <div id="timer" class="below-popup">00:00</div>
+              <div id="timer">00:00</div>
             </div>
+
             <div id="time-choices">
-              <!-- predefined options  -->
-              <div data-time="05" class="time-circle predefined-option">
-                05m
-                <span class="tooltip">Medite por 5 minutos</span>
-              </div>
-
-              <div data-time="10" class="time-circle predefined-option">
-                10m
-                <span class="tooltip">Medite por 10 minutos</span>
-              </div>
-
-              <div data-time="30" class="time-circle predefined-option">
-                30m
-                <span class="tooltip">Medite por 30 minutos</span>
-              </div>
-
               <!-- time input  -->
-              <form name="timeForm" id="time-input" class="time-circle">
-                <input type="text" name="minutesInput" placeholder="..." />
+              <form name="timeForm">
+                <input type="number" class="time-option" id="time-input" name="minutesInput" placeholder="..." />
                 <span class="tooltip">Insira o tempo para meditar</span>
               </form>
 
-              <!-- time-free  -->
-              <div class="time-circle" id="timeless">
+              <!-- play timeless  -->
+              <div class="time-circle time-option" id="timeless">
                 >
                 <span class="tooltip">Medite o tempo que quiser</span>
               </div>
             </div>
+
           </div>
+          
         </div>
+
       </div>
 
       <!-- Sound  -->
