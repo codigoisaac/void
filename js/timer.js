@@ -23,30 +23,50 @@ function startTimelessMeditation() {
 
   isTimelessMeditating = !isTimelessMeditating;
 
-  if (isTimelessMeditating) {
-    timelessTimerInput.textContent = "| |";
-    timelessTimerMessage.textContent = "Tempo no vazio:";
-  } else {
-    timelessTimerInput.textContent = ">";
-    timelessTimerMessage.textContent = "Dê o play e entre no vazio:";
-  }
-
-  // change text in the input
-
-  const now = Date.now(); // get moment
-
-  // set display interval
-  if (isTimelessMeditating) {
-    countup = setInterval(() => {
-      displayTimeMeditated(now);
-    }, 1000);
-  }
-
-  // change timer description
-  setTimerMsg("timeless");
+  setTextsWhenMeditating("timeless");
 
   // encourage to add entry
   !isTimelessMeditating ? encourageEntry() : null;
+}
+
+function setTextsWhenMeditating(timeOption) {
+  if (timeOption == "timeless") {
+    //
+    // set message texts
+    if (isTimelessMeditating) {
+      timelessTimerInput.textContent = "| |";
+      timelessTimerMessage.textContent = "Tempo no vazio:";
+    } else {
+      timelessTimerInput.textContent = ">";
+      timelessTimerMessage.textContent = "Dê o play e entre no vazio:";
+    }
+
+    // set timer text
+    document.querySelector("#timeless-meditation-timer").textContent = "00:00";
+    const now = Date.now();
+    if (isTimelessMeditating) {
+      countup = setInterval(() => {
+        displayTimeMeditated(now);
+      }, 1000);
+    }
+
+    //
+  } else if (timeOption == "timed") {
+  }
+}
+
+function displayTimeMeditated(start) {
+  const passed = Date.now() - start,
+    hoursPassed = Math.floor(passed / 3600000),
+    minsPassed = Math.floor((passed / 60000) % 60),
+    secsPassed = Math.floor((passed / 1000) % 60);
+
+  document.querySelector("#timeless-meditation-timer").textContent =
+    (minsPassed < 10 ? "0" : "") +
+    minsPassed +
+    ":" +
+    (secsPassed < 10 ? "0" : "") +
+    secsPassed;
 }
 
 ///
@@ -128,42 +148,6 @@ document.timeForm.addEventListener("submit", function (e) {
 // meditate the time you want
 const timeless = document.querySelector("#timeless");
 timeless.addEventListener("click", timelessMeditation);
-
-function timelessMeditation() {
-  clearAllTimers();
-
-  // change the text in the button
-  isTimelessMeditating = !isTimelessMeditating;
-  timeless.textContent = isTimelessMeditating ? "| |" : ">";
-
-  const now = Date.now(); // get moment
-
-  // set display interval
-  if (isTimelessMeditating) {
-    countup = setInterval(() => {
-      displayTimeMeditated(now);
-    }, 1000);
-  }
-
-  // change timer description
-  setTimerMsg("timeless");
-
-  // encourage to add entry
-  !isTimelessMeditating ? encourageEntry() : null;
-}
-
-function displayTimeMeditated(start) {
-  const passed = Date.now() - start,
-    hoursPassed = Math.floor(passed / 3600000),
-    minsPassed = Math.floor((passed / 60000) % 60),
-    secsPassed = Math.floor((passed / 1000) % 60);
-  timerDisplay.textContent =
-    (minsPassed < 10 ? "0" : "") +
-    minsPassed +
-    ":" +
-    (secsPassed < 10 ? "0" : "") +
-    secsPassed;
-}
 
 function setTimerMsg(timeless) {
   switch (timeless) {

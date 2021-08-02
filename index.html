@@ -34,9 +34,14 @@
         <!-- Timeless meditation -->
 
         <div id="timeless-meditation-div">
-          <div id="timeless-meditation-text">
-            <h1>Dê o play e entre no vazio:</h1>
-            <small>Medite sem tempo pré-definido</small>
+          <div class="time-option-texts">
+            <div>
+              <h1>Dê o play e entre no vazio:</h1>
+              <small>Medite sem tempo pré-definido</small>
+            </div>
+            <div>
+              <h1 id="timeless-meditation-timer"></h1>
+            </div>
           </div>
 
           <div id="timeless-meditation-input">
@@ -47,21 +52,26 @@
           </div>
         </div>
 
-        <!-- Timer meditation  -->
+        <!-- Timed meditation  -->
 
-        <div id="timer-meditation-div">
-          <div id="time-meditation-text">
-            <h1>Escolha o tempo para estar no vazio:</h1>
-            <small>Medite com tempo pré-definido. Alarme no final.</small>
+        <div id="timed-meditation-div">
+          <div class="time-option-texts">
+            <div>
+              <h1>Escolha o tempo para estar no vazio:</h1>
+              <small>Medite com tempo pré-definido. Alarme no final.</small>
+            </div>
+            <div>
+              <h1 id="timed-meditation-timer"></h1>
+            </div>
           </div>
 
-          <div id="time-meditation-input">
+          <div id="timed-meditation-input">
             <form name="timeForm">
               <input
                 type="number"
                 class="timer-inputs"
-                id="timer-input"
-                name="minutesInput"
+                id="timed-input"
+                name="timed-input"
                 placeholder="..."
               />
               <span class="tooltip">Insira o tempo para meditar</span>
