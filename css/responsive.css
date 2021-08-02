@@ -1,5 +1,6 @@
 /* Mobile L  */
 @media (min-width: 425px) {
+  #time-div,
   #sound-content,
   #entries,
   #habit-stats,
