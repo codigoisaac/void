@@ -22,243 +22,257 @@
   </head>
   <body onload="animateLogo()">
     <section id="home">
-      <!-- Logo  -->
+      <!--  -->
 
-      <div id="logo" class="below-popup">
-        <div id="the-logo">Void</div>
-      </div>
+      <!-- upper-right session : logo, timer, music -->
 
-      <!-- Timer  -->
+      <div id="upper-right-session">
+        <!-- logo -->
 
-      <div id="time-div" class="below-popup">
-        <!-- Meditation timer  -->
+        <div id="logo" class="below-popup">
+          <div id="the-logo">Void</div>
+        </div>
 
-        <h1 id="meditation-timer">...</h1>
+        <!-- timer  -->
 
-        <!-- Timer message  -->
+        <div id="time-div" class="below-popup">
+          <!-- Timeless meditation -->
 
-        <small id="timer-message"></small>
+          <div id="timeless-meditation-div">
+            <div id="timeless-meditation-input">
+              <div class="" id="timeless-input">
+                <i class="ri-play-mini-line"></i>
+                <span class="tooltip">Medite o tempo que quiser</span>
+              </div>
+            </div>
+          </div>
 
-        <!-- Timeless meditation -->
+          <!-- Displays -->
 
-        <div id="timeless-meditation-div">
-          <div id="timeless-meditation-input">
-            <div class="timer-inputs circle" id="timeless-input">
-              >
-              <span class="tooltip">Medite o tempo que quiser</span>
+          <div id="timer-displays">
+            <!-- Meditation timer  -->
+
+            <h1 id="meditation-timer">00:00</h1>
+
+            <!-- Timer message  -->
+
+            <small id="timer-message">Tempo no vazio</small>
+          </div>
+
+          <!-- Timed meditation  -->
+
+          <div id="timed-meditation-div">
+            <div id="timed-meditation-input">
+              <form name="timeForm">
+                <input
+                  type="number"
+                  class="timer-inputs"
+                  id="timed-input"
+                  name="timed-input"
+                  placeholder="..."
+                />
+                <span class="tooltip">Insira o tempo para meditar</span>
+              </form>
             </div>
           </div>
         </div>
 
-        <!-- Timed meditation  -->
+        <!-- music  -->
 
-        <div id="timed-meditation-div">
-          <div id="timed-meditation-input">
-            <form name="timeForm">
+        <div id="sound" class="below-popup centered">
+          <!-- Openable div  -->
+          <div id="sound-content">
+            <div id="music-title">Música <i class="ri-toggle-line"></i></div>
+            <div id="music-player">
+              <iframe
+                width="100%"
+                height="450"
+                scrolling="no"
+                frameborder="no"
+                allow="autoplay"
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1122536596&color=%23252525&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+              >
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Contribution info  -->
+          <div id="playlist-contribution">
+            Essa playlist aceita contribuições. <a href=""> Contribuir</a>.
+          </div>
+        </div>
+      </div>
+
+      <!-- down-left session : habit-stats, entries, footer  -->
+
+      <div id="down-left-session">
+        <!-- habit stats  -->
+
+        <div id="habit-stats" class="below-popup">
+          <div id="stats-heading">Status do hábito:</div>
+
+          <div id="the-stats">
+            <div class="stat-row" id="strike-stats">
+              <!-- Twice a day strike -->
+              <div id="twice-day-strike">
+                <span class="stat-label"
+                  >dias meditados <br />
+                  2x em seguida</span
+                >
+                <span class="stat">0</span>
+              </div>
+
+              <!-- Day strike -->
+              <div id="day-strike">
+                <span class="stat-label"
+                  >dias meditados <br />
+                  em seguida</span
+                >
+                <span class="stat">0</span>
+              </div>
+            </div>
+
+            <div class="stat-row" id="other-stats">
+              <!-- Meditations recorded  -->
+              <div id="meditation-count">
+                <span class="stat-label">meditações</span>
+                <span class="stat">0</span>
+              </div>
+
+              <!-- Days meditated twice  -->
+              <div id="days-meditated-twice">
+                <span class="stat-label"
+                  >dias <br />
+                  meditados 2x</span
+                >
+                <span class="stat">0</span>
+              </div>
+
+              <!-- Days meditated  -->
+              <div id="days-meditated">
+                <span class="stat-label"
+                  >dias <br />
+                  meditados</span
+                >
+                <span class="stat">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- entries  -->
+
+        <div id="entries" class="below-popup">
+          <div id="entry-controls">
+            <div id="entries-header">
+              Meditações <i class="ri-toggle-line"></i>
+              <span id="tip">clique p/ abrir</span>
+            </div>
+            <button id="open-form-btn"><i class="ri-add-line"></i></button>
+          </div>
+
+          <form
+            name="entriesForm"
+            id="add-entry-form"
+            onsubmit="event.preventDefault()"
+          >
+            <!-- Title  -->
+            <input type="text" id="add-entry-title" placeholder="Título" />
+
+            <!-- Text  -->
+            <textarea
+              name="addEntryText"
+              id="add-entry-text"
+              placeholder="Texto"
+              cols="30"
+              rows="10"
+            ></textarea>
+
+            <!-- Date  -->
+            <div id="date-inputs">
+              <!-- Day  -->
               <input
                 type="number"
-                class="timer-inputs"
-                id="timed-input"
-                name="timed-input"
-                placeholder="..."
+                name="day-input"
+                id="day-input"
+                placeholder="Dia"
+                class="date-input"
+                min="01"
+                required
               />
-              <span class="tooltip">Insira o tempo para meditar</span>
-            </form>
+              /
+              <!-- Month  -->
+              <input
+                type="number"
+                name="month-input"
+                id="month-input"
+                placeholder="Mês"
+                class="date-input"
+                min="01"
+                max="12"
+                required
+              />
+              /
+              <!-- Year  -->
+              <input
+                type="number"
+                name="year-input"
+                id="year-input"
+                placeholder="Ano"
+                class="date-input"
+                required
+              />
+            </div>
+
+            <!-- Time  -->
+            <div id="time-inputs">
+              <input
+                type="number"
+                name="hour-input"
+                id="hour-input"
+                placeholder="Hora"
+                class="time-input"
+                required
+              />
+              :
+              <input
+                type="number"
+                name="minute-input"
+                id="minute-input"
+                placeholder="Min."
+                class="time-input"
+                required
+              />
+            </div>
+
+            <!-- Submit  -->
+            <button type="submit">+ Adicionar</button>
+          </form>
+
+          <div id="the-entries"></div>
+
+          <div id="no-entries-message">
+            Você ainda não tem meditações salvas. <br />
+            Quando você estiver pronto para escrever sobre uma meditação, use o
+            botão "+" acima.
           </div>
         </div>
+
+        <!-- footer  -->
+
+        <footer>
+          <p>
+            Por
+            <a href="https://campsite.bio/codigoisaac" target="_blank"
+              >códigoisaac</a
+            >.
+          </p>
+          <!-- Info Button  -->
+          <div id="info-btn">i</div>
+        </footer>
       </div>
 
-      <!-- Sound  -->
-
-      <div id="sound" class="below-popup centered">
-        <!-- Openable div  -->
-        <div id="sound-content">
-          <div id="music-title">Música <i class="ri-toggle-line"></i></div>
-          <div id="music-player">
-            <iframe
-              width="100%"
-              height="450"
-              scrolling="no"
-              frameborder="no"
-              allow="autoplay"
-              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1122536596&color=%23252525&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
-            >
-            </iframe>
-          </div>
-        </div>
-
-        <!-- Contribution info  -->
-        <div id="playlist-contribution">
-          Essa playlist aceita contribuições. <a href=""> Contribuir</a>.
-        </div>
-      </div>
-
-      <!-- Entries  -->
-
-      <div id="entries" class="below-popup">
-        <div id="entry-controls">
-          <div id="entries-header">
-            Meditações <i class="ri-toggle-line"></i>
-            <span id="tip">clique p/ abrir</span>
-          </div>
-          <button id="open-form-btn"><i class="ri-add-line"></i></button>
-        </div>
-
-        <form
-          name="entriesForm"
-          id="add-entry-form"
-          onsubmit="event.preventDefault()"
-        >
-          <!-- Title  -->
-          <input type="text" id="add-entry-title" placeholder="Título" />
-
-          <!-- Text  -->
-          <textarea
-            name="addEntryText"
-            id="add-entry-text"
-            placeholder="Texto"
-            cols="30"
-            rows="10"
-          ></textarea>
-
-          <!-- Date  -->
-          <div id="date-inputs">
-            <!-- Day  -->
-            <input
-              type="number"
-              name="day-input"
-              id="day-input"
-              placeholder="Dia"
-              class="date-input"
-              min="01"
-              required
-            />
-            /
-            <!-- Month  -->
-            <input
-              type="number"
-              name="month-input"
-              id="month-input"
-              placeholder="Mês"
-              class="date-input"
-              min="01"
-              max="12"
-              required
-            />
-            /
-            <!-- Year  -->
-            <input
-              type="number"
-              name="year-input"
-              id="year-input"
-              placeholder="Ano"
-              class="date-input"
-              required
-            />
-          </div>
-
-          <!-- Time  -->
-          <div id="time-inputs">
-            <input
-              type="number"
-              name="hour-input"
-              id="hour-input"
-              placeholder="Hora"
-              class="time-input"
-              required
-            />
-            :
-            <input
-              type="number"
-              name="minute-input"
-              id="minute-input"
-              placeholder="Min."
-              class="time-input"
-              required
-            />
-          </div>
-
-          <!-- Submit  -->
-          <button type="submit">+ Adicionar</button>
-        </form>
-
-        <div id="the-entries"></div>
-
-        <div id="no-entries-message">
-          Você ainda não tem meditações salvas. <br />
-          Quando você estiver pronto para escrever sobre uma meditação, use o
-          botão "+" acima.
-        </div>
-      </div>
-
-      <!-- Habit-Stats  -->
-
-      <div id="habit-stats" class="below-popup">
-        <div id="stats-heading">Status do hábito:</div>
-
-        <div id="the-stats">
-          <div class="stat-row" id="strike-stats">
-            <!-- Twice a day strike -->
-            <div id="twice-day-strike">
-              <span class="stat-label"
-                >dias meditados <br />
-                2x em seguida</span
-              >
-              <span class="stat">0</span>
-            </div>
-
-            <!-- Day strike -->
-            <div id="day-strike">
-              <span class="stat-label"
-                >dias meditados <br />
-                em seguida</span
-              >
-              <span class="stat">0</span>
-            </div>
-          </div>
-
-          <div class="stat-row" id="other-stats">
-            <!-- Meditations recorded  -->
-            <div id="meditation-count">
-              <span class="stat-label">meditações</span>
-              <span class="stat">0</span>
-            </div>
-
-            <!-- Days meditated twice  -->
-            <div id="days-meditated-twice">
-              <span class="stat-label"
-                >dias <br />
-                meditados 2x</span
-              >
-              <span class="stat">0</span>
-            </div>
-
-            <!-- Days meditated  -->
-            <div id="days-meditated">
-              <span class="stat-label"
-                >dias <br />
-                meditados</span
-              >
-              <span class="stat">0</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer  -->
-
-      <footer>
-        <p>
-          Por
-          <a href="https://campsite.bio/codigoisaac" target="_blank"
-            >códigoisaac</a
-          >.
-        </p>
-        <!-- Info Button  -->
-        <div id="info-btn">i</div>
-      </footer>
-
-      <!-- Popup  -->
+      <!-- popup  -->
 
       <div id="popup" class="hiden">
         <div id="popup-content">

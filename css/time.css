@@ -14,8 +14,8 @@
 
 /* style the texts  */
 #time-div h1 {
-  font-size: 1.2rem;
-  margin-bottom: 0px;
+  /* font-size: 1.2rem;
+  margin-bottom: 0px; */
 }
 #time-div small {
   font-weight: bold;
