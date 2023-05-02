@@ -21,11 +21,6 @@
   font-weight: bold;
 }
 
-.time-option-texts {
-  display: flex;
-  justify-content: space-between;
-}
-
 /* style the inputs  */
 .timer-inputs {
   border: 1px solid var(--white);
