@@ -2,15 +2,21 @@ import { toggleFormOpen } from "./entries.js";
 
 let countdown, countup;
 
-// displayers
-const timerDisplay = document.querySelector("#meditation-timer"),
-  timerMessage = document.querySelector("#timer-message");
+///
+const timerDisplay = document.querySelector("#timer"),
+  predefinedTimeOptions = [...document.querySelectorAll(".predefined-option")],
+  timerMsg = document.querySelector("#time-message");
+///
 
 //* timeless meditation
 let isTimelessMeditating = false;
 // timeless input
-const timelessInput = document.querySelector("#timeless-input");
-timelessInput.addEventListener("click", startTimelessMeditation);
+const timelessTimerInput = document.querySelector("#timeless-input");
+timelessTimerInput.addEventListener("click", startTimelessMeditation);
+// timeless message
+const timelessTimerMessage = document.querySelector(
+  "#timeless-meditation-div h1"
+);
 
 function startTimelessMeditation() {
   clearAllTimers();
@@ -18,6 +24,9 @@ function startTimelessMeditation() {
   isTimelessMeditating = !isTimelessMeditating;
 
   setTextsWhenMeditating("timeless");
+
+  // encourage to add entry
+  !isTimelessMeditating ? encourageEntry() : null;
 }
 
 function setTextsWhenMeditating(timeOption) {
@@ -25,16 +34,15 @@ function setTextsWhenMeditating(timeOption) {
     //
     // set message texts
     if (isTimelessMeditating) {
-      timerDisplay.textContent = "00:00";
-      timelessInput.textContent = "| |";
-      timerMessage.textContent = "Tempo no vazio:";
+      timelessTimerInput.textContent = "| |";
+      timelessTimerMessage.textContent = "Tempo no vazio:";
     } else {
-      timelessInput.textContent = ">";
-      timerMessage.textContent = "Escreva sobre sua meditação";
-      toggleFormOpen();
+      timelessTimerInput.textContent = ">";
+      timelessTimerMessage.textContent = "Dê o play e entre no vazio:";
     }
 
     // set timer text
+    document.querySelector("#timeless-meditation-timer").textContent = "00:00";
     const now = Date.now();
     if (isTimelessMeditating) {
       countup = setInterval(() => {
@@ -53,7 +61,7 @@ function displayTimeMeditated(start) {
     minsPassed = Math.floor((passed / 60000) % 60),
     secsPassed = Math.floor((passed / 1000) % 60);
 
-  timerDisplay.textContent =
+  document.querySelector("#timeless-meditation-timer").textContent =
     (minsPassed < 10 ? "0" : "") +
     minsPassed +
     ":" +
@@ -92,7 +100,7 @@ function startTimer(minutes) {
     // stop if reached zero
     if (secondsLeft < 0) {
       clearInterval(countdown);
-      encourageToAddEntry();
+      encourageEntry();
       new Audio("audio/tibetan-bell.wav").play(); // end of timer alert
       return;
     }
@@ -106,6 +114,11 @@ function disableTimelessMeditation() {
     isTimelessMeditating = false;
     timeless.textContent = ">";
   }
+}
+
+function encourageEntry() {
+  setTimerMsg("end");
+  toggleFormOpen();
 }
 
 function displayTimeLeft(seconds) {
@@ -135,6 +148,22 @@ document.timeForm.addEventListener("submit", function (e) {
 // meditate the time you want
 const timeless = document.querySelector("#timeless");
 timeless.addEventListener("click", timelessMeditation);
+
+function setTimerMsg(timeless) {
+  switch (timeless) {
+    case "predefined":
+      timerMsg.textContent = "Tempo restante:";
+      break;
+
+    case "timeless":
+      timerMsg.textContent = "Tempo em meditação:";
+      break;
+
+    case "end":
+      timerMsg.textContent = "Escreva sobre sua meditação";
+      break;
+  }
+}
 
 function clearAllTimers() {
   // clear any active timers
