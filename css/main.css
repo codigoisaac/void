@@ -31,73 +31,18 @@ section {
   padding: 1rem 0.5rem;
 }
 
-/* new ******************************************************************* */
-
-/* ********************************* main sessions ********************************* */
-
-/* ------------------ both main sessions ------------------  */
-
-#upper-right-session,
-#down-left-session {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-}
-
-/* upper-right session */
-/* #upper-right-session {
-} */
-
-/* ********************************* upper-right session parts ********************************* */
-
-#time-div {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-/* ------------------ timer-displays ------------------  */
-
-#timer-displays {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#meditation-timer {
-  font-size: 2rem;
-  margin: 0;
-}
-
-/* ------------------ timeless input ------------------  */
-
-#timeless-input {
-  font-size: 5rem;
-  font-weight: lighter;
-  border: 2px solid var(--white);
-  --size: 5rem;
-  width: var(--size);
-  height: var(--size);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* old ******************************************************************* */
-
 /* Center  */
-/* #home > *,
+#home > *,
 .centered,
 .time-circle,
 .sound-circle {
   display: flex;
   align-items: center;
   justify-content: center;
-} */
+}
 
 /* Home  */
-/* #home {
+#home {
   display: grid;
   grid-template-areas:
     "logo"
@@ -106,7 +51,7 @@ section {
     "habs"
     "entr"
     "foot";
-} */
+}
 #home > * {
   margin: 1rem 0;
   transition: opacity var(--void-duration);
