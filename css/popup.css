@@ -35,6 +35,7 @@ aside {
 /* Popup  */
 #popup {
   display: flex;
+  align-items: stretch;
   grid-area: ppup;
 }
 #popup-content {
